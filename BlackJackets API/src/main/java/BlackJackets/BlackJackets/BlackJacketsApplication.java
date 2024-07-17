@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication/*(exclude = {DataSourceAutoConfiguration.class })*/
 public class BlackJacketsApplication {
 
 	public static void main(String[] args) throws Throwable {
