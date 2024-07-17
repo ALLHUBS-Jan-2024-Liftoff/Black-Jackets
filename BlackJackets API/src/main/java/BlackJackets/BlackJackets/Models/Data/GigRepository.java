@@ -1,4 +1,7 @@
 package BlackJackets.BlackJackets.Models.Data;
 
-public interface GigRepository {
+import BlackJackets.BlackJackets.Models.Gig;
+import org.springframework.data.repository.CrudRepository;
+
+public interface GigRepository extends CrudRepository<Gig, Integer> {
 }
