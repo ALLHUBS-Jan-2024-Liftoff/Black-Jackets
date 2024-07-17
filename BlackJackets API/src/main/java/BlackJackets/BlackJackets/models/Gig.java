@@ -1,4 +1,4 @@
-package BlackJackets.BlackJackets.Models;
+package BlackJackets.BlackJackets.models;
 
 import jakarta.persistence.Entity;
 
