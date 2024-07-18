@@ -1,6 +1,4 @@
 package BlackJackets.BlackJackets.service.impl;
-
-
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.entity.Venue;
 import BlackJackets.BlackJackets.repository.VenueRepo;
@@ -8,7 +6,6 @@ import BlackJackets.BlackJackets.service.VenueService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
