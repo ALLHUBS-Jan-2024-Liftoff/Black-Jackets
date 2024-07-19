@@ -1,13 +1,12 @@
 package BlackJackets.BlackJackets.Controllers;
 
+import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.models.dto.RegisterFormDTO;
-import BlackJackets.BlackJackets.data.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,7 +19,7 @@ import java.util.Optional;
 @Controller
 public class AuthenticationController {
 
-    @Autowired
+//    @Autowired
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
