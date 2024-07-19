@@ -1,7 +1,7 @@
 package BlackJackets.BlackJackets.service.impl;
 import BlackJackets.BlackJackets.dto.VenueDto;
-import BlackJackets.BlackJackets.entity.Venue;
-import BlackJackets.BlackJackets.repository.VenueRepo;
+import BlackJackets.BlackJackets.models.Venue;
+import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.service.VenueService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class VenueServiceImpl implements VenueService {
         return all.stream().map(
                 dto -> new VenueDto(dto.getVenueId(),
                         dto.getVenueName(),
-                        dto.getVenueImageUrl(),
+                        dto.getVenueCapacity(),
                         dto.getVenueLocation(),
                         dto.getVenueEmail(),
                         dto.getVenuePhone(),
@@ -54,7 +54,7 @@ public class VenueServiceImpl implements VenueService {
     public VenueDto updateVenue(int venueId, VenueDto venueDto) {
         Venue venue = this.venueRepo.findById(venueId).orElseThrow();
         venue.setVenueName(venueDto.getVenueName());
-        venue.setVenueImageUrl(venueDto.getVenueImageUrl());
+        venue.setVenueCapacity(venueDto.getVenueCapacity());
         venue.setVenueLocation(venueDto.getVenueLocation());
         venue.setVenueEmail(venueDto.getVenueEmail());
         venue.setVenuePhone(venueDto.getVenuePhone());
