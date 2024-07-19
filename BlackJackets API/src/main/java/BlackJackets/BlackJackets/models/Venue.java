@@ -20,7 +20,7 @@ public class Venue {
 
     private String venueName;
 
-    private String venueImageUrl;
+    private int venueCapacity;
 
     private String venueLocation;
 

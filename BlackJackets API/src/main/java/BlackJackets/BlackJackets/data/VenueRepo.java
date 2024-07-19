@@ -1,6 +1,6 @@
-package BlackJackets.BlackJackets.repository;
+package BlackJackets.BlackJackets.data;
 
-import BlackJackets.BlackJackets.entity.Venue;
+import BlackJackets.BlackJackets.models.Venue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

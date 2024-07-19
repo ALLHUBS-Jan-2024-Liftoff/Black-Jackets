@@ -1,4 +1,4 @@
-package BlackJackets.BlackJackets.controller;
+package BlackJackets.BlackJackets.controllers;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.service.VenueService;
