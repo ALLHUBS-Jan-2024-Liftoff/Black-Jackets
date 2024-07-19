@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Entity
@@ -14,17 +15,19 @@ public class Gig {
 
     private String name;
 
-    //Research Date object for gig's date
+    private LocalDate date;
 
     //Ask Ryan/research image api for data type of img
+    // private image;
 
     private String genre;
 
+    // May need to change to Array or HashMap to be able to remove/replace a band in a specific slot
     private ArrayList<String> bandArray;
 
     private String ages;
 
-    //add orm mapping
+    //add orm mapping for Venue
 //    private Venue venue;
 
     public Gig() {
@@ -40,6 +43,14 @@ public class Gig {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getGenre() {
@@ -66,6 +77,7 @@ public class Gig {
         this.ages = ages;
     }
 
+//    Add after Venue is mapped
 //    public Venue getVenue() {
 //        return venue;
 //    }
