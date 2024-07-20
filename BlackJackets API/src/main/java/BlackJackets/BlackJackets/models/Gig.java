@@ -2,35 +2,49 @@ package BlackJackets.BlackJackets.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 @Entity
 public class Gig {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Name required")
     private String name;
 
+    @NotEmpty(message = "Date required")
     private LocalDate date;
 
-    //Ask Ryan/research image api for data type of img
-    // private image;
-
+    @Size(min = 3, message = "Genre required")
     private String genre;
 
-    // May need to change to Array or HashMap to be able to remove/replace a band in a specific slot
-    private ArrayList<String> bandArray;
-
+    @NotEmpty(message = "Please specify age restrictions if applicable")
     private String ages;
 
-    //add orm mapping for Venue
+//    Will add orm mapping for Venue
 //    private Venue venue;
 
+//    Ask Ryan/research image api for data type of img
+//    private image;
+
+//    May need to change to Array or HashMap to be able to remove/replace a band in a specific slot
+//    private ArrayList<String> bandArray;
+
     public Gig() {
+    }
+
+    public Gig(Long id, String name, LocalDate date, String genre, String ages) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.genre = genre;
+        this.ages = ages;
     }
 
     public Long getId() {
@@ -61,14 +75,6 @@ public class Gig {
         this.genre = genre;
     }
 
-    public ArrayList<String> getBandArray() {
-        return bandArray;
-    }
-
-    public void setBandArray(ArrayList<String> bandArray) {
-        this.bandArray = bandArray;
-    }
-
     public String getAges() {
         return ages;
     }
@@ -76,13 +82,4 @@ public class Gig {
     public void setAges(String ages) {
         this.ages = ages;
     }
-
-//    Add after Venue is mapped
-//    public Venue getVenue() {
-//        return venue;
-//    }
-//
-//    public void setVenue(Venue venue) {
-//        this.venue = venue;
-//    }
 }
