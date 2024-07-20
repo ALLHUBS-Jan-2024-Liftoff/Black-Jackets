@@ -2,35 +2,33 @@ package BlackJackets.BlackJackets.controllers;
 
 import BlackJackets.BlackJackets.data.GigRepository;
 import BlackJackets.BlackJackets.models.Gig;
-import BlackJackets.BlackJackets.models.Venue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("gig")
+@RequestMapping("gigs")
 //@CrossOrigin(origins = "http://localhost:5173")
 public class GigController {
+
+//    private GigService gigService;
 
     @Autowired
     private GigRepository gigRepository;
 
+//    // Add Gig REST API with service
 //    @PostMapping("add")
-//    public Gig processCreateGig(@RequestParam String name, String genre, ArrayList<String> bandArray, String ages) {
-//        Gig newGig = new Gig();
-//        newGig.setName(name);
-//        newGig.setGenre(genre);
-//        newGig.setBandArray(bandArray);
-//        newGig.setAges(ages);
-//
-//        return gigRepository.save(newGig);
+//    public ResponseEntity<GigDto> createGig(@RequestBody GigDto gigDto) {
+//        GigDto savedGig = gigService.createGig(gigDto);
+//        return new ResponseEntity<>(savedGig, HttpStatus.CREATED);
 //    }
 
-//    Need to research how to use the DTOs and services to use the @RequestBody annotation
-//    @PostMapping("add")
-//    public Gig processCreateGig(@RequestBody Gig newGig) {
-//        return gigRepository.save(newGig);
-//    }
+//    Add Gig
+    @PostMapping("add")
+    public Gig processCreateGig(@RequestBody Gig newGig) {
+        return gigRepository.save(newGig);
+    }
 
 }
