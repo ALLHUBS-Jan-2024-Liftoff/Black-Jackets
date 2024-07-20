@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Objects;
 
 @Entity
 public class Gig {
@@ -104,5 +105,31 @@ public class Gig {
 
     public void setBandLineup(HashMap<Integer, String> bandLineup) {
         this.bandLineup = bandLineup;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gig gig = (Gig) o;
+        return Objects.equals(id, gig.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Gig{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", genre='" + genre + '\'' +
+                ", ages='" + ages + '\'' +
+                ", bandLineup=" + bandLineup +
+                ", headliner='" + headliner + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
