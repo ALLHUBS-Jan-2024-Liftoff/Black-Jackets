@@ -16,19 +16,16 @@ public class Venue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int venueId;
+    private int id;
 
-    private String venueName;
+    private String name;
 
-    private int venueCapacity;
+    private int capacity;
 
-    private String venueLocation;
+    private String location;
 
-    private String venueEmail;
+    private String email;
 
     private String venuePhone;
 
-    private String venueGenres;
-
-    private int venueAge;
-}
+    }

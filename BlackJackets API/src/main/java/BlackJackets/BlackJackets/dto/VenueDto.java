@@ -1,5 +1,8 @@
 package BlackJackets.BlackJackets.dto;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
@@ -9,19 +12,17 @@ import lombok.*;
 @AllArgsConstructor
 public class VenueDto {
 
-        private int venueId;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
-        private String venueName;
+        private String name;
 
-        private int venueCapacity;
+        private int capacity;
 
-        private String venueLocation;
+        private String location;
 
-        private String venueEmail;
+        private String email;
 
         private String venuePhone;
-
-        private String venueGenres;
-
-        private int venueAge;
 }

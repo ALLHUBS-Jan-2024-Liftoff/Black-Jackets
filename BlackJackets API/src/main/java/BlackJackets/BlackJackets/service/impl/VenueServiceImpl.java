@@ -38,14 +38,13 @@ public class VenueServiceImpl implements VenueService {
     public List<VenueDto> getAllVenues() {
         List<Venue> all = this.venueRepo.findAll();
         return all.stream().map(
-                dto -> new VenueDto(dto.getVenueId(),
-                        dto.getVenueName(),
-                        dto.getVenueCapacity(),
-                        dto.getVenueLocation(),
-                        dto.getVenueEmail(),
-                        dto.getVenuePhone(),
-                        dto.getVenueGenres(),
-                        dto.getVenueAge())).collect(Collectors.toList());
+                dto -> new VenueDto(dto.getId(),
+                        dto.getName(),
+                        dto.getCapacity(),
+                        dto.getLocation(),
+                        dto.getEmail(),
+                        dto.getVenuePhone()
+                        )).collect(Collectors.toList());
 
     }
 
@@ -53,13 +52,11 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public VenueDto updateVenue(int venueId, VenueDto venueDto) {
         Venue venue = this.venueRepo.findById(venueId).orElseThrow();
-        venue.setVenueName(venueDto.getVenueName());
-        venue.setVenueCapacity(venueDto.getVenueCapacity());
-        venue.setVenueLocation(venueDto.getVenueLocation());
-        venue.setVenueEmail(venueDto.getVenueEmail());
+        venue.setName(venueDto.getName());
+        venue.setCapacity(venueDto.getCapacity());
+        venue.setLocation(venueDto.getLocation());
+        venue.setEmail(venueDto.getEmail());
         venue.setVenuePhone(venueDto.getVenuePhone());
-        venue.setVenueGenres(venueDto.getVenueGenres());
-        venue.setVenueAge(venueDto.getVenueAge());
 
         venueRepo.save(venue);
         return this.modelMapper.map(venue, VenueDto.class);
