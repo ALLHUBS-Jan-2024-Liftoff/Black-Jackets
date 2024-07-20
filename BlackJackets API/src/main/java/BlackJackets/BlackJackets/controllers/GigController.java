@@ -13,17 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "http://localhost:5173")
 public class GigController {
 
-//    private GigService gigService;
-
     @Autowired
     private GigRepository gigRepository;
-
-//    // Add Gig REST API with service
-//    @PostMapping("add")
-//    public ResponseEntity<GigDto> createGig(@RequestBody GigDto gigDto) {
-//        GigDto savedGig = gigService.createGig(gigDto);
-//        return new ResponseEntity<>(savedGig, HttpStatus.CREATED);
-//    }
 
 //    Add Gig
     @PostMapping("add")
