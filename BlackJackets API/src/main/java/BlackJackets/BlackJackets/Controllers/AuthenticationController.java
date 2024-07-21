@@ -7,6 +7,7 @@ import BlackJackets.BlackJackets.models.dto.RegisterFormDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,7 +20,7 @@ import java.util.Optional;
 @Controller
 public class AuthenticationController {
 
-//    @Autowired
+    @Autowired
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
@@ -80,7 +81,7 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "redirect:login";
     }
 
     @GetMapping("/login")
@@ -118,7 +119,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "login";
     }
 
     @GetMapping("/logout")
