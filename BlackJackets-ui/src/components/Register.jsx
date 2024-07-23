@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const RegisterForm = ({ register }) => {
   const [name, setName] = useState("");
-  const [date, setEmail] = useState();
-  const [genre, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState("");
 
 
   const handleSubmit = (e) => {
@@ -39,7 +39,7 @@ const RegisterForm = ({ register }) => {
           <label className="form-label">
             Email
             <input
-              type="email"
+              type="text"
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
