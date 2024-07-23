@@ -14,6 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Venue {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
