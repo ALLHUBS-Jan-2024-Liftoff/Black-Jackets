@@ -1,4 +1,4 @@
-package BlackJackets.BlackJackets.Models;
+package BlackJackets.BlackJackets.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,4 +53,5 @@ public class User {
         return encoder.matches(password, pwHash);
     }
 }
+
 
