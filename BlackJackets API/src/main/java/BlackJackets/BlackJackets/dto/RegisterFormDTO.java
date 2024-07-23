@@ -1,4 +1,4 @@
-package BlackJackets.BlackJackets.models.dto;
+package BlackJackets.BlackJackets.dto;
 
 public class RegisterFormDTO extends LoginFormDTO {
 

@@ -17,7 +17,7 @@ public class BlackJacketsApplication {
 		reviewRepo.addReview(new Reviews("TheBand", "The venue was awesome and the crowd was electric", 5));
 		List<Reviews> allReviews = reviewRepo.getAllReviews();
 		for (Reviews reviews : allReviews) {
-			System.out.println(reviews.getUserName() + "rated it" + reviews.getRating() + " stars.comment: " + reviews.getComment());
+			System.out.println(reviews.getUserName() + " rated it" + reviews.getRating() + " stars. Comment: " + reviews.getComment());
 		}
 	}
 

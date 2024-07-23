@@ -2,8 +2,8 @@ package BlackJackets.BlackJackets.Controllers;
 
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.models.User;
-import BlackJackets.BlackJackets.models.dto.LoginFormDTO;
-import BlackJackets.BlackJackets.models.dto.RegisterFormDTO;
+import BlackJackets.BlackJackets.dto.LoginFormDTO;
+import BlackJackets.BlackJackets.dto.RegisterFormDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;

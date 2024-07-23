@@ -1,4 +1,4 @@
-package BlackJackets.BlackJackets.models.dto;
+package BlackJackets.BlackJackets.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
