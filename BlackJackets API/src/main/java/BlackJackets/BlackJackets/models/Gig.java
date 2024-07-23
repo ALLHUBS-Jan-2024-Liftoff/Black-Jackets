@@ -43,16 +43,19 @@ public class Gig {
 
     private String headliner = "To be determined";
 
+    private int bandSlots;
+
     public Gig() {
     }
 
-    public Gig(String name, LocalDateTime date, String genre, String ages, HashMap<Integer, String> bandLineup, String headliner) {
+    public Gig(String name, LocalDateTime date, String genre, String ages, HashMap<Integer, String> bandLineup, String headliner, int bandSlots) {
         this.name = name;
         this.date = date;
         this.genre = genre;
         this.ages = ages;
         this.bandLineup = bandLineup;
         this.headliner = headliner;
+        this.bandSlots = bandSlots;
     }
 
     public Long getId() {
@@ -107,6 +110,14 @@ public class Gig {
         this.bandLineup = bandLineup;
     }
 
+    public int getBandSlots() {
+        return bandSlots;
+    }
+
+    public void setBandSlots(int bandSlots) {
+        this.bandSlots = bandSlots;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -120,16 +131,18 @@ public class Gig {
         return Objects.hashCode(id);
     }
 
+
     @Override
     public String toString() {
         return "Gig{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", date=" + date +
                 ", genre='" + genre + '\'' +
                 ", ages='" + ages + '\'' +
                 ", bandLineup=" + bandLineup +
                 ", headliner='" + headliner + '\'' +
-                ", id=" + id +
+                ", bandSlots=" + bandSlots +
                 '}';
     }
 }
