@@ -1,29 +1,27 @@
 package BlackJackets.BlackJackets;
 
+import BlackJackets.BlackJackets.data.ReviewRepo;
+import BlackJackets.BlackJackets.models.Reviews;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 @SpringBootApplication
 public class BlackJacketsApplication {
 
 	public static void main(String[] args) throws Throwable {
 		SpringApplication.run(BlackJacketsApplication.class, args);
+
+		ReviewRepo reviewRepo = new ReviewRepo();
+		reviewRepo.addReview(new Reviews("TheBand", "The venue was awesome and the crowd was electric", 5));
+		List<Reviews> allReviews = reviewRepo.getAllReviews();
+		for (Reviews reviews : allReviews) {
+			System.out.println(reviews.getUserName() + " rated it" + reviews.getRating() + " stars. Comment: " + reviews.getComment());
+		}
 	}
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//		return args -> {
-//
-//			System.out.println("Let's inspect the beans provided by Spring Boot:");
-//
-//			String[] beanNames = ctx.getBeanDefinitionNames();
-//			Arrays.sort(beanNames);
-//			for (String beanName : beanNames) {
-//				System.out.println(beanName);
-//			}
-//
-//		};
-//	}
+
 
 
 }
