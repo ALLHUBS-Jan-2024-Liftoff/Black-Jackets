@@ -5,12 +5,12 @@ function Navbar() {
   return (
       <>
           <nav>
-              <ul class="nav nav-pills flex-column flex-sm-row">
-                  <li class="nav-item">
-                      <Link class="nav-link active" aria-current="page" to="/">Home</Link>
+              <ul className="nav nav-pills flex-column flex-sm-row">
+                  <li className="nav-item">
+                      <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                   </li>
-                  <li class="nav-item">
-                      <Link class="nav-link" to="/about">About</Link>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/about">About</Link>
                   </li>
               </ul>
           </nav>
