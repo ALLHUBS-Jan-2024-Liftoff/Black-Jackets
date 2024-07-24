@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("venue")
+@CrossOrigin(origins = "*")
 public class VenueController {
 
     @Autowired
