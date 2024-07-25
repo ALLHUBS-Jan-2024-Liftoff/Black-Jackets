@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+// import { addGig } from "../services/GigService";
 
-const CreateGigForm = ({ addGig }) => {
+const CreateGigForm = ({addGig}) => {
   const [name, setName] = useState("");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
   const [ages, setAges] = useState("");
   const [headliner, setHeadliner] = useState("");
@@ -21,7 +22,7 @@ const CreateGigForm = ({ addGig }) => {
     ) {
       addGig(name, date, genre, ages, headliner, bandSlots);
       setName("");
-      setDate();
+      setDate("");
       setGenre("");
       setAges("");
       setHeadliner("");
