@@ -8,6 +8,7 @@ const CreateGigForm = ({addGig}) => {
   const [ages, setAges] = useState("");
   const [headliner, setHeadliner] = useState("");
   const [bandSlots, setBandSlots] = useState(0); // will enter a number, will run a loop to create a hashmap with incrementing id's and "Open Slot" as the bandName
+  const [bandLineup, setBandLineup] = useState([]);
   // const [img, setImg] = useState();
 
   const handleSubmit = (e) => {
@@ -20,13 +21,14 @@ const CreateGigForm = ({addGig}) => {
       headliner != "" &&
       bandSlots >= 0 /* && validation for img */
     ) {
-      addGig(name, date, genre, ages, headliner, bandSlots);
+      addGig(name, date, genre, ages, headliner, bandSlots, bandLineup);
       setName("");
       setDate("");
       setGenre("");
       setAges("");
       setHeadliner("");
       setBandSlots(0);
+      setBandLineup([]);
     }
   };
 
@@ -105,6 +107,11 @@ const CreateGigForm = ({addGig}) => {
             />
           </label>
         </div>
+        {
+          [...Array(+bandSlots)].map((_, index)=>{
+            return <label>Band {index + 1}<input type="text" key={index} onChange={(e)=>{[...bandLineup].map(e.target.value, index)=>{}}}/></label>
+          })
+        }
 
         <button type="submit" className="btn btn-primary mt-3">
           Create Gig
