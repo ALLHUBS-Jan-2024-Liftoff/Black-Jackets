@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("venue")
 @CrossOrigin(origins = "*")
 public class VenueController {
-
     @Autowired
     private VenueService venueService;
 
