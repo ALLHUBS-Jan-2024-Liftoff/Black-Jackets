@@ -15,4 +15,5 @@ public interface VenueService {
     VenueDto updateVenue(int venueId, VenueDto venueDto);
 
     void deleteVenue(int venueId);
+
 }
