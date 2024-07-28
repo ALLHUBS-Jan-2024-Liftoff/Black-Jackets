@@ -2,7 +2,16 @@ import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090";
 
-export const addGig = async (name, date, genre, ages, headliner, bandSlots) => {
+export const addGig = async (
+  name,
+  date,
+  genre,
+  ages,
+  headliner,
+  bandSlots,
+  supportingAct,
+  openingAct
+) => {
   const userData = {
     name: name,
     date: date,
@@ -10,15 +19,19 @@ export const addGig = async (name, date, genre, ages, headliner, bandSlots) => {
     ages: ages,
     headliner: headliner,
     bandSlots: bandSlots,
+    supportingAct: supportingAct,
+    openingAct: openingAct,
   };
-//   const headers = {
-//     "Content-Type": "application/json",
-//     "Access-Control-Allow-Origin": `${BASEAPIURL}/gigs/add`
-//   }
+  //   const headers = {
+  //     "Content-Type": "application/json",
+  //     "Access-Control-Allow-Origin": `${BASEAPIURL}/gigs/add`
+  //   }
 
-  axios.post(`${BASEAPIURL}/gigs/add`, userData, /*{headers: headers}*/).then((response)=>{
-    console.log(response.status, response.data.token);
-  })
+  axios
+    .post(`${BASEAPIURL}/gigs/add`, userData /*{headers: headers}*/)
+    .then((response) => {
+      console.log(response.status, response.data.token);
+    });
 
   // let data = JSON.stringify({
   //   "name": "Big Show",
