@@ -1,15 +1,17 @@
+import { useState } from 'react';
 import './App.css'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
 import About from './pages/About'
-import LoginPage from './pages/LoginPage'
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from './pages/RegisterPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VenueList from './pages/VenueList'
 import { useEffect, useState } from "react";
 
 function App() {
- 
+  const [count, setCount] = useState(0)
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -33,9 +35,13 @@ function App() {
             <Route
               path="login"
               element={
-                <LoginPage setLoggedIn={setLoggedIn} setUsername={setUsername} />
+                <LoginPage
+                  setLoggedIn={setLoggedIn}
+                  setUsername={setUsername}
+                />
               }
             />
+            <Route path="register" element={<RegisterPage />} />
             {/* <Route path="contact" element={<Contact />} /> */}
           </Route>
         </Routes>
@@ -45,4 +51,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
