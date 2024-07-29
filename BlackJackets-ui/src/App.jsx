@@ -8,14 +8,9 @@ import RegisterPage from "./pages/RegisterPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VenueList from "./pages/VenueList";
 import GigPage from "./pages/GigPage";
+import CreateGigForm from "./components/CreateGig";
 
 function App() {
-  // const [gigs, setGigs] = useState();
-
-  // const addGig(name, date, genre, ages, headliner, bandSlots) => {
-
-  // }
-
   return (
     // <Home />
     <>
@@ -26,7 +21,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="register" element={<RegisterPage />} />
             {/* <Route path="contact" element={<Contact />} /> */}
-            <Route path="gigs/add" element={<GigPage />} />
+            <Route path="gigs/add" element={<CreateGigForm />} />
           </Route>
         </Routes>
       </Router>

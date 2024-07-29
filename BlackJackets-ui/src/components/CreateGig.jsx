@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { addGig } from "../services/GigService";
+import { addGig } from "../services/GigService";
 
-const CreateGigForm = ({ addGig }) => {
+const CreateGigForm = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
@@ -16,11 +16,11 @@ const CreateGigForm = ({ addGig }) => {
     e.preventDefault();
 
     if (
-      name != "" &&
+      name.trim() != "" &&
       date != null &&
-      genre != "" &&
+      genre.trim() != "" &&
       ages != "" &&
-      headliner != "" &&
+      headliner.trim() != "" &&
       bandSlots >= 0
       // && validation for img
     ) {
@@ -84,17 +84,32 @@ const CreateGigForm = ({ addGig }) => {
             />
           </label>
         </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Ages
-            <input
-              type="text"
-              className="form-control"
-              value={ages}
-              onChange={(e) => setAges(e.target.value)}
-              required
-            />
-          </label>
+        <p>Select Age Range</p>
+        <div className="form-check">
+          <input
+            type="radio"
+            className="form-check-input"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            value="Ages 21+"
+            onChange={(e) => setAges(e.target.value)}
+            checked={ages == "Ages 21+"}
+            required
+          />
+          <label className="form-check-label" for="flexRadioDefault1">Ages 21+</label>
+        </div>
+        <div className="form-check">
+          <input
+            type="radio"
+            className="form-check-input"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value="All Ages"
+            onChange={(e) => setAges(e.target.value)}
+            checked={(ages == "All Ages")}
+            required
+          />
+          <label className="form-check-label" for="flexRadioDefault2">All Ages</label>
         </div>
         <div className="mb-3">
           <label className="form-label">

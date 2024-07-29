@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -27,7 +24,7 @@ public class Gig {
     @FutureOrPresent(message = "Date must not be past")
     private LocalDateTime date;
 
-    @Size(min = 3, message = "Genre required")
+    @NotNull(message = "Genre required")
     private String genre;
 
     @NotEmpty(message = "Please specify age restrictions if applicable")
@@ -105,7 +102,9 @@ public class Gig {
     }
 
     public String getSupportingAct() {
-       if(supportingAct.isBlank()){return "This show has no supporting act slot";}
+        if (supportingAct.isBlank()) {
+            return "This show has no supporting act slot";
+        }
         return supportingAct;
     }
 
@@ -114,7 +113,9 @@ public class Gig {
     }
 
     public String getOpeningAct() {
-        if(openingAct.isBlank()){return "This show has no opening act slot";}
+        if (openingAct.isBlank()) {
+            return "This show has no opening act slot";
+        }
         return openingAct;
     }
 
