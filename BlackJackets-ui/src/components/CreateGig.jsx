@@ -50,7 +50,7 @@ const CreateGigForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">
-            Name
+            Name of the Gig
             <input
               type="text"
               className="form-control"
@@ -62,7 +62,7 @@ const CreateGigForm = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">
-            Date
+            Date of the Gig
             <input
               type="datetime-local"
               className="form-control"
@@ -74,7 +74,7 @@ const CreateGigForm = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">
-            Genre
+            Music Genre
             <input
               type="text"
               className="form-control"
@@ -113,7 +113,7 @@ const CreateGigForm = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">
-            Headliner
+            Gig's Headliner
             <input
               type="text"
               className="form-control"
@@ -125,7 +125,7 @@ const CreateGigForm = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">
-            Number of bands in show line-up
+            Number of Bands in Gig Line-Up
             <input
               type="number"
               className="form-control"
