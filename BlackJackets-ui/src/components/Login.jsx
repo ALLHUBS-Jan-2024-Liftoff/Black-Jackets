@@ -54,14 +54,13 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <div className={"mt-5"}>
-        <div>Login</div>
-      </div>
       <br />
       <div className={"mt-3"}>
+        Username
+        <br />
         <input
           value={username}
-          placeholder="Username"
+          placeholder=""
           onChange={(ev) => setUsername(ev.target.value)}
           className={"inputBox"}
         />
@@ -69,9 +68,11 @@ const LoginForm = (props) => {
       </div>
       <br />
       <div className={"mt-3"}>
+        Password
+        <br />
         <input
           value={password}
-          placeholder="Password"
+          placeholder=""
           onChange={(ev) => setPassword(ev.target.value)}
           className={"inputBox"}
         />
@@ -86,7 +87,7 @@ const LoginForm = (props) => {
           value={"Log in"}
         />
       </div>
-      </div>
+    </div>
   );
 };
 
