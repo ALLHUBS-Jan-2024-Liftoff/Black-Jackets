@@ -125,7 +125,7 @@ const CreateGigForm = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">
-            Number of Bands in Gig Line-Up
+            Number of Bands in Gig Line-Up (0–2)
             <input
               type="number"
               className="form-control"
@@ -178,6 +178,7 @@ const CreateGigForm = () => {
                 className="form-control"
                 defaultValue={openingAct}
                 onChange={(e) => setOpeningAct(e.target.value)}
+                required
               />
             </label>
           </div>
@@ -194,6 +195,7 @@ const CreateGigForm = () => {
                 className="form-control"
                 defaultValue={supportingAct}
                 onChange={(e) => setSupportingAct(e.target.value)}
+                required
               />
             </label>
           </div>
