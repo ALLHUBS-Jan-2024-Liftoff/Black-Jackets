@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchVenues, addVenue } from "../services/venueService";
+import { fetchVenues } from "../services/venueService";
 import { useNavigate } from "react-router-dom";
 
 export default function VenueList() {
@@ -8,15 +8,14 @@ export default function VenueList() {
     const navigator = useNavigate();
 
     // Fetch all venues
-    useEffect(() => {
-        fetchVenues().then(setVenues)
-            .catch((error) => {
-                console.error("Error occurs while fetching venues!", error);
-            });
-    }, []);
-
+    useEffect(() => {fetchVenues().then(setVenues) }, []);
+       
     function addNewVenue() {
         navigator('/add-venue');
+    }
+
+    function updateVenue(id) {
+        navigator(`/edit-venue/${id}`);
     }
 
     return (
@@ -33,6 +32,7 @@ export default function VenueList() {
                         <th>Location</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +44,9 @@ export default function VenueList() {
                                 <td>{venue.location}</td>
                                 <td>{venue.email}</td>
                                 <td>{venue.phone}</td>
+                                <td>
+                                <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
+                                </td>
                             </tr>)}
                 </tbody>
           </table>
