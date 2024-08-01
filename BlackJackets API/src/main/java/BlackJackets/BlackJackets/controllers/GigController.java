@@ -15,15 +15,26 @@ public class GigController {
     @Autowired
     private GigRepository gigRepository;
 
-//    Add Gig
+    //    Add Gig
     @PostMapping("add")
     public Gig processCreateGig(@RequestBody Gig newGig) {
         return gigRepository.save(newGig);
     }
 
     @GetMapping("all")
-    public List<Gig> renderAllGigs(){
+    public List<Gig> findAllGigs() {
         return gigRepository.findAll();
     }
+
+    @GetMapping("{id}")
+    public Gig findGigById(@PathVariable("id") Long gigId) {
+        return gigRepository.findById(gigId).get();
+    }
+
+    // Will Finish after ORM Mapping
+//    @GetMapping()
+//    public List<Gig> findGigsByVenue(@RequestParam int venueId){
+//        return gigRepository.findByVenue(venueId);
+//    }
 
 }
