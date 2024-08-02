@@ -7,6 +7,9 @@ import About from './pages/About'
 import RegisterPage from './pages/RegisterPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VenueList from './pages/VenueList'
+import UploadForm from './components/UploadForm';
+import Profile from './components/Profile';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,5 +31,18 @@ function App() {
     </>
   );
 }
+const App = () => {
+  const [videos, setVideos] = useState([]);
 
+const handleVideoUpload = (videoId) => {
+    setVideos((prevVideos) => [...prevVideos, { videoId }]);
+  };
+
+  return (
+      <div>
+        <UploadForm onVideoUpload={handleVideoUpload} />
+        <Profile />
+      </div>
+    );
+  };
 export default App;
