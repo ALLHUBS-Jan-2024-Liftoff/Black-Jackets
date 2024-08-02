@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addGig } from "../services/GigService";
 
-const CreateGigForm = () => {
+const CreateGigForm = ({venueId}) => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
@@ -32,7 +32,8 @@ const CreateGigForm = () => {
         headliner,
         bandSlots,
         supportingAct,
-        openingAct
+        openingAct,
+        venueId
       );
       setName("");
       setDate("");
