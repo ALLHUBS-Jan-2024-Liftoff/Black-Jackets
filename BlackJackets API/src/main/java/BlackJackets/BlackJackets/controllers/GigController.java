@@ -22,10 +22,12 @@ public class GigController {
 
     //    Add Gig
     @PostMapping("add")
-    public Gig processCreateGig(@RequestBody Gig newGig, @RequestParam int venueId) {
+    public /*String*/ Gig processCreateGig(@RequestBody Gig newGig, @RequestParam int venueId) {
         Venue venue = venueRepo.findById(venueId).get();
         newGig.setVenue(venue);
-        return gigRepository.save(newGig);
+//        venue.addGig(newGig);
+       return gigRepository.save(newGig);
+//        return newGig.toString();
     }
 
     // Get all Gigs
@@ -40,11 +42,10 @@ public class GigController {
         return gigRepository.findById(gigId).get();
     }
 
-    //Get all Gigs owned by one Venue
-    // Will Finish after ORM Mapping
-//    @GetMapping()
-//    public List<Gig> findGigsByVenue(@RequestParam int venueId){
-//        return gigRepository.findByVenue(venueId);
-//    }
+    //Get all Gigs owned by Venue
+    @GetMapping()
+    public List<Gig> findGigsByVenue(@RequestParam int venueId){
+        return gigRepository.findByVenueId(venueId);
+    }
 
 }

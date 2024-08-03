@@ -1,5 +1,6 @@
 package BlackJackets.BlackJackets.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -27,7 +28,9 @@ public class Gig {
     @NotEmpty(message = "Please specify age restrictions if applicable")
     private String ages;
 
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "venue_id")
     private Venue venue;
 
     //  Image API will be used to store an image for the event
@@ -160,7 +163,7 @@ public class Gig {
                 ", date=" + date +
                 ", genre='" + genre + '\'' +
                 ", ages='" + ages + '\'' +
-                ", venue=" + venue +
+                ", venue=" + venue.getName() +
                 ", headliner='" + headliner + '\'' +
                 ", supportingAct='" + supportingAct + '\'' +
                 ", openingAct='" + openingAct + '\'' +

@@ -3,6 +3,7 @@ package BlackJackets.BlackJackets.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,7 @@ public class Venue {
 
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -28,7 +30,11 @@ public class Venue {
 
     private String venuePhone;
 
-    @OneToMany(mappedBy = "venue")
-    private List<Gig> gigs;
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Gig> gigs = new ArrayList<Gig>();
+
+    public void addGig(Gig gig){
+        gigs.add(gig);
+    }
 
     }
