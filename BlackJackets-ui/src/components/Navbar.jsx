@@ -1,5 +1,5 @@
-import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -26,6 +26,11 @@ function Navbar() {
               Register
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/gigs/add">
+              Add Gig Test
+            </Link>
+          </li>
         </ul>
       </nav>
       <Outlet />
@@ -33,4 +38,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default Navbar;
