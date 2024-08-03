@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090";
 
-export const register = async (username, password) => {
+export const login = async (username, password) => {
   try {
     const response = await axios({
       method: "post",

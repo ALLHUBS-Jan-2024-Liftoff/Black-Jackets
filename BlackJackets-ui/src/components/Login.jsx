@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { login } from "../services/loginService";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ const LoginForm = (props) => {
       return;
     }
 
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(username)) {
+    if (!/^[\w]+([\w-])+[\w-]{2,4}$/.test(username)) {
       setUsernameError("Please enter a valid username");
       return;
     }
@@ -51,6 +52,31 @@ const LoginForm = (props) => {
   })
 }
 
+const checkAccountExists = (callback) => {
+  login(username)
+    .then((r) => r.json())
+    .then((r) => {
+      callback(r?.userExists);
+    });
+};
+
+ const logIn = () => {
+   login(username, password)
+     .then((r) => r.json())
+     .then((r) => {
+       if ("success" === r.message) {
+         localStorage.setItem(
+           "user",
+           JSON.stringify({ username, token: r.token })
+         );
+         props.setLoggedIn(true);
+         props.setUsername(username);
+         navigate("/");
+       } else {
+         window.alert("Wrong email or password");
+       }
+     });
+ };
 
   return (
     <div>
