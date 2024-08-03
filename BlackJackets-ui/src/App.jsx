@@ -1,4 +1,3 @@
-export default App;
 import { useState } from 'react';
 import './App.css'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -9,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from './pages/RegisterPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VenueList from './pages/VenueList'
+import GigPage from "./pages/GigPage";
+import CreateGigForm from "./components/CreateGig";
 
 function App() {
   const [count, setCount] = useState(0)
