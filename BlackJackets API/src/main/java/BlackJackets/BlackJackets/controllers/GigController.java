@@ -22,12 +22,10 @@ public class GigController {
 
     //    Add Gig
     @PostMapping("add")
-    public /*String*/ Gig processCreateGig(@RequestBody Gig newGig, @RequestParam int venueId) {
+    public Gig processCreateGig(@RequestBody Gig newGig, @RequestParam int venueId) {
         Venue venue = venueRepo.findById(venueId).get();
         newGig.setVenue(venue);
-//        venue.addGig(newGig);
        return gigRepository.save(newGig);
-//        return newGig.toString();
     }
 
     // Get all Gigs
