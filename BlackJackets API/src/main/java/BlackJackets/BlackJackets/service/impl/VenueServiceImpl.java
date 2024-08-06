@@ -45,7 +45,22 @@ public class VenueServiceImpl implements VenueService {
                         dto.getEmail(),
                         dto.getPhone()
                         )).collect(Collectors.toList());
+    }
 
+    // Get All Venues By search term
+    @Override
+    public List<VenueDto> getAllVenuesBySearch(String name) {
+        List<Venue> all = this.venueRepo.findAll();
+        return all.stream().map(
+                dto -> new VenueDto(dto.getId(),
+                        dto.getName(),
+                        dto.getCapacity(),
+                        dto.getLocation(),
+                        dto.getEmail(),
+                        dto.getPhone()
+                )).filter(venue ->(venue.getName().contains(name))).collect(Collectors.toList());
+
+       // return venueRepo.findAll().stream().filter(dto -> dto.getName().toLowerCase().contains(query.toLowerCase()));
     }
 
     // Update Venue

@@ -12,8 +12,12 @@ public interface VenueService {
 
     List<VenueDto> getAllVenues();
 
+    List<VenueDto> getAllVenuesBySearch(String name);
+
     VenueDto updateVenue(int venueId, VenueDto venueDto);
 
     void deleteVenue(int venueId);
+
+
 
 }

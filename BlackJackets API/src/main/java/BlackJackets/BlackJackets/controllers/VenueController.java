@@ -38,6 +38,13 @@ public class VenueController {
         return new ResponseEntity<>(venues,HttpStatusCode.valueOf(200));
     }
 
+    //Get venue by search
+     @GetMapping("search")
+     public ResponseEntity<List<VenueDto>> getAllVenuesBySearch(@RequestParam String name){
+        List<VenueDto> venues = venueService.getAllVenuesBySearch(name);
+        return new ResponseEntity<>(venues,HttpStatusCode.valueOf(200));
+     }
+
     //Update Venue
     @PutMapping("{Id}")
     public ResponseEntity<VenueDto> updateVenue(@RequestBody VenueDto venueDto, @PathVariable("Id") Integer venueId) throws IOException {
