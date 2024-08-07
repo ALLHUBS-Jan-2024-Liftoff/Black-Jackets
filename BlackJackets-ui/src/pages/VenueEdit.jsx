@@ -9,34 +9,19 @@ function VenueEdit() {
     const [location, setLocation] = useState("");  
     const [phone, setPhone] = useState("");  
     const navigator = useNavigate();
-
+    
     const { id } = useParams();
 
-    // const [values, setValues] = useState({
-    //     id: id,
-    //     name: '',
-    //     capacity: '',
-    //     email: '',
-    //     location: '',
-    //     phone : '',
-    // })
-
-        // useEffect(() => {
-    //     getVenueById(id).then(res => {
-    //         setValues({...values, name: res.data.name, capacity: res.data.capacity, email: res.data.email, location: res.data.location, phone: res.data.phone})
-    //     })
-    // })
-
-       useEffect(() => {
-        getVenueById(id).then(() => {
-            setName(name);
-            setCapacity(capacity);
-            setEmail(email);
-            setLocation(location);
-            setPhone(phone);
-        }) } , [id])
-    
-      // useEffect(() => {getVenueById(id)}, [id]);
+          
+  useEffect(() => {
+      getVenueById(id).then((response) => {
+      setName(response.data.name);
+      setCapacity(response.data.capacity);
+      setEmail(response.data.email);
+      setLocation(response.data.location);
+      setPhone(response.data.phone);
+       })
+     },[id])
    
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -53,8 +38,25 @@ function VenueEdit() {
             console.log(venue);
             e.preventDefault();
             navigator('/venue-list');
-        }
+          }
     };
+    
+// const VenueEdit = ({ venue, onUpdate }) => {
+//       const [name, setName] = useState(venue.name);
+//       const [capacity, setCapacity] = useState(venue.capacity);
+//       const [email, setEmail] = useState(venue.email);
+//       const [location, setLocation] = useState(venue.location);  
+//       const [phone, setPhone] = useState(venue.phone);  
+  
+//       useEffect(() => { getVenueById(id) }, [id]);
+  
+//       const handleSubmit = (e) => {
+//         e.preventDefault();
+//         onUpdate({ ...venue, name, capacity, email, location, phone });
+//       };
+    
+
+
 
   return (
     <div className='container'>
@@ -114,7 +116,7 @@ function VenueEdit() {
                                   className='form-control'
                                   onChange={(e) => setPhone(e.target.value)} required />
                           </div>
-                          <button className='btn btn-success'>Submit</button>
+                          <button className='btn btn-success'>Update</button>
                       </form>
                   </div>
                   </div>
