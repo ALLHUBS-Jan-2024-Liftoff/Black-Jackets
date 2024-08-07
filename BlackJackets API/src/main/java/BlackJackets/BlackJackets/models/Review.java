@@ -1,10 +1,10 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -20,17 +20,25 @@ public class Review {
     @NotEmpty
     private String comment;
 
-    @Size(min = 1, max = 5, message = "Rating must be between 1 and 5 stars")
+//    @Size(min = 1, max = 5, message = "Rating must be between 1 and 5 stars")
+    @Positive(message = "Rating must be between 1 and 5 stars")
+    @Max(value = 5, message = "Rating must be between 1 and 5 stars")
     private int rating;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
 
     public Review() {
     }
 
-    public Review(long id, String userName, String comment, int rating) {
+    public Review(long id, String userName, String comment, int rating, Venue venue) {
         this.id = id;
         this.userName = userName;
         this.comment = comment;
         this.rating = rating;
+        this.venue = venue;
     }
 
     public long getId() {
@@ -59,5 +67,13 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }
