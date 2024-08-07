@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed YouTube Video</title>
+</head>
+<body>
+<h1>Embed YouTube Video</h1>
+<input type="text" id="videoLinkInput" placeholder="Enter YouTube video link">
+<button onclick="embedYouTubeVideo()">Upload YouTube Link</button>
+<div id="videoContainer"></div>
+
+<script>
+    function embedYouTubeVideo() {
+        const videoLink = document.getElementById("videoLinkInput").value;
+        const videoId = getYouTubeVideoId(videoLink);
+
+        if(videoId) {
+            const embedCode = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            document.getElementById("videoContainer").innerHTML = embedCode;
+        } else {
+            alert("Invalid YouTube video link. Please enter a valid link.");
+        }
+    }
+
+    function getYouTubeVideoId(url) {
+        const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regExp);
+        return match ? match[1] : null;
+    }
+</script>
+</body>
+</html>
