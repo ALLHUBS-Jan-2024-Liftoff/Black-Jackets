@@ -16,6 +16,7 @@ public class Venue {
 
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -28,6 +29,13 @@ public class Venue {
     private String email;
 
     private String venuePhone;
+
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Gig> gigs = new ArrayList<Gig>();
+
+    public void addGig(Gig gig){
+        gigs.add(gig);
+    }
 
     @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<Review>();

@@ -44,6 +44,8 @@ public class VenueServiceImpl implements VenueService {
                         dto.getLocation(),
                         dto.getEmail(),
                         dto.getVenuePhone(),
+                        dto.getGigs()
+                        dto.getVenuePhone(),
                         dto.getReviews()
                         )).collect(Collectors.toList());
 

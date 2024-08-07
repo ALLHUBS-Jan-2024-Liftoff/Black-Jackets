@@ -1,9 +1,7 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
@@ -30,9 +28,12 @@ public class Gig {
     @NotEmpty(message = "Please specify age restrictions if applicable")
     private String ages;
 
-//    Will add orm mapping for connecting to a Venue
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
 
-//    Image API will be used to store an image for the event
+    //  Image API will be used to store an image for the event
 
     //  Bands will be their own class in the future
     private String headliner = "To be determined";
@@ -46,11 +47,13 @@ public class Gig {
     public Gig() {
     }
 
-    public Gig(String name, LocalDateTime date, String genre, String ages, String headliner, String supportingAct, String openingAct, int bandSlots) {
+    public Gig(Long id, String name, LocalDateTime date, String genre, String ages, Venue venue, String headliner, String supportingAct, String openingAct, int bandSlots) {
+        this.id = id;
         this.name = name;
         this.date = date;
         this.genre = genre;
         this.ages = ages;
+        this.venue = venue;
         this.headliner = headliner;
         this.supportingAct = supportingAct;
         this.openingAct = openingAct;
@@ -91,6 +94,14 @@ public class Gig {
 
     public void setAges(String ages) {
         this.ages = ages;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
     public String getHeadliner() {
@@ -152,9 +163,10 @@ public class Gig {
                 ", date=" + date +
                 ", genre='" + genre + '\'' +
                 ", ages='" + ages + '\'' +
+                ", venue=" + venue.getName() +
                 ", headliner='" + headliner + '\'' +
-                ", supportingAct='" + this.getSupportingAct() + '\'' +
-                ", openingAct='" + this.getOpeningAct() + '\'' +
+                ", supportingAct='" + supportingAct + '\'' +
+                ", openingAct='" + openingAct + '\'' +
                 ", bandSlots=" + bandSlots +
                 '}';
     }
