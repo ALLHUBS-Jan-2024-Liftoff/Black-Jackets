@@ -10,7 +10,8 @@ export const addGig = async (
   headliner,
   bandSlots,
   supportingAct,
-  openingAct
+  openingAct,
+  venueId
 ) => {
   const userData = {
     name: name,
@@ -28,7 +29,7 @@ export const addGig = async (
   //   }
 
   axios
-    .post(`${BASEAPIURL}/gigs/add`, userData /*{headers: headers}*/)
+    .post(`${BASEAPIURL}/gigs/add`, userData, { params: { venueId: venueId } })
     .then((response) => {
       console.log(response.status, response.data.token);
     });

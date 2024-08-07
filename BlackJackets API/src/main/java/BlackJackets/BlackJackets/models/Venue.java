@@ -1,10 +1,10 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,6 +16,7 @@ public class Venue {
 
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -28,5 +29,12 @@ public class Venue {
     private String email;
 
     private String venuePhone;
+
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Gig> gigs = new ArrayList<Gig>();
+
+    public void addGig(Gig gig){
+        gigs.add(gig);
+    }
 
     }

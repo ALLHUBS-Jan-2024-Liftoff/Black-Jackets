@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addGig } from "../services/GigService";
 
-const CreateGigForm = () => {
+const CreateGigForm = ({venueId}) => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
@@ -32,7 +32,8 @@ const CreateGigForm = () => {
         headliner,
         bandSlots,
         supportingAct,
-        openingAct
+        openingAct,
+        venueId
       );
       setName("");
       setDate("");
@@ -96,7 +97,7 @@ const CreateGigForm = () => {
             checked={ages == "Ages 21+"}
             required
           />
-          <label className="form-check-label" for="flexRadioDefault1">Ages 21+</label>
+          <label className="form-check-label" htmlFor="flexRadioDefault1">Ages 21+</label>
         </div>
         <div className="form-check">
           <input
@@ -109,7 +110,7 @@ const CreateGigForm = () => {
             checked={(ages == "All Ages")}
             required
           />
-          <label className="form-check-label" for="flexRadioDefault2">All Ages</label>
+          <label className="form-check-label" htmlFor="flexRadioDefault2">All Ages</label>
         </div>
         <div className="mb-3">
           <label className="form-label">
