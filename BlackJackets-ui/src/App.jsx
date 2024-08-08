@@ -13,6 +13,7 @@ import CreateGigForm from "./components/CreateGig";
 function App() {
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
+  const genreList = ["Rock", "Rap", "Hip-Hop", "Jazz", "Country", "Blues", "Metal"];
 
 
 
@@ -26,7 +27,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="register" element={<RegisterPage />} />
             {/* <Route path="contact" element={<Contact />} /> */}
-            <Route path="gigs/add" element={<CreateGigForm venueId={venueId}/>} />
+            <Route path="gigs/add" element={<CreateGigForm venueId={venueId} genreList={genreList}/>} />
           </Route>
         </Routes>
       </Router>
