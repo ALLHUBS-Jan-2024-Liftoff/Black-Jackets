@@ -1,23 +1,9 @@
 package BlackJackets.BlackJackets.data;
 
-import BlackJackets.BlackJackets.models.Reviews;
+import BlackJackets.BlackJackets.models.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ReviewRepo {
-
-    private final List reviews;
-
-    public ReviewRepo() {
-        this.reviews = new ArrayList<Reviews>();
-    }
-
-    public void addReview(Reviews review) {
-        reviews.add(review);
-    }
-
-    public List getAllReviews() {
-        return  reviews;
-    }
+@Repository
+public interface ReviewRepo extends JpaRepository<Review, Long> {
 }
