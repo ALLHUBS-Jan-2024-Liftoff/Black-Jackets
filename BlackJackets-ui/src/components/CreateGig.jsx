@@ -88,23 +88,23 @@ const CreateGigForm = ({ venueId, genreList }) => {
           </label>
         </div> */}
         <div className="mb-3">
-          <p>Select Genre</p>
+          <p>Select Music Genre</p>
           {genres.map((g, i) => {
             return (
               <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
-                  name="flexRadioDefault"
-                  id={`flexRadioDefault${i}`}
+                  name="Genre"
+                  id={i}
                   value={g}
                   onChange={(e) => setGenre(e.target.value)}
-                  checked={genre == {g}}
+                  checked={genre == g}
                   required
                 />
                 <label
                   className="form-check-label"
-                  htmlFor={`flexRadioDefault${i}`}
+                  htmlFor={i}
                 >
                   {g}
                 </label>
@@ -119,14 +119,14 @@ const CreateGigForm = ({ venueId, genreList }) => {
             <input
               type="radio"
               className="form-check-input"
-              name="flexRadioDefault"
-              id="flexRadioDefault1"
+              name="Age"
+              id={1}
               value="Ages 21+"
               onChange={(e) => setAges(e.target.value)}
               checked={ages == "Ages 21+"}
               required
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
+            <label className="form-check-label" htmlFor={1}>
               Ages 21+
             </label>
           </div>
@@ -134,14 +134,14 @@ const CreateGigForm = ({ venueId, genreList }) => {
             <input
               type="radio"
               className="form-check-input"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
+              name="Age"
+              id={2}
               value="All Ages"
               onChange={(e) => setAges(e.target.value)}
               checked={ages == "All Ages"}
               required
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
+            <label className="form-check-label" htmlFor={2}>
               All Ages
             </label>
           </div>
