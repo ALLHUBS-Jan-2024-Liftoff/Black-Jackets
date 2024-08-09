@@ -12,8 +12,11 @@ function Navbar() {
                   <li className="nav-item">
                       <Link className="nav-link" to="/about">About</Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                       <Link className="nav-link" to="/venue-list">Venue List</Link>
+                  </li> */}
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/add-venue">Create Venue</Link>
                   </li>
               </ul>
           </nav>

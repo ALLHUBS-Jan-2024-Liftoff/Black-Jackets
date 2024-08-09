@@ -25,7 +25,6 @@ export default function VenuePage() {
             const venue = { name, capacity, email, location, phone }
             addVenue(venue);
             console.log(venue);
-            navigator('/venue-list');
         }
     };
 

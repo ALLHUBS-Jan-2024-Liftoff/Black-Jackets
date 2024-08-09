@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import VenueList from '../pages/VenueList'
+//import VenueList from '../pages/VenueList'
 import VenueAdd from './VenueAdd'
 
 function Home() {

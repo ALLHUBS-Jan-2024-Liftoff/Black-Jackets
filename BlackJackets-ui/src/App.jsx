@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
 import About from './pages/About'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import VenueList from './pages/VenueList'
+// import VenueList from './pages/VenueList'
 import VenueAdd from './pages/VenueAdd'
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route index element={<Home />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="about" element={<About />} />
-          <Route path="/venue-list" element={<VenueList />} />
+          {/* <Route path="/venue-list" element={<VenueList />} /> */}
           <Route path="/add-venue" element={<VenueAdd />} />
         </Route>
         </Routes>
