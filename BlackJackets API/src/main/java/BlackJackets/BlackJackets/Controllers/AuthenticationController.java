@@ -1,132 +1,44 @@
 package BlackJackets.BlackJackets.Controllers;
 
-import BlackJackets.BlackJackets.data.UserRepository;
-import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.dto.RegisterFormDTO;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import BlackJackets.BlackJackets.models.User;
+import BlackJackets.BlackJackets.responses.LoginResponse;
+import BlackJackets.BlackJackets.service.AuthenticationService;
+import BlackJackets.BlackJackets.service.JwtService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-@Controller
+@RestController
+@RequestMapping("/auth")
+@CrossOrigin
 public class AuthenticationController {
+    private final JwtService jwtService;
 
-    @Autowired
-    UserRepository userRepository;
+    private final AuthenticationService authenticationService;
 
-    private static final String userSessionKey = "user";
-
-    public User getUserFromSession(HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        if (userId == null) {
-            return null;
-        }
-
-        Optional<User> user = userRepository.findById(userId);
-
-        if (user.isEmpty()) {
-            return null;
-        }
-
-        return user.get();
-    }
-
-    private static void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
-    }
-
-    @GetMapping("/register")
-    public String displayRegistrationForm(Model model) {
-        model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("title", "Register");
-        return "register";
+    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+        this.jwtService = jwtService;
+        this.authenticationService = authenticationService;
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
+    public ResponseEntity<User> register(@RequestBody RegisterFormDTO registerFormDto) {
+        User registeredUser = authenticationService.signup(registerFormDto);
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-
-        if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        String password = registerFormDTO.getPassword();
-        String verifyPassword = registerFormDTO.getVerifyPassword();
-        if (!password.equals(verifyPassword)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
-        userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
-
-        return "redirect:login";
-    }
-
-    @GetMapping("/login")
-    public String displayLoginForm(Model model) {
-        model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
-        return "login";
+        return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
-                                   Errors errors, HttpServletRequest request,
-                                   Model model) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginFormDTO loginFormDto) {
+        User authenticatedUser = authenticationService.authenticate(loginFormDto);
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Log In");
-            return "login";
-        }
+        String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        LoginResponse loginResponse = new LoginResponse();
+                loginResponse.setToken(jwtToken);
+                loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-        if (theUser == null) {
-            errors.rejectValue("username", "user.invalid", "The given username does not exist");
-            model.addAttribute("title", "Log In");
-            return "login";
-        }
-
-        String password = loginFormDTO.getPassword();
-
-        if (!theUser.isMatchingPassword(password)) {
-            errors.rejectValue("password", "password.invalid", "Invalid password");
-            model.addAttribute("title", "Log In");
-            return "login";
-        }
-
-        setUserInSession(request.getSession(), theUser);
-
-        return "login";
+        return ResponseEntity.ok(loginResponse);
     }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        request.getSession().invalidate();
-        return "redirect:/login";
-    }
-
 }
-

@@ -1,21 +1,30 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthService from "../services/AuthService";
 
-const RegisterForm = ({ register }) => {
+const RegisterForm = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      name != "" &&
-      email != null &&
-      password != ""
-    ) {
-      register(name, email, password);
-      setName("");
-      setEmail();
-      setPassword("");
+    try {
+      await AuthService.register(name, email, password).then(
+        (response) => {
+          // check for token and user already exists with 200
+          //   console.log("Sign up successfully", response);
+          navigate("/login");
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -50,7 +59,7 @@ const RegisterForm = ({ register }) => {
           <label className="form-label">
             Password
             <input
-              type="text"
+              type="password"
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -58,7 +67,11 @@ const RegisterForm = ({ register }) => {
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
+        <button
+          type="submit"
+          className="btn btn-primary mt-3"
+          // disabled={!getIsFormValid()}
+        >
           Register
         </button>
       </form>
@@ -67,3 +80,22 @@ const RegisterForm = ({ register }) => {
 };
 
 export default RegisterForm;
+
+
+// const RegisterForm = () => {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState();
+//   const [password, setPassword] = useState("");
+
+//   const handleSubmit = (e) => { 
+//    e.preventDefault(); 
+//   if (
+//     name != "" && email != "" && password != "") {
+//       register(name, email, password);
+//       setName("");
+//       setEmail("");
+//       setPassword("");
+//     }
+//    alert("Account created!"); 
+//   //  window.location.href = ("/login");
+//   }; 
