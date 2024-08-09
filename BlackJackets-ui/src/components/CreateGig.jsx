@@ -87,7 +87,7 @@ const CreateGigForm = ({ venueId, genreList }) => {
             />
           </label>
         </div> */}
-        <div className="mb-3">
+        
           <p>Select Music Genre</p>
           {genres.map((g, i) => {
             return (
@@ -96,7 +96,7 @@ const CreateGigForm = ({ venueId, genreList }) => {
                   type="radio"
                   className="form-check-input"
                   name="Genre"
-                  id={i}
+                  id={`genre${i}`}
                   value={g}
                   onChange={(e) => setGenre(e.target.value)}
                   checked={genre == g}
@@ -104,29 +104,29 @@ const CreateGigForm = ({ venueId, genreList }) => {
                 />
                 <label
                   className="form-check-label"
-                  htmlFor={i}
+                  htmlFor={`genre${i}`}
                 >
                   {g}
                 </label>
               </div>
             );
           })}
-        </div>
+    
 
-        <div className="mb-3">
+       
           <p>Select Age Range</p>
           <div className="form-check">
             <input
               type="radio"
               className="form-check-input"
               name="Age"
-              id={1}
+              id="age1"
               value="Ages 21+"
               onChange={(e) => setAges(e.target.value)}
               checked={ages == "Ages 21+"}
               required
             />
-            <label className="form-check-label" htmlFor={1}>
+            <label className="form-check-label" htmlFor="age1">
               Ages 21+
             </label>
           </div>
@@ -135,17 +135,17 @@ const CreateGigForm = ({ venueId, genreList }) => {
               type="radio"
               className="form-check-input"
               name="Age"
-              id={2}
+              id="age2"
               value="All Ages"
               onChange={(e) => setAges(e.target.value)}
               checked={ages == "All Ages"}
               required
             />
-            <label className="form-check-label" htmlFor={2}>
+            <label className="form-check-label" htmlFor="age2">
               All Ages
             </label>
           </div>
-        </div>
+    
 
         <div className="mb-3">
           <label className="form-label">
