@@ -24,7 +24,7 @@ function VenueEdit() {
      },[id])
    
     const handleSubmit = (e) => {
-        e.preventDefault();
+       // e.preventDefault();
         if (
             name != "" &&
             capacity != "" &&

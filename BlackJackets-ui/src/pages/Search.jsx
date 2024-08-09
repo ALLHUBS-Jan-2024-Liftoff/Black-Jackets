@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getVenueSearch, fetchVenues } from '../services/venueService';
 import '../pages/style.css'
+import { FaSearch } from 'react-icons/fa';
 
 function Search() {
     useEffect(() => {
@@ -24,7 +25,8 @@ function Search() {
       <div className='templateContainer'>
           <div className='searchInput_Container'>
               <input type="text" placeholder='Search Venues'
-                  onChange={ e => handleFilter(e.target.value)} />
+                  onChange={e => handleFilter(e.target.value)} />
+              <FaSearch />
               </div>
           <div className='templateContainer'>
               {data.map((d, i) => (
