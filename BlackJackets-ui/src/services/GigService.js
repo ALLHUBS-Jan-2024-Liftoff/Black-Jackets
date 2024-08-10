@@ -2,7 +2,28 @@ import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090";
 
-export const genreList = ["Rock", "Rap", "Hip-Hop", "Jazz", "Country", "Blues", "Metal"]; 
+export const genreList = [
+  "Rock",
+  "Rap",
+  "Hip-Hop",
+  "Jazz",
+  "Country",
+  "Blues",
+  "Metal",
+];
+
+export const fetchGigs = async (isVenue) => {
+  const apiUrl = isVenue
+    ? `${BASEAPIURL}/gigs/list/${venueId}`
+    : `${BASEAPIURL}/gigs/list/all`;
+  try {
+    const response = await axios.get(apiUrl);
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching data", error);
+    throw error;
+  }
+};
 
 export const addGig = async (
   name,

@@ -29,11 +29,11 @@ function App() {
             <Route path="register" element={<RegisterPage />} />
             {/* <Route path="contact" element={<Contact />} /> */}
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
-            <Route path="gigs/search" element={<GigListings />} />
+            <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
           </Route>
         </Routes>
       </Router>
-      <VenueList />
+      {/* <VenueList /> */}
     </>
   );
 }

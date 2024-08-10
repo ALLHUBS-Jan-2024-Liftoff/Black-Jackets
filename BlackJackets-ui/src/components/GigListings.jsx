@@ -1,38 +1,45 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { fetchGigs } from "../services/GigService";
+import GigListing from "./GigListing";
 
-const GigListings = ({ isVenue = false }) => {
+const GigListings = ({ isVenue }) => {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchGigs = async () => {
-      const apiUrl = isVenue
-        ? `http://localhost:8090/gigs/list/${venueId}`
-        : "http://localhost:8090/gigs/list/all";
-      try {
-        const res = await fetch(apiUrl);
-        const data = await res.json();
-        setGigs(data);
-      } catch (error) {
-        console.log("Error fetching data", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGigs();
+    fetchGigs(isVenue)
+      .then(setGigs)
+      .catch((error) => {
+        console.error("Error fetching gigs", error);
+      });
+    setLoading(false);
   }, []);
 
   return (
     <section>
-      <div>
-        <h2>{isVenue ? "Upcoming Gigs" : "Browse Gigs"}</h2>
+      <h2>{isVenue ? "Upcoming Gigs" : "Browse Gigs"}</h2>
 
-        {loading ? <h1>LOADING...</h1> : <div>{gigs.map((gig)=>{
-            <GigListing key={gig.id} gig={gig} />
-        })}</div>}
-      </div>
+      {loading ? (
+        <h1>LOADING...</h1>
+      ) : (
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Show Name</th>
+              <th scope="col">Starring</th>
+            </tr>
+          </thead>
+          <tbody>
+            {gigs.map((gig) => {
+              <GigListing
+                gig={gig}
+              />; /* add a button inside listing for view details button and for view Venue button */
+            })}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 };
