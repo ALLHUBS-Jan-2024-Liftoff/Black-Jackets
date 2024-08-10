@@ -33,7 +33,7 @@ public class GigController {
     // Get all Gigs
     @GetMapping("list/all")
     public List<Gig> findAllGigs() {
-        return gigRepository.findAll();
+        return gigRepository.findAllByOrderByDateAsc();
     }
 
     // Get one Gig

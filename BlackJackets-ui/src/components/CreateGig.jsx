@@ -38,6 +38,7 @@ const CreateGigForm = ({ venueId }) => {
         openingAct,
         venueId
       );
+      alert("Gig Created!")
       setName("");
       setDate("");
       setGenre("");

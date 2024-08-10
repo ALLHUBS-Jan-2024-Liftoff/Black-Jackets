@@ -26,17 +26,18 @@ const GigListings = ({ isVenue }) => {
         <table className="table table-hover">
           <thead>
             <tr>
+              {/* <th scope="col">ID</th> */}
               <th scope="col">Date</th>
               <th scope="col">Show Name</th>
               <th scope="col">Starring</th>
             </tr>
           </thead>
           <tbody>
-            {gigs.map((gig) => {
+            {gigs.map((gig) => (
               <GigListing
                 gig={gig}
-              />; /* add a button inside listing for view details button and for view Venue button */
-            })}
+              /> /* add a button inside listing for view details button and for view Venue button */
+            ))}
           </tbody>
         </table>
       )}
