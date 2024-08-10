@@ -37,15 +37,15 @@ public class GigController {
     }
 
     // Get one Gig
-    @GetMapping("list/{id}")
+    @GetMapping("{id}")
     public Gig findGigById(@PathVariable("id") Long gigId) {
         return gigRepository.findById(gigId).get();
     }
 
     //Get all Gigs owned by Venue
-    @GetMapping()
-    public List<Gig> findGigsByVenue(@RequestParam int venueId){
-        return gigRepository.findByVenueId(venueId);
+    @GetMapping("list/{id}")
+    public List<Gig> findGigsByVenue(@PathVariable("id") int venueId){
+        return gigRepository.findByVenueIdOrderByDateAsc(venueId);
     }
 
     //Delete Gig

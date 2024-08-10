@@ -6,9 +6,11 @@ import GigListing from "./GigListing";
 const GigListings = ({ isVenue }) => {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(true);
+  // get venueId
+  const [venueId, setVenueId] = useState(null);
 
   useEffect(() => {
-    fetchGigs(isVenue)
+    fetchGigs(isVenue, venueId)
       .then(setGigs)
       .catch((error) => {
         console.error("Error fetching gigs", error);

@@ -16,4 +16,6 @@ public interface GigRepository extends JpaRepository<Gig, Long> {
 
 //@Query("SELECT FROM gig ORDER BY DATE ASC")
     List<Gig> findAllByOrderByDateAsc();
+
+    List<Gig> findByVenueIdOrderByDateAsc(int venueId);
 }

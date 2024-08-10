@@ -12,7 +12,7 @@ export const genreList = [
   "Metal",
 ];
 
-export const fetchGigs = async (isVenue) => {
+export const fetchGigs = async (isVenue, venueId) => {
   const apiUrl = isVenue
     ? `${BASEAPIURL}/gigs/list/${venueId}`
     : `${BASEAPIURL}/gigs/list/all`;
