@@ -27,7 +27,7 @@ export default function VenueAdd() {
             addVenue(venue);
             console.log(venue);
             e.preventDefault();
-            navigator('/venue-list');
+           // navigator('/venue-list');
         }
     };
 
