@@ -31,13 +31,13 @@ public class GigController {
     }
 
     // Get all Gigs
-    @GetMapping("all")
+    @GetMapping("list/all")
     public List<Gig> findAllGigs() {
         return gigRepository.findAll();
     }
 
     // Get one Gig
-    @GetMapping("{id}")
+    @GetMapping("list/{id}")
     public Gig findGigById(@PathVariable("id") Long gigId) {
         return gigRepository.findById(gigId).get();
     }
