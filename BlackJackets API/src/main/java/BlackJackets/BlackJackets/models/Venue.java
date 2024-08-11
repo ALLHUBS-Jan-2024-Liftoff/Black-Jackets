@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Venue {
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +27,7 @@ public class Venue {
 
     private String email;
 
-    private String venuePhone;
+    private String phone;
 
     @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();

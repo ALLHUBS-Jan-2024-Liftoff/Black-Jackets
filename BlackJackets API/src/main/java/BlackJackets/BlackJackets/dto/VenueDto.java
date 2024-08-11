@@ -27,7 +27,7 @@ public class VenueDto {
 
         private String email;
 
-        private String venuePhone;
+        private String phone;
         
         private List<Gig> gigs;
 }
