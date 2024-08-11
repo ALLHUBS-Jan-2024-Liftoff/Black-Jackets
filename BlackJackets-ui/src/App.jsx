@@ -6,15 +6,16 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import RegisterPage from "./pages/RegisterPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import VenueList from "./pages/VenueList";
+// import VenueList from "./pages/VenueList";
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
+import VenueAdd from './pages/VenueAdd'
 import GigListings from "./components/GigListings";
 
 function App() {
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
-  
+
 
 
 
@@ -22,19 +23,22 @@ function App() {
     // <Home />
     <>
       <Router>
-        <Routes>
-          <Route path="/" element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="register" element={<RegisterPage />} />
-            {/* <Route path="contact" element={<Contact />} /> */}
+          <Routes>
+          <Route path="/" element={<Navbar />} >
+          <Route index element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="about" element={<About />} />
+           <Route path="register" element={<RegisterPage />} />
+            {/* <Route path="/venue-list" element={<VenueList />} /> */}
+          <Route path="/add-venue" element={<VenueAdd />} />
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
             <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
           </Route>
         </Routes>
       </Router>
       {/* <VenueList /> */}
-    </>
+    {/* <VenuePage /> */}
+      </>
   );
 }
 
