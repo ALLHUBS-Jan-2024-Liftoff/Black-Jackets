@@ -43,4 +43,10 @@ public class Venue {
         gigs.add(gig);
     }
 
+    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<Review>();
+
+    public void addReview(Review review){
+        reviews.add(review);
+    }
     }
