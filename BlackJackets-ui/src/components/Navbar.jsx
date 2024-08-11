@@ -25,6 +25,11 @@ function Navbar() {
             <Link className="nav-link" to="/gigs/add">
               Add Gig Test
             </Link>
+                  </li>
+                  <li className="nav-item">
+            <Link className="nav-link" to="/venue-dashboard">
+              Venue User Dashboard
+            </Link>
           </li>
         </ul>
       </nav>
