@@ -2,6 +2,8 @@ import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090";
 
+export const genreList = ["Rock", "Rap", "Hip-Hop", "Jazz", "Country", "Blues", "Metal"]; 
+
 export const addGig = async (
   name,
   date,

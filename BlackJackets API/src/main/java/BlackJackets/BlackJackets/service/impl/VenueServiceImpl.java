@@ -43,8 +43,9 @@ public class VenueServiceImpl implements VenueService {
                         dto.getCapacity(),
                         dto.getLocation(),
                         dto.getEmail(),
-                        dto.getVenuePhone(),
-                        dto.getGigs()
+                        dto.getPhone(),
+                        dto.getGigs(),
+                        dto.getReviews()
                         )).collect(Collectors.toList());
 
     }
@@ -57,7 +58,7 @@ public class VenueServiceImpl implements VenueService {
         venue.setCapacity(venueDto.getCapacity());
         venue.setLocation(venueDto.getLocation());
         venue.setEmail(venueDto.getEmail());
-        venue.setVenuePhone(venueDto.getVenuePhone());
+        venue.setPhone(venueDto.getPhone());
 
         venueRepo.save(venue);
         return this.modelMapper.map(venue, VenueDto.class);
