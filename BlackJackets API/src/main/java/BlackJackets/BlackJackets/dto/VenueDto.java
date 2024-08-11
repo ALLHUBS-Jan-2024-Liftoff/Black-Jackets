@@ -1,5 +1,7 @@
 package BlackJackets.BlackJackets.dto;
 
+import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Review;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -7,6 +9,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @Getter
@@ -32,4 +36,8 @@ public class VenueDto {
 
         @NotBlank(message = "Phone number is required")
         private String phone;
+
+        private List<Gig> gigs;
+
+        private List<Review> reviews;
 }

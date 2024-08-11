@@ -1,14 +1,23 @@
-import './App.css'
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import Navbar from "./components/Navbar"
-import Home from "./pages/Home"
-import About from './pages/About'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-// import VenueList from './pages/VenueList'
+import { useState } from "react";
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import RegisterPage from "./pages/RegisterPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import VenueList from "./pages/VenueList";
+import GigPage from "./pages/GigPage";
+import CreateGigForm from "./components/CreateGig";
 import VenueAdd from './pages/VenueAdd'
 
 function App() {
- 
+  // venueId will be set to the venueId related to the logged in user
+  const [venueId, setVenueId] = useState(1);
+
+
+
+
   return (
     // <Home />
     <>
@@ -18,15 +27,17 @@ function App() {
           <Route index element={<Home />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="about" element={<About />} />
-          {/* <Route path="/venue-list" element={<VenueList />} /> */}
+           <Route path="register" element={<RegisterPage />} />
+            {/* <Route path="/venue-list" element={<VenueList />} /> */}
           <Route path="/add-venue" element={<VenueAdd />} />
-        </Route>
+            <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
+          </Route>
         </Routes>
       </Router>
       {/* <VenueList /> */}
-      {/* <VenuePage /> */}
+    {/* <VenuePage /> */}
       </>
-  )
+  );
 }
 
-export default App
+export default App;

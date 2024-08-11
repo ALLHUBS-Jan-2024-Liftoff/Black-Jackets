@@ -1,13 +1,13 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +18,7 @@ import lombok.*;
 public class Venue {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -35,4 +36,17 @@ public class Venue {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-       }
+       @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Gig> gigs = new ArrayList<Gig>();
+
+    public void addGig(Gig gig){
+        gigs.add(gig);
+    }
+
+    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<Review>();
+
+    public void addReview(Review review){
+        reviews.add(review);
+    }
+    }
