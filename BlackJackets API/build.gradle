@@ -31,6 +31,12 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	'org.springframework.boot'
+   	'org.springframework.boot'
+	'spring-boot-starter-thymeleaf'
+	'org.springframework.boot'
+    'spring-boot-starter-validation'
+	'org.apache.commons.fileupload.FileItemFactory'
 }
 
 tasks.named('test') {

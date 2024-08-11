@@ -1,23 +1,17 @@
 package BlackJackets.BlackJackets.data;
 
-import BlackJackets.BlackJackets.models.Reviews;
+import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewRepo {
+@Repository
+public interface ReviewRepo extends JpaRepository<Review, Long> {
 
-    private final List reviews;
+    List<Review> findByVenueId(int venueId);
 
-    public ReviewRepo() {
-        this.reviews = new ArrayList<Reviews>();
-    }
 
-    public void addReview(Reviews review) {
-        reviews.add(review);
-    }
-
-    public List getAllReviews() {
-        return  reviews;
-    }
 }

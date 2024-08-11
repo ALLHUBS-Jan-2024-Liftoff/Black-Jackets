@@ -33,8 +33,24 @@ public class Venue {
     @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
 
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<Review>();
+
     public void addGig(Gig gig){
         gigs.add(gig);
+    }
+    public void addReview(Review review) { reviews.add(review); }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", location='" + location + '\'' +
+                ", email='" + email + '\'' +
+                ", venuePhone='" + venuePhone + '\'' +
+                '}';
     }
 
     }

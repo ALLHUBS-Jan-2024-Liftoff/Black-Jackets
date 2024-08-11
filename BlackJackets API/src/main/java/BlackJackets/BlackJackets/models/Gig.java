@@ -163,7 +163,7 @@ public class Gig {
                 ", date=" + date +
                 ", genre='" + genre + '\'' +
                 ", ages='" + ages + '\'' +
-                ", venue=" + venue.getName() +
+                ", venue=" + venue +
                 ", headliner='" + headliner + '\'' +
                 ", supportingAct='" + supportingAct + '\'' +
                 ", openingAct='" + openingAct + '\'' +
