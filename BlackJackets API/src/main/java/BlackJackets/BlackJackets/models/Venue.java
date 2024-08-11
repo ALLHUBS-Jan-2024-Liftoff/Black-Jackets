@@ -36,7 +36,7 @@ public class Venue {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+       @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
 
     public void addGig(Gig gig){

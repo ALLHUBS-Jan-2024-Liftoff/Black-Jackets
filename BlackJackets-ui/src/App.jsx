@@ -17,19 +17,18 @@ function App() {
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
 
-
-
-
   return (
     // <Home />
     <>
       <Router>
-        <Routes>
-          <Route path="/" element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="register" element={<RegisterPage />} />
-            {/* <Route path="contact" element={<Contact />} /> */}
+          <Routes>
+          <Route path="/" element={<Navbar />} >
+          <Route index element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="about" element={<About />} />
+           <Route path="register" element={<RegisterPage />} />
+            {/* <Route path="/venue-list" element={<VenueList />} /> */}
+          <Route path="/add-venue" element={<VenueAdd />} />
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
             <Route path="/venue-dashboard" element={<VenueUserDashboard />} />
             <Route path="/add-venue" element={<VenueAdd />} />
