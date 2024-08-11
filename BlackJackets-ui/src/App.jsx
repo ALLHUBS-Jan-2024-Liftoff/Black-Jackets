@@ -7,6 +7,7 @@ import About from "./pages/About";
 import RegisterPage from "./pages/RegisterPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VenueEdit from "./pages/VenueEdit";
+// import VenueList from "./pages/VenueList";
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
@@ -15,6 +16,8 @@ import VenueAdd from './pages/VenueAdd'
 function App() {
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
+
+
 
 
   return (
@@ -35,6 +38,7 @@ function App() {
         </Routes>
       </Router>
       {/* <VenueList /> */}
+      {/* <VenuePage /> */}
     </>
   );
 }
