@@ -9,17 +9,18 @@ const GigListing = ({ gig, isVenuePage }) => {
       <td>{gig.date}</td>
       <td>{gig.name}</td>
       <td>{gig.headliner}</td>
+      <td>
+        <button
+          type="button"
+          className="btn button-info"
+          onClick={handleViewDetailsButton()}
+        >
+          View Gig Details
+        </button>{" "}
+      </td>
 
       {isVenuePage ? (
-        <td>
-          <button
-            type="button"
-            className="btn button-info"
-            onClick={handleViewDetailsButton()}
-          >
-            View Details
-          </button>{" "}
-        </td>
+        <></>
       ) : (
         <td>
           <button
