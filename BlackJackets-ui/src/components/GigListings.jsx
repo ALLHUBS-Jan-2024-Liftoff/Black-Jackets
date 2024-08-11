@@ -3,14 +3,17 @@ import { useState, useEffect } from "react";
 import { fetchGigs } from "../services/GigService";
 import GigListing from "./GigListing";
 
-const GigListings = ({ isVenue }) => {
+const GigListings = ({ isVenuePage, venueId }) => {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(true);
-  // get venueId
-  const [venueId, setVenueId] = useState(null);
+  const [venue, setVenue] = useState(null);
+
+  if (isVenuePage) {
+    setVenue(venueId);
+  }
 
   useEffect(() => {
-    fetchGigs(isVenue, venueId)
+    fetchGigs(isVenuePage, venue)
       .then(setGigs)
       .catch((error) => {
         console.error("Error fetching gigs", error);
@@ -20,7 +23,7 @@ const GigListings = ({ isVenue }) => {
 
   return (
     <section>
-      <h2>{isVenue ? "Upcoming Gigs" : "Browse Gigs"}</h2>
+      <h2>{isVenuePage ? "Upcoming Gigs" : "Browse Gigs"}</h2>
 
       {loading ? (
         <h1>LOADING...</h1>
@@ -28,7 +31,6 @@ const GigListings = ({ isVenue }) => {
         <table className="table table-hover">
           <thead>
             <tr>
-              {/* <th scope="col">ID</th> */}
               <th scope="col">Date</th>
               <th scope="col">Show Name</th>
               <th scope="col">Starring</th>
@@ -36,9 +38,7 @@ const GigListings = ({ isVenue }) => {
           </thead>
           <tbody>
             {gigs.map((gig) => (
-              <GigListing
-                gig={gig}
-              /> /* add a button inside listing for view details button and for view Venue button */
+              <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
             ))}
           </tbody>
         </table>
