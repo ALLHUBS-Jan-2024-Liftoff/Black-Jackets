@@ -5,7 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import java.util.Optional;
 import java.util.*;
 
 
@@ -16,10 +16,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Integer id;
-
-    @Column(unique = true, length = 100, nullable = false)
-    private String userName;
-
+    @Column(nullable = false)
+    private String fullName;
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
@@ -41,10 +39,6 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
-    }
-
-    public String getEmail() {
         return email;
     }
 
@@ -72,40 +66,57 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Integer getId() {
-        return id;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public User setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getEmail() {
+        return email;
     }
 
-
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public User setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+        return this;
     }
 
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public User setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+        return this;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
 }

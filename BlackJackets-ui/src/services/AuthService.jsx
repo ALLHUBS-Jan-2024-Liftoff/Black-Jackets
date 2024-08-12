@@ -1,37 +1,48 @@
 import axios from "axios";
+import setAuthToken from "../services/TokenService"; 
 
-const BASEAPIURL = "http://localhost:8090";
+const BASEAPIURL = "http://localhost:8090/auth";
 
-const register = (username, email, password) => {
-  return axios
+
+const register = async (email, password, fullName) => {
+  const response = await axios
     .post(`${BASEAPIURL}/register`, {
-      username,
       email,
       password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-
-      return response.data;
+      fullName
     });
+  if (response.data.accessToken) {
+    localStorage.setItem("user", JSON.stringify(response.data));
+  }
+  return response.data;
 };
 
-const login = (username, password) => {
-  return axios
+const login = async (email, password) => {
+  const response = await axios
     .post(`${BASEAPIURL}/login`, {
-      username, 
+      email,
       password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-
-      return response.data;
     });
+  //get token from response
+  const token = response.data.token;
+  //set JWT token to local
+  localStorage.setItem("token", token);
+  //set token to axios common header
+  setAuthToken(token);
+  return response.data;
 };
+// const login = (email, password) => {
+//   return api
+//     .post(`${BASEAPIURL}/login`, {
+//       email,
+//       password,
+//     })
+//     .then((response) => {
+//       if (response.data.accessToken) {
+//         return response.data;
+//       }
+//     });
+// };
 
 const logout = () => {
   localStorage.removeItem("user");
@@ -48,7 +59,7 @@ const authService = {
   getCurrentUser,
 };
 
-export default authService;
+export default authService; 
 
 // export const register = async (username, email, password) => {
 //     const userData = 

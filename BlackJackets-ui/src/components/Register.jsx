@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
 
 const RegisterForm = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await AuthService.register(name, email, password).then(
+      await AuthService.register(email, password, fullName).then(
         (response) => {
           // check for token and user already exists with 200
           //   console.log("Sign up successfully", response);
@@ -33,18 +33,6 @@ const RegisterForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">
-            Username
-            <input
-              type="text"
-              className="form-control"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">
             Email
             <input
               type="text"
@@ -63,6 +51,18 @@ const RegisterForm = () => {
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            Name
+            <input
+              type="text"
+              className="form-control"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               required
             />
           </label>

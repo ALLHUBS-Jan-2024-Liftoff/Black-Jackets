@@ -3,40 +3,42 @@ import AuthService from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+//   const [emailError, setEmailError] = useState("");
+//   const [passwordError, setPasswordError] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await AuthService.login(username, password).then(
-        () => {
-          navigate("/login");
+    try{
+      await AuthService.login(email, password)
+      .then((response) => {
+        if (response.data.accessToken) {
+          navigate("/home");
           window.location.reload();
-        },
+        }
         (error) => {
           console.log(error);
         }
-      );
-    } catch (err) {
+    });
+    } catch (err) { 
       console.log(err);
     }
   };
+
   return (
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">
-            Username
+            Email
             <input
               type="text"
               className="form-control"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </label>

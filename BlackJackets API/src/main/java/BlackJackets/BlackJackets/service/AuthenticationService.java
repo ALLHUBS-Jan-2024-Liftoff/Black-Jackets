@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.models.User;
 
+
 @Service
 public class AuthenticationService {
     private final UserRepository userRepository;
@@ -27,22 +28,23 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User signup(RegisterFormDTO input) {
+    public User register(RegisterFormDTO input) {
         User user = new User();
-                user.setUserName(input.getUserName());
                 user.setEmail(input.getEmail());
                 user.setPassword(passwordEncoder.encode(input.getPassword()));
+                user.setFullName(input.getFullName());
         return userRepository.save(user);
     }
 
     public User authenticate(LoginFormDTO input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        input.getUsername(),
+                        input.getEmail(),
                         input.getPassword()
                 )
         );
 
-        return userRepository.findByUserName(input.getUsername());
+        return userRepository.findByEmail(input.getEmail())
+          .orElseThrow();
     }
 }

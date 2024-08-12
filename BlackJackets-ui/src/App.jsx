@@ -10,11 +10,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VenueList from './pages/VenueList'
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
+import setAuthToken from "../services/TokenService"; 
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+  // const [count, setCount] = useState(0)
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // const [username, setUsername] = useState("");
+  const token = localStorage.getItem("token");
+  if (token) {
+    setAuthToken(token);
+  }
 
   return (
     // <Home />
@@ -26,9 +31,9 @@ function App() {
               index
               element={
                 <Home
-                  username={username}
-                  loggedIn={loggedIn}
-                  setLoggedIn={setLoggedIn}
+                  // username={username}
+                  // loggedIn={loggedIn}
+                  // setLoggedIn={setLoggedIn}
                 />
               }
             />
@@ -37,8 +42,8 @@ function App() {
               path="login"
               element={
                 <LoginPage
-                  setLoggedIn={setLoggedIn}
-                  setUsername={setUsername}
+                  // setLoggedIn={setLoggedIn}
+                  // setUsername={setUsername}
                 />
               }
             />
