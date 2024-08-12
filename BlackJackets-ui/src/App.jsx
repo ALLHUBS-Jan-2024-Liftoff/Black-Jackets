@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import VenueList from './pages/VenueList'
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
-import setAuthToken from "../services/TokenService"; 
+import setAuthToken from "./services/TokenService"; 
 import VenueAdd from './pages/VenueAdd'
 import GigListings from "./components/GigListings";
 
