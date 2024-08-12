@@ -12,7 +12,7 @@ function VenueEdit() {
 
     const { id } = useParams();
 
-           useEffect(() => {
+     useEffect(() => {
         getVenueById(id).then((response) => {
             setName(response.data.name);
             setCapacity(response.data.capacity);
@@ -24,8 +24,7 @@ function VenueEdit() {
       // useEffect(() => {getVenueById(id)}, [id]);
    
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (
+            if (
             name != "" &&
             capacity != "" &&
             email != "" &&
@@ -36,7 +35,6 @@ function VenueEdit() {
             const venue = { name, capacity, email, location, phone }
             editVenueById(id,venue);
             console.log(venue);
-            e.preventDefault();
             navigator('/venue-dashboard');
            
         }

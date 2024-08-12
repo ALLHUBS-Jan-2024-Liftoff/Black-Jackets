@@ -1,34 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { fetchGigsListByVenueId, fetchVenues } from '../services/venueService'
-import { useNavigate , useParams} from 'react-router-dom'
+import { fetchGigsListByVenueId, fetchVenues, getVenueById } from '../services/venueService'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../pages/style.css'
 
-function VenueUserDashboard() {
+function VenueUserDashboard({ venueId }) {
 
     const [venues, setVenues] = useState([]);
     const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
-    //const [venueId, setVenueId] = useState(0);
-    //const { venueId } = useParams();
-    // const venueId = 1;
-
-
-    
+          
+    console.log(venueId);
     useEffect(() => {
         fetchVenues().then(setVenues)
-        const venueId = venues.map(item => item.id);
-        fetchGigsListByVenueId(venueId).then((response) => {
-                setGigs(response.data)
-        })}, []); 
-
-    // useEffect((venueId) => {
-    //     console.log(venueId);
-    //     fetchGigsListByVenueId(venueId).then((response) => {
-    //         setGigs(response.data)
-    //         console.log(gigs);
-    //     })    
-    //     ,[venueId]});
-           
+        fetchGigsListByVenueId(venueId).then(setGigs)}, []); 
+               
     function updateVenue(id) {
         navigator(`/edit-venue/${id}`);
     }
