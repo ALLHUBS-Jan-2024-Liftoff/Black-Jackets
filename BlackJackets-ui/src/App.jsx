@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
 import VenueAdd from './pages/VenueAdd'
+import GigListings from "./components/GigListings";
 
 function App() {
   // venueId will be set to the venueId related to the logged in user
@@ -31,6 +32,7 @@ function App() {
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
           <Route path="/add-venue" element={<VenueAdd />} />
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
+            <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
           </Route>
         </Routes>
       </Router>
