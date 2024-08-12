@@ -17,8 +17,10 @@ function VenueUserDashboard() {
   return (
       <div className="container">
           {venues.map((venue) =>
-              <div key={venue.id} className='details'>
+              //   <div key={venue.id} className='details'>
+                 <div key={venue.id}>
                   <h1 className='header'>{venue.name}</h1>
+                  <div className='details'>
                   <h6>
                       {venue.capacity}<br></br>
                       {venue.location}<br></br>
@@ -26,7 +28,8 @@ function VenueUserDashboard() {
                       {venue.phone}<br></br>
                   </h6>
                   <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
-              </div>
+                  </div>
+                  </div>
             )}
 
     </div>
