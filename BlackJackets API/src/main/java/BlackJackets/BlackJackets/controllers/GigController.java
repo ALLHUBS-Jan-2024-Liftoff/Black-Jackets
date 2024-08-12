@@ -5,6 +5,8 @@ import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.Venue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +31,9 @@ public class GigController {
     }
 
     // Get all Gigs
-    @GetMapping("all")
+    @GetMapping("list/all")
     public List<Gig> findAllGigs() {
-        return gigRepository.findAll();
+        return gigRepository.findAllByOrderByDateAsc();
     }
 
     // Get one Gig
@@ -41,9 +43,16 @@ public class GigController {
     }
 
     //Get all Gigs owned by Venue
-    @GetMapping()
-    public List<Gig> findGigsByVenue(@RequestParam int venueId){
-        return gigRepository.findByVenueId(venueId);
+    @GetMapping("list/{id}")
+    public List<Gig> findGigsByVenue(@PathVariable("id") int venueId){
+        return gigRepository.findByVenueIdOrderByDateAsc(venueId);
+    }
+
+    //Delete Gig
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteGigById(@PathVariable("id") Long gigId){
+        gigRepository.deleteById(gigId);
+        return new ResponseEntity<String>("Gig deleted", HttpStatusCode.valueOf(200));
     }
 
 }

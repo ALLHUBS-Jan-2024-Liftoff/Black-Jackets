@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
   margin: 20px;
 }
@@ -32,4 +32,34 @@
 
 .links a:hover {
   text-decoration: underline;
+} */
+
+nav {
+  background-color: #282c34;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 2rem;
 }
