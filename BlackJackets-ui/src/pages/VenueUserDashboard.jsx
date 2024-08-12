@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { fetchVenues } from '../services/venueService'
-import { useNavigate } from 'react-router-dom'
+import { fetchGigsListByVenueId, fetchVenues } from '../services/venueService'
+import { useNavigate , useParams} from 'react-router-dom'
 import '../pages/style.css'
 
 function VenueUserDashboard() {
 
     const [venues, setVenues] = useState([]);
+    const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
+    //const [venueId, setVenueId] = useState(0);
+    //const { venueId } = useParams();
+    // const venueId = 1;
 
-    useEffect(() => { fetchVenues().then(setVenues) }, []); 
+
     
+    useEffect(() => {
+        fetchVenues().then(setVenues)
+        const venueId = venues.map(item => item.id);
+        fetchGigsListByVenueId(venueId).then((response) => {
+                setGigs(response.data)
+        })}, []); 
+
+    // useEffect((venueId) => {
+    //     console.log(venueId);
+    //     fetchGigsListByVenueId(venueId).then((response) => {
+    //         setGigs(response.data)
+    //         console.log(gigs);
+    //     })    
+    //     ,[venueId]});
+           
     function updateVenue(id) {
         navigator(`/edit-venue/${id}`);
     }
       
-  return (
+    return (
+      <>
       <div className="container">
           {venues.map((venue) =>
               //   <div key={venue.id} className='details'>
@@ -29,10 +49,42 @@ function VenueUserDashboard() {
                   </h6>
                   <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
                   </div>
-                  </div>
+            </div>
             )}
-
-    </div>
+            </div>
+            <div className="container">
+            <h2 className="text-container">List of Gigs For This Venue</h2>
+            <table className="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Genre</th>
+                        <th>Ages</th>
+                        <th>HeadLiner</th>
+                        <th>SupportingAct</th>
+                        <th>OpeningAct</th>
+                        <th>Bandslots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {gigs.map((gig) =>
+                            <tr key={gig.id}>
+                                <td>{gig.id}</td>
+                                <td>{gig.name}</td>
+                                <td>{gig.date}</td>
+                                <td>{gig.genre}</td>
+                                <td>{gig.ages}</td>
+                                <td>{gig.headliner}</td>
+                                <td>{gig.supportingAct}</td>
+                                <td>{gig.openingAct}</td>
+                                <td>{gig.bandSlots}</td>
+                        </tr>)}
+                </tbody>
+          </table>
+      </div>
+     </>
   )
 }
 

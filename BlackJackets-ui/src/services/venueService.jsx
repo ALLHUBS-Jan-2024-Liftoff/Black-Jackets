@@ -34,3 +34,6 @@ export const editVenueById = async (venueId,venue) => {
     }
 };
 
+  export const fetchGigsListByVenueId = async (venueId) => await axios.get(`${BASEAPIURL}/allgigs/${venueId}`);
+
+  
