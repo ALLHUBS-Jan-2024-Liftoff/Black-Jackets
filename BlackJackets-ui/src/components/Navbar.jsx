@@ -12,13 +12,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/gigs/search">
-              Search Gigs
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/about">
-              About
+            <Link className="nav-link" to="/login">
+              Login
             </Link>
           </li>
           <li className="nav-item">
@@ -27,16 +22,29 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/about">
+              About
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/gigs/search">
+              Search Gigs
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/gigs/add">
-              Add Gig Test</Link>
-                  </li>
-                  {/* <li className="nav-item">
+              Add Gig Test
+            </Link>
+          </li>
+          {/* <li className="nav-item">
                       <Link className="nav-link" to="/venue-list">Venue List</Link>
                   </li> */}
-                  <li className="nav-item">
-                      <Link className="nav-link" to="/add-venue">Create Venue</Link>
-                  </li>
-                  <li className="nav-item">
+          <li className="nav-item">
+            <Link className="nav-link" to="/add-venue">
+              Create Venue
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/venue-dashboard">
               Venue User Dashboard
             </Link>

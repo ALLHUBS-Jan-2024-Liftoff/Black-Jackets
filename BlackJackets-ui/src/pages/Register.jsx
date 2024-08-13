@@ -78,6 +78,7 @@ function RegisterForm() {
           Register
         </button>
       </form>
+      {message /* && <p>{message}</p> */}
     </div>
   );
 }

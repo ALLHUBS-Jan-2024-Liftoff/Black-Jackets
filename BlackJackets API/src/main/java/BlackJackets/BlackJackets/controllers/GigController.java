@@ -20,6 +20,8 @@ public class GigController {
     private GigRepository gigRepository;
 
     @Autowired
+    private UserController userController;
+    @Autowired
     private VenueRepo venueRepo;
 
     //    Add Gig

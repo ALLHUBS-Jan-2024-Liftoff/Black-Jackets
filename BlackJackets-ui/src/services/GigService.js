@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090";
+axios.defaults.withCredentials = true;
 
 export const genreList = [
   "Rock",
