@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { fetchGigsListByVenueId, fetchVenues, getVenueById } from '../services/venueService'
-import { useNavigate, useParams } from 'react-router-dom'
+import { fetchGigsListByVenueId, getVenueById } from '../services/venueService'
+import { useNavigate } from 'react-router-dom'
 import '../pages/style.css'
 
 function VenueUserDashboard({ venueId }) {
-
     const [venue, setVenue] = useState([]);
     const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
-          
+   
     useEffect(() => {
         getVenueById(venueId).then((response) => {
             setVenue(response.data)
             fetchGigsListByVenueId(venueId).then(setGigs)
-        }) } , [venueId])
-            
-               
+        }) } , [])
+                      
     function updateVenue(id) {
         navigator(`/edit-venue/${id}`);
     }
@@ -29,7 +27,7 @@ function VenueUserDashboard({ venueId }) {
                 {venue.location}<br />
                 {venue.email}<br />
                 {venue.phone}<br />
-                 <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
+                <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
                 </div>
             </div>
             <div className="container">
