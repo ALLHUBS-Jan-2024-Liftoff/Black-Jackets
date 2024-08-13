@@ -5,55 +5,57 @@ import '../pages/style.css'
 
 function VenueUserDashboard({ venueId }) {
 
-    const [venues, setVenues] = useState([]);
+    const [venue, setVenue] = useState([]);
     const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
           
+    // useEffect(() => {
+    //     fetchVenues().then(setVenues)
+    //     fetchGigsListByVenueId(venueId).then(setGigs)}, []); 
+
     useEffect(() => {
-        fetchVenues().then(setVenues)
-        fetchGigsListByVenueId(venueId).then(setGigs)}, []); 
+        getVenueById(venueId).then((response) => {
+            setVenue(response.data)
+            fetchGigsListByVenueId(venueId).then(setGigs)
+        }) } , [venueId])
+            
                
     function updateVenue(id) {
         navigator(`/edit-venue/${id}`);
     }
-      
+
     return (
-      <>
-      <div className="container">
-          {venues.map((venue) =>
-              //   <div key={venue.id} className='details'>
-                 <div key={venue.id}>
-                  <h1 className='header'>{venue.name}</h1>
-                  <div className='details'>
-                  <h6>
-                      {venue.capacity}<br></br>
-                      {venue.location}<br></br>
-                      {venue.email}<br></br>
-                      {venue.phone}<br></br>
-                  </h6>
-                  <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
-                  </div>
-            </div>
-            )}
+        <div>
+            <div className="container">
+                <h1 className='header'>{venue.name}</h1><br />
+                <div className='details'>
+                {venue.capacity}<br />
+                {venue.location}<br />
+                {venue.email}<br />
+                {venue.phone}<br />
+                 <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
+                </div>
             </div>
             <div className="container">
-            <h2 className="text-container">List of Gigs For This Venue</h2>
-            <table className="table table-striped table-bordered">
+                <br /><br/><br/><br/><br/><br/><br/>
+                
+             <h2>List of Gigs For This Venue</h2>
+             <table className="table table-striped table-bordered">
                 <thead>
-                    <tr>
+                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Genre</th>
-                        <th>Ages</th>
-                        <th>HeadLiner</th>
-                        <th>SupportingAct</th>
-                        <th>OpeningAct</th>
-                        <th>Bandslots</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {gigs.map((gig) =>
+                         <th>Name</th>
+                         <th>Date</th>
+                         <th>Genre</th>
+                         <th>Ages</th>
+                         <th>HeadLiner</th>
+                         <th>SupportingAct</th>
+                         <th>OpeningAct</th>
+                         <th>Bandslots</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {gigs.map((gig) =>
                             <tr key={gig.id}>
                                 <td>{gig.id}</td>
                                 <td>{gig.name}</td>
@@ -68,8 +70,9 @@ function VenueUserDashboard({ venueId }) {
                 </tbody>
           </table>
       </div>
-     </>
-  )
+        </div>
+    )
+     
 }
 
 export default VenueUserDashboard
