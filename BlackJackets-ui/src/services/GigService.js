@@ -25,6 +25,19 @@ export const fetchGigs = async (isVenue, venueId) => {
   }
 };
 
+export const fetchGig = async (gigId) => {
+  const apiUrl = `${BASEAPIURL}/gigs/${gigId}`;
+  try {
+    const response = await axios.get(apiUrl);
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching data", error);
+    throw error;
+  }
+
+
+}
+
 export const addGig = async (
   name,
   date,
