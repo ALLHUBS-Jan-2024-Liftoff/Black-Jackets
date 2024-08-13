@@ -12,17 +12,15 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await AuthService.register(email, password, fullName).then(
-        (response) => {
-          // check for token and user already exists with 200
-          //   console.log("Sign up successfully", response);
-          navigate("/login");
-          window.location.reload();
-        },
+      await AuthService.register(email, password, fullName).then((response) => {
+        if (response.data !== "") {
+          alert("Registration Successful!");
+          navigate("/add-venue");
+        }
         (error) => {
           console.log(error);
         }
-      );
+    });
     } catch (err) {
       console.log(err);
     }

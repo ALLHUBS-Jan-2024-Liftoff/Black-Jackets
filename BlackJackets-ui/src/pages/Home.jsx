@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import VenueAdd from './VenueAdd'
 
 function Home() {
-    return (
+   return (
       <>
              <div>
               <h1>Welcome To Find A Gig Website!</h1>
@@ -19,4 +19,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;

@@ -15,8 +15,9 @@ const LoginForm = () => {
     try{
       await AuthService.login(email, password)
       .then((response) => {
-        if (response.data.accessToken) {
-          navigate("/home");
+        if (response.data !== "") {
+          alert("Login Successful!");
+          navigate("/");
           window.location.reload();
         }
         (error) => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import setAuthToken from "../services/TokenService"; 
+import api from "../services/TokenService"; 
 
 const BASEAPIURL = "http://localhost:8090/auth";
 
@@ -11,9 +11,11 @@ const register = async (email, password, fullName) => {
       password,
       fullName
     });
-  if (response.data.accessToken) {
-    localStorage.setItem("user", JSON.stringify(response.data));
-  }
+  const token = response.data.token;
+  //set JWT token to local
+  localStorage.setItem("token", token);
+  //set token to axios common header
+  api(token);
   return response.data;
 };
 
@@ -28,21 +30,10 @@ const login = async (email, password) => {
   //set JWT token to local
   localStorage.setItem("token", token);
   //set token to axios common header
-  setAuthToken(token);
+  api(token);
   return response.data;
 };
-// const login = (email, password) => {
-//   return api
-//     .post(`${BASEAPIURL}/login`, {
-//       email,
-//       password,
-//     })
-//     .then((response) => {
-//       if (response.data.accessToken) {
-//         return response.data;
-//       }
-//     });
-// };
+
 
 const logout = () => {
   localStorage.removeItem("user");

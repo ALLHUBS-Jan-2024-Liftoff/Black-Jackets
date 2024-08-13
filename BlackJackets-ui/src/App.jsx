@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import VenueList from './pages/VenueList'
 import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
-import setAuthToken from "./services/TokenService"; 
+import api from "./services/TokenService"; 
 import VenueAdd from './pages/VenueAdd'
 import GigListings from "./components/GigListings";
 
@@ -18,8 +18,9 @@ function App() {
   // checking for token when loading
   const token = localStorage.getItem("token");
   if (token) {
-    setAuthToken(token);
+    api(token);
   }
+  
 
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
@@ -31,35 +32,29 @@ function App() {
     // <Home />
     <>
       <Router>
-          <Routes>
-          <Route path="/" element={<Navbar />} >
-          <Route
-              index
-              element={
-                <Home
-                />
-              }
-            />
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="about" element={<About />} />
-            <Route
-              path="login"
-              element={
-                <LoginPage
-                />
-              }
-            />
-           <Route path="register" element={<RegisterPage />} />
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="about" element={<About />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
-          <Route path="/add-venue" element={<VenueAdd />} />
-            <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
-            <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
+            <Route path="/add-venue" element={<VenueAdd />} />
+            <Route
+              path="gigs/add"
+              element={<CreateGigForm venueId={venueId} />}
+            />
+            <Route
+              path="gigs/search"
+              element={<GigListings isVenue={false} />}
+            />
           </Route>
         </Routes>
       </Router>
       {/* <VenueList /> */}
-    {/* <VenuePage /> */}
-      </>
+      {/* <VenuePage /> */}
+    </>
   );
 }
 
