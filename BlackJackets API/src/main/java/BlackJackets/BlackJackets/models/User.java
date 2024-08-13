@@ -3,55 +3,45 @@ package BlackJackets.BlackJackets.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.Objects;
-
 @Entity
-public class User {
+public class User{
+
     @Id
     @GeneratedValue
     private int id;
+    private String email;
 
+    private String pwHash;
+
+    private String fullName;
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public User() {}
+
+    public User(String email, String password, String fullName) {
+        this.email = email;
+        this.pwHash = encoder.encode(password);
+        this.fullName = fullName;
+    }
     public int getId() {
         return id;
     }
-    @NotNull
-    private String username;
-
-    @NotNull
-    private String pwHash;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    public User() {
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.pwHash = encoder.encode(password);
-    }
-
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
+
+
+    public String getFullName() {
+        return fullName;
+    }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 }
-
-

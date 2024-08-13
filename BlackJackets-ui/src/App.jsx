@@ -4,7 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import RegisterPage from "./pages/RegisterPage";
+import Register from "./pages/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
@@ -27,7 +27,7 @@ function App() {
           <Route index element={<Home />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="about" element={<About />} />
-           <Route path="register" element={<RegisterPage />} />
+           <Route path="register" element={<Register />} />
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
              <Route path="/add-venue" element={<VenueAdd />} />
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
