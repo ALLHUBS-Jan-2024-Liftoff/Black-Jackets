@@ -9,7 +9,6 @@ function VenueUserDashboard({ venueId }) {
     const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
           
-    console.log(venueId);
     useEffect(() => {
         fetchVenues().then(setVenues)
         fetchGigsListByVenueId(venueId).then(setGigs)}, []); 
