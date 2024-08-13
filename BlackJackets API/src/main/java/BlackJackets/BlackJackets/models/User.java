@@ -1,122 +1,45 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Optional;
-import java.util.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-@Table(name = "users")
 @Entity
-public class User implements UserDetails {
+public class User{
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    private Integer id;
-    @Column(nullable = false)
-    private String fullName;
-    @Column(unique = true, length = 100, nullable = false)
+    @GeneratedValue
+    private int id;
     private String email;
 
-    @Column(nullable = false)
-    private String password;
+    private String pwHash;
 
-    @CreationTimestamp
-    @Column(updatable = false, name = "created_at")
-    private Date createdAt;
+    private String fullName;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Date updatedAt;
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+    public User() {}
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public User setFullName(String fullName) {
+    public User(String email, String password, String fullName) {
+        this.email = email;
+        this.pwHash = encoder.encode(password);
         this.fullName = fullName;
-        return this;
     }
-
+    public int getId() {
+        return id;
+    }
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
-        this.email = email;
-        return this;
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 
-    public User setPassword(String password) {
-        this.password = password;
-        return this;
-    }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public User setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public User setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public String getFullName() {
+        return fullName;
     }
 
 }

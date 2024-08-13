@@ -1,74 +1,141 @@
 import React, { useState } from 'react'
-import AuthService from "../services/AuthService";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+
+function LoginForm({ setAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   const [emailError, setEmailError] = useState("");
-//   const [passwordError, setPasswordError] = useState("");
-
+  const [message, setMessage] = useState("");
+  
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    try{
-      await AuthService.login(email, password)
-      .then((response) => {
-        if (response.data !== "") {
-          alert("Login Successful!");
-          navigate("/venue-dashboard");
-          window.location.reload();
+    try {
+      const response = await axios.post(
+        "http://localhost:8090/user/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
         }
-        (error) => {
-          console.log(error);
-        }
-    });
-    } catch (err) { 
-      console.log(err);
+      );
+      setAuthenticated(true);
+      alert(response.data.message);
+      navigate("/venue-dashboard");
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Login failed");
     }
   };
 
-  return (
-    <div className="mt-5">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">
-            Email
-            <input
-              type="text"
-              className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Password
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary mt-3"
-          // disabled={!getIsFormValid()}
-        >
-          Login
-        </button>
-      </form>
-    </div>
-  );
-};
+   return (
+     <div className="mt-5">
+       <form onSubmit={handleLogin}>
+         <div className="mb-3">
+           <label className="form-label">
+             Email
+             <input
+               type="text"
+               className="form-control"
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
+               required
+             />
+           </label>
+         </div>
+         <div className="mb-3">
+           <label className="form-label">
+             Password
+             <input
+               type="password"
+               className="form-control"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               required
+             />
+           </label>
+         </div>
+         <button type="submit" className="btn btn-primary mt-3">
+           Login
+         </button>
+       </form>
+       {message /* && <p>{message}</p> */ }
+     </div>
+   );
+}
 
 export default LoginForm;
+
+// const LoginForm = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+// //   const [emailError, setEmailError] = useState("");
+// //   const [passwordError, setPasswordError] = useState("");
+
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try{
+//       await AuthService.login(email, password)
+//       .then((response) => {
+//         if (response.data !== "") {
+//           alert("Login Successful!");
+//           navigate("/venue-dashboard");
+//           window.location.reload();
+//         }
+//         (error) => {
+//           console.log(error);
+//         }
+//     });
+//     } catch (err) { 
+//       console.log(err);
+//     }
+//   };
+
+//   return (
+//     <div className="mt-5">
+//       <form onSubmit={handleSubmit}>
+//         <div className="mb-3">
+//           <label className="form-label">
+//             Email
+//             <input
+//               type="text"
+//               className="form-control"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               required
+//             />
+//           </label>
+//         </div>
+//         <div className="mb-3">
+//           <label className="form-label">
+//             Password
+//             <input
+//               type="password"
+//               className="form-control"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//           </label>
+//         </div>
+//         <button
+//           type="submit"
+//           className="btn btn-primary mt-3"
+//           // disabled={!getIsFormValid()}
+//         >
+//           Login
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default LoginForm;
 
 // const LoginForm = (props) => {
 //   const [username, setUsername] = useState("");

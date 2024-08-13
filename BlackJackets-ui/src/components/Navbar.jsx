@@ -5,6 +5,7 @@ function Navbar() {
   return (
     <>
       <nav>
+        
         <ul className="nav nav-pills flex-column flex-sm-row">
           <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to="/">
@@ -33,20 +34,29 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/gigs/add">
-              Add Gig Test</Link>
-                  </li>
-                  {/* <li className="nav-item">
+              Add Gig Test
+            </Link>
+          </li>
+          {/* <li className="nav-item">
                       <Link className="nav-link" to="/venue-list">Venue List</Link>
                   </li> */}
-                  <li className="nav-item">
-                      <Link className="nav-link" to="/add-venue">Create Venue</Link>
-                  </li>
-                  <li className="nav-item">
+          <li className="nav-item">
+            <Link className="nav-link" to="/add-venue">
+              Create Venue
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/venue-dashboard">
               Venue User Dashboard
             </Link>
           </li>
-        </ul>
+          <li className="nav-item">
+            <Link className="nav-link" to="/logout">
+              Logout
+            </Link>
+          </li>
+          
+        </ul> 
       </nav>
       <Outlet />
     </>
