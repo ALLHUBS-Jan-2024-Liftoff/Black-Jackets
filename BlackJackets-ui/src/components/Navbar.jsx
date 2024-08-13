@@ -41,10 +41,15 @@ function Navbar() {
                   <li className="nav-item">
                       <Link className="nav-link" to="/add-venue">Create Venue</Link>
                   </li>
-              </ul>
-          </nav>
-          <Outlet />
-      </>
+                  <li className="nav-item">
+            <Link className="nav-link" to="/venue-dashboard">
+              Venue User Dashboard
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
   );
 }
 

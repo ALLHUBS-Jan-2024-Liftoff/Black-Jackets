@@ -17,7 +17,7 @@ const LoginForm = () => {
       .then((response) => {
         if (response.data !== "") {
           alert("Login Successful!");
-          navigate("/");
+          navigate("/venue-dashboard");
           window.location.reload();
         }
         (error) => {
