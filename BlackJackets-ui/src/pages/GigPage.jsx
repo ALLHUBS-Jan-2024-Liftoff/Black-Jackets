@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { fetchGig } from "../services/GigService";
+import { useNavigate, useParams } from "react-router-dom";
 
-const GigPage = ({ gigId }) => {
+const GigPage = () => {
   const [gig, setGig] = useState({});
   const [loading, setLoading] = useState(true);
+  
+  const navigator = useNavigate();
+
+  const { gigId } = useParams();
 
   useEffect(() => {
     fetchGig(gigId)
       .then(setGig)
       .catch((error) => {
         console.error("Error fetching gig", error);
+        alert("Error fetching gig");
       });
     setLoading(false);
   }, []);

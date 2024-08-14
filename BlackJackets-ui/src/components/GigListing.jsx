@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const GigListing = ({ gig, isVenuePage }) => {
-  const handleViewDetailsButton = () => {}; /* Link to single Gig view */
+  const navigator = useNavigate();
+  
+  const handleViewDetailsButton = (id) => {
+    navigator(`../gigs/view/${id}`);
+  }; /* Link to single Gig view */
   const handleSeeVenueButton = () => {}; /* Link to Venue's page */
 
   return (
@@ -13,7 +18,7 @@ const GigListing = ({ gig, isVenuePage }) => {
         <button
           type="button"
           className="btn button-info"
-          onClick={handleViewDetailsButton()}
+          onClick={()=>handleViewDetailsButton(gig.id)}
         >
           View Gig Details
         </button>{" "}
