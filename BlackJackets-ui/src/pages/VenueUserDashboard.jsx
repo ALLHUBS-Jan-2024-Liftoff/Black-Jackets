@@ -27,11 +27,11 @@ function VenueUserDashboard({ venueId }) {
             <div className="container">
                 <h1 className='header'>{venue.name}</h1><br />
                 <div className='details'>
-                {venue.capacity}<br />
-                {venue.location}<br />
-                {venue.email}<br />
-                    {venue.phone}<br />
-                    <div className='button'>
+                 {venue.capacity}<br />
+                 {venue.location}<br />
+                 {venue.email}<br />
+                 {venue.phone}<br />
+                <div className='button'>
                 <button className="btn btn-info" onClick={handleCreateGig}>Add Gig </button>
                 <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
                 </div>
