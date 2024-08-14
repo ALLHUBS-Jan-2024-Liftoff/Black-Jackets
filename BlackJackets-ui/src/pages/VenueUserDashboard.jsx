@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { fetchGigsListByVenueId, getVenueById } from '../services/venueService'
+//import { deleteGig } from '../services/GigService'
 import { useNavigate } from 'react-router-dom'
 import '../pages/style.css'
+import axios from "axios";
 
 function VenueUserDashboard({ venueId }) {
     const [venue, setVenue] = useState([]);
@@ -21,6 +23,17 @@ function VenueUserDashboard({ venueId }) {
     function handleCreateGig() {
         navigator(`/gigs/add`);
     }
+
+    function handleDeleteGig(id) {
+            try {
+                axios.delete(`http://localhost:8090/gigs/${id}`);
+                setGigs((prevGigs) => prevGigs.filter(gig => gig.id !== id));
+              }
+            catch (error) {
+              console.error("There was an error deleting the gig!", error);
+              throw error;
+            }
+        }
 
     return (
         <div>
@@ -53,6 +66,7 @@ function VenueUserDashboard({ venueId }) {
                          <th>SupportingAct</th>
                          <th>OpeningAct</th>
                          <th>Bandslots</th>
+                         <th>Action</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -67,6 +81,9 @@ function VenueUserDashboard({ venueId }) {
                                 <td>{gig.supportingAct}</td>
                                 <td>{gig.openingAct}</td>
                                 <td>{gig.bandSlots}</td>
+                                <td>
+                                <button className="btn btn-info" onClick={() =>handleDeleteGig(gig.id)}>Delete</button>
+                                </td>
                         </tr>)}
                 </tbody>
           </table>

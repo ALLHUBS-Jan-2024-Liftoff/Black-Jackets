@@ -53,3 +53,16 @@ export const addGig = async (
       console.log(response.status, response.data.token);
     });
 };
+
+//export const deleteGig = (gigId) => axios.delete(BASEAPIURL + '/gigs/' + gigId);
+
+export const deleteGig = async (gigId) => {
+  try {
+    await axios.delete(`${BASEAPIURL}/gigs`+'/'+gigId);
+  }
+  catch (error) {
+    console.error("There was an error deleting the gig!", error);
+    throw error;
+  }
+}
+
