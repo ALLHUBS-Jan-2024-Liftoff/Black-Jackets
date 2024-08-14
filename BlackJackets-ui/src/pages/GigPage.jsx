@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const GigPage = () => {
   const [gig, setGig] = useState({});
   const [loading, setLoading] = useState(true);
-  
+
   const navigator = useNavigate();
 
   const { gigId } = useParams();
@@ -22,6 +22,14 @@ const GigPage = () => {
 
   return (
     <div className="container">
+      <button
+      className="btn btn-outline-primary btn-block"
+        onClick={() => {
+          navigator(`../gigs/search`);
+        }}
+      >
+        Back to Gigs
+      </button>
       {loading ? (
         <h1>LOADING GIG...</h1>
       ) : (
