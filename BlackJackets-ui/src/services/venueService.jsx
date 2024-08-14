@@ -27,11 +27,19 @@ export const getVenueById = async (venueId) => await axios.get(`${BASEAPIURL}/${
 
 export const editVenueById = async (venueId,venue) => {
     try {
-        const response = await axios.put(`${BASEAPIURL}/${venueId}`,venue);
-        return response.data;
-    } catch (error) {
+         await axios.put(`${BASEAPIURL}/${venueId}`,venue);
+           } catch (error) {
         alert("Error occurs while updating a venue!", error);
         throw error;
     }
 };
 
+ export const fetchGigsListByVenueId = async (venueId) => {
+    try {
+        const response = await axios.get(`${BASEAPIURL}/allgigs/${venueId}`);
+        return response.data;
+    } catch (error) {
+        alert("Error occurs while fetching a venue!", error);
+        throw error;
+    }
+};
