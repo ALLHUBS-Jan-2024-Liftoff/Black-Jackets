@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { fetchGigsListByVenueId, getVenueById } from '../services/venueService'
-import { useNavigate } from 'react-router-dom'
 import '../pages/style.css'
 
-function GuestViewPage({ venueId }) {
+function GuestView({ venueId }) {
     const [venue, setVenue] = useState([]);
     const [gigs, setGigs] = useState([]);
-    const navigator = useNavigate();
-   
+       
     useEffect(() => {
         getVenueById(venueId).then((response) => {
             setVenue(response.data)
@@ -64,4 +62,4 @@ function GuestViewPage({ venueId }) {
      
 }
 
-export default GuestViewPage
+export default GuestView

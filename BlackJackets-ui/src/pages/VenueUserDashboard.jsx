@@ -72,8 +72,7 @@ function VenueUserDashboard({ venueId }) {
           </table>
       </div>
         </div>
-    )
-     
+    )   
 }
 
 export default VenueUserDashboard
