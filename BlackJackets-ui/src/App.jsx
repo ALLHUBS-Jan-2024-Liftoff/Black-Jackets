@@ -13,6 +13,7 @@ import GigPage from "./pages/GigPage";
 import CreateGigForm from "./components/CreateGig";
 import VenueAdd from './pages/VenueAdd'
 import GigListings from "./components/GigListings";
+import GuestViewPage from "./pages/GuestViewPage";
 
 function App() {
   // venueId will be set to the venueId related to the logged in user
@@ -33,7 +34,8 @@ function App() {
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
             <Route path="/venue-dashboard" element={<VenueUserDashboard venueId={venueId}/>} />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
-            <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
+            <Route path="gigs/search" element={<GigListings isVenue={false} />} />
+            <Route path="/guest-view" element={<GuestViewPage venueId={venueId}/>} />
           </Route>
         </Routes>
       </Router>
