@@ -34,7 +34,7 @@ function App() {
             <Route path="/venue-dashboard" element={<VenueUserDashboard />} />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
             <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
-            <Route path="gigs/view/:gigId" element={<GigPage />} /> {/*figure out mapping*/}
+            <Route path="gigs/view/:gigId" element={<GigPage />} />
           </Route>
         </Routes>
       </Router>
