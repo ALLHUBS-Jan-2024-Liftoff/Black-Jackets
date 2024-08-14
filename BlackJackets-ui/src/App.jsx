@@ -39,9 +39,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-      {/* <VenueList /> */}
-      {/* <VenuePage /> */}
-        </>
+    </>
      );
 }
 
