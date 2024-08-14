@@ -23,7 +23,7 @@ const GigPage = () => {
   return (
     <div className="container">
       <button
-      className="btn btn-outline-primary btn-block"
+        className="btn btn-outline-primary btn-block"
         onClick={() => {
           navigator(`../gigs/search`);
         }}
@@ -34,10 +34,10 @@ const GigPage = () => {
         <h1>LOADING GIG...</h1>
       ) : (
         <>
-          <h1>{gig.name}</h1>
+          <h1>
+            {gig.name}: {gig.date}
+          </h1>
           <ul>
-            <li>{gig.date}</li>
-            <li>VENUE NAME</li>
             <li>{gig.genre}</li>
             <li>
               Band Line Up
@@ -57,8 +57,18 @@ const GigPage = () => {
             </li>
 
             <li>{gig.ages}</li>
+            <li>VENUE NAME</li>
             <li>VENUE EMAIL</li>
             <li>VENUE PHONE</li>
+            <button
+              className="btn btn-info"
+              onClick={() => {
+                navigator();
+              }}
+            >
+              See Venue's Profile
+            </button>
+            {/* add link to Venue guest view */}
           </ul>
         </>
       )}
