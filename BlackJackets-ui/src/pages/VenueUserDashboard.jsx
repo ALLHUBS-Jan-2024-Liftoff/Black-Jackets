@@ -31,6 +31,7 @@ function VenueUserDashboard({ venueId }) {
     return (
         <div>
             <div className="container">
+                <br/><br/>
                 <h1 className='header'>{venue.name}</h1><br />
                 <div className='details'>
                  {venue.capacity}<br />
