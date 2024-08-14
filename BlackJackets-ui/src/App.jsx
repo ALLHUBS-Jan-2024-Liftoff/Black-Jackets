@@ -10,7 +10,7 @@ import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
 import GigPage from "./pages/GigPage";
-import CreateGigForm from "./components/CreateGig";
+import CreateGigForm from "./pages/CreateGig"
 import VenueAdd from './pages/VenueAdd'
 import GigListings from "./components/GigListings";
 import GuestViewPage from "./pages/GuestViewPage";

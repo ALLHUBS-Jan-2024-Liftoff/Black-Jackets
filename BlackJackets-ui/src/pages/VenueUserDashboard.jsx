@@ -7,7 +7,7 @@ function VenueUserDashboard({ venueId }) {
     const [venue, setVenue] = useState([]);
     const [gigs, setGigs] = useState([]);
     const navigator = useNavigate();
-   
+      
     useEffect(() => {
         getVenueById(venueId).then((response) => {
             setVenue(response.data)
@@ -18,6 +18,10 @@ function VenueUserDashboard({ venueId }) {
         navigator(`/edit-venue/${id}`);
     }
 
+    function handleCreateGig() {
+        navigator(`/gigs/add`);
+    }
+
     return (
         <div>
             <div className="container">
@@ -26,9 +30,12 @@ function VenueUserDashboard({ venueId }) {
                 {venue.capacity}<br />
                 {venue.location}<br />
                 {venue.email}<br />
-                {venue.phone}<br />
+                    {venue.phone}<br />
+                    <div className='button'>
+                <button className="btn btn-info" onClick={handleCreateGig}>Add Gig </button>
                 <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
                 </div>
+             </div>
             </div>
             <div className="container">
                 <br /><br/><br/><br/><br/><br/><br/>
