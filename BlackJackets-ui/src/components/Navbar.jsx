@@ -28,29 +28,32 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/gigs/add">
-              Add Gig Test</Link>
-                  </li>
-                  {/* <li className="nav-item">
+              Add Gig Test
+            </Link>
+          </li>
+          {/* <li className="nav-item">
                       <Link className="nav-link" to="/venue-list">Venue List</Link>
                   </li> */}
-                  <li className="nav-item">
-                      <Link className="nav-link" to="/add-venue">Create Venue</Link>
-                  </li>
-                  <li className="nav-item">
-                       <Link className="nav-link" to="/venue-dashboard">
-                        Venue User Dashboard
-                        </Link>
-                     </li>
-                  <li className="nav-item">
-                       <Link className="nav-link" to="/guest-view">
-                        Guest View
-                        </Link>
-                   </li>
-                    </ul>
-                   </nav>
-                     <Outlet />
-                     </>
-                    );
-              }
+          <li className="nav-item">
+            <Link className="nav-link" to="/add-venue">
+              Create Venue
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/venue-dashboard">
+              Venue User Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/guest-view">
+              Guest View
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
+  );
+}
 
 export default Navbar;

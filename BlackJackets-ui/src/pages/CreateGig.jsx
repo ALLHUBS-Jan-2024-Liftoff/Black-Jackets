@@ -38,7 +38,7 @@ const CreateGigForm = ({ venueId }) => {
         openingAct,
         venueId
       );
-      alert("Gig Created!")
+      alert("Gig Created!");
       setName("");
       setDate("");
       setGenre("");
@@ -53,7 +53,6 @@ const CreateGigForm = ({ venueId }) => {
   return (
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
-        
         <div className="mb-3">
           <label className="form-label">
             Name of the Gig
