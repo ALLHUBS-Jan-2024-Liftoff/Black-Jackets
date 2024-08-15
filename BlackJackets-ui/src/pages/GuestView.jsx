@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { fetchGigsListByVenueId, getVenueById } from '../services/venueService'
-import { useNavigate } from 'react-router-dom'
 import '../pages/style.css'
 
-function VenueUserDashboard({ venueId }) {
+function GuestView({ venueId }) {
     const [venue, setVenue] = useState([]);
     const [gigs, setGigs] = useState([]);
-    const navigator = useNavigate();
-      
+       
     useEffect(() => {
         getVenueById(venueId).then((response) => {
             setVenue(response.data)
             fetchGigsListByVenueId(venueId).then(setGigs)
         }) } , [])
                       
-    function updateVenue(id) {
-        navigator(`/edit-venue/${id}`);
-    }
-
-    function handleCreateGig() {
-        navigator(`/gigs/add`);
-    }
-
-    return (
+        return (
         <div>
             <div className="container">
                 <h1 className='header'>{venue.name}</h1><br />
@@ -30,17 +20,13 @@ function VenueUserDashboard({ venueId }) {
                 {venue.capacity}<br />
                 {venue.location}<br />
                 {venue.email}<br />
-                    {venue.phone}<br />
-                    <div className='button'>
-                <button className="btn btn-info" onClick={handleCreateGig}>Add Gig </button>
-                <button className="btn btn-info" onClick={() =>updateVenue(venue.id)}>Edit</button>
+                {venue.phone}<br />
                 </div>
-             </div>
             </div>
             <div className="container">
                 <br /><br/><br/><br/><br/><br/><br/>
                 
-             <h2>List of Gigs For This Venue</h2>
+             <h2>List of Upcoming Gigs</h2>
              <table className="table table-striped table-bordered">
                 <thead>
                      <tr>
@@ -72,7 +58,8 @@ function VenueUserDashboard({ venueId }) {
           </table>
       </div>
         </div>
-    )   
+    )
+     
 }
 
-export default VenueUserDashboard
+export default GuestView

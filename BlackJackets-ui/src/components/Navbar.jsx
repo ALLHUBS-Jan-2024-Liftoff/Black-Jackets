@@ -54,6 +54,11 @@ function Navbar() {
               Logout
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/guest-view">
+              Guest View
+            </Link>
+          </li>
         </ul>
       </nav>
       <Outlet />

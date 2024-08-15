@@ -8,3 +8,9 @@
    color:blue;
    text-align: center;
 }
+
+.button{
+    display:flex;
+    grid-template-columns: repeat(n, 1fr);
+    gap: 10px;
+}
