@@ -45,25 +45,25 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-                       <Link className="nav-link" to="/venue-dashboard">
-                        Venue User Dashboard
-                        </Link>
-                     </li>
+            <Link className="nav-link" to="/venue-dashboard">
+              Venue User Dashboard
+            </Link>
+          </li>
           <li className="nav-item">
             <Link className="nav-link" to="/logout">
               Logout
             </Link>
           </li>
-                  <li className="nav-item">
-                       <Link className="nav-link" to="/guest-view">
-                        Guest View
-                        </Link>
-                   </li>
-                    </ul>
-                   </nav>
-                     <Outlet />
-                     </>
-                    );
-              }
+          <li className="nav-item">
+            <Link className="nav-link" to="/guest-view">
+              Guest View
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
+  );
+}
 
 export default Navbar;

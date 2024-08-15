@@ -12,8 +12,8 @@ import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
 import GigPage from "./pages/GigPage";
-import CreateGigForm from "./pages/CreateGig"
-import VenueAdd from './pages/VenueAdd'
+import CreateGigForm from "./pages/CreateGig";
+import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
 
@@ -55,13 +55,19 @@ function App() {
               path="logout"
               element={<Logout setAuthenticated={setAuthenticated} />}
             />
-            <Route path="gigs/search" element={<GigListings isVenue={false} />} />
-            <Route path="/guest-view" element={<GuestView venueId={venueId}/>} />
+            <Route
+              path="gigs/search"
+              element={<GigListings isVenue={false} />}
+            />
+            <Route
+              path="/guest-view"
+              element={<GuestView venueId={venueId} />}
+            />
           </Route>
         </Routes>
       </Router>
     </>
-     );
+  );
 }
 
 export default App;
