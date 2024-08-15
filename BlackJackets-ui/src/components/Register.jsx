@@ -1,38 +1,39 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
-  const [email, setEmail] = useState("");
+const RegisterForm = ({ register }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8090/user/login",
-        {
-          email,
-          password, 
-        },
-        {
-          withCredentials: true,
-        }
-      );
-    //   setAuthenticated(true);
-      alert(response.data.message);
-      navigate("/venue-dashboard");
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Login failed");
+    if (
+      name != "" &&
+      email != null &&
+      password != ""
+    ) {
+      register(name, email, password);
+      setName("");
+      setEmail();
+      setPassword("");
     }
   };
 
   return (
     <div className="mt-5">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">
+            Username
+            <input
+              type="text"
+              className="form-control"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+        </div>
         <div className="mb-3">
           <label className="form-label">
             Email
@@ -49,7 +50,7 @@ function LoginForm() {
           <label className="form-label">
             Password
             <input
-              type="password"
+              type="text"
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -58,12 +59,11 @@ function LoginForm() {
           </label>
         </div>
         <button type="submit" className="btn btn-primary mt-3">
-          Login
+          Register
         </button>
       </form>
-      {message /* && <p>{message}</p> */}
     </div>
   );
-}
+};
 
-export default LoginForm;
+export default RegisterForm;
