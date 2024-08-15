@@ -12,9 +12,10 @@ import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
 import GigPage from "./pages/GigPage";
-import CreateGigForm from "./components/CreateGig";
-import VenueAdd from './pages/VenueAdd'
+import CreateGigForm from "./pages/CreateGig";
+import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
+import GuestView from "./pages/GuestView";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,19 +48,21 @@ function App() {
             />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
             <Route
-              path="gigs/search"
-              element={<GigListings /*isVenue={false}*/ />}
-            />
-            <Route
               path="logout"
               element={<Logout setAuthenticated={setAuthenticated} />}
+            />
+            <Route
+              path="gigs/search"
+              element={<GigListings isVenue={false} />}
+            />
+            <Route
+              path="/guest-view"
+              element={<GuestView venueId={venueId} />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
           </Route>
         </Routes>
       </Router>
-      {/* <VenueList /> */}
-      {/* <VenuePage /> */}
     </>
   );
 }
