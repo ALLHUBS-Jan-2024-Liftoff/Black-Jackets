@@ -19,11 +19,6 @@ const GigPage = () => {
         console.error("Error fetching gig", error);
         alert("Error fetching gig");
       });
-      // console.log(JSON.stringify(gig.venue));
-      // setVenue(JSON.parse(gig).venue.id);
-      // getVenueById(gig.venue.id).then(setVenue);
-      // console.log(venue);
-      
     setLoading(false);;
   }, []);
 
@@ -64,18 +59,18 @@ const GigPage = () => {
             </li>
 
             <li>{gig.ages}</li>
-            <li>VENUE NAME:</li>
-            <li>VENUE EMAIL</li>
-            <li>VENUE PHONE</li>
+            {gig.venue ? (<><li>Venue Name: {gig.venue.name}</li>
+            <li>Venue Email: {gig.venue.email}</li>
+            <li>Venue Phone: {gig.venue.phone}</li>
             <button
               className="btn btn-info"
               onClick={() => {
-                navigator();
+                navigator(`../guest-view/${gig.venue.id}`);
               }}
             >
               See Venue's Profile
             </button>
-            {/* add link to Venue guest view */}
+            </>) : (<></>)}
           </ul>
         </>
       )}
