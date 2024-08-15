@@ -4,7 +4,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import RegisterPage from "./pages/RegisterPage";
+import RegisterForm from "./pages/Register";
+import LoginForm from "./pages/Login";
+import Logout from "./pages/Logout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
@@ -16,6 +18,7 @@ import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
 
@@ -23,17 +26,35 @@ function App() {
     // <Home />
     <>
       <Router>
-          <Routes>
-          <Route path="/" element={<Navbar />} >
-          <Route index element={<Home />} />
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="about" element={<About />} />
-           <Route path="register" element={<RegisterPage />} />
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="about" element={<About />} />
+            <Route
+              path="login"
+              element={<LoginForm setAuthenticated={setAuthenticated} />}
+            />
+            <Route path="register" element={<RegisterForm />} />
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
-             <Route path="/add-venue" element={<VenueAdd />} />
-            <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
-            <Route path="/venue-dashboard" element={<VenueUserDashboard venueId={venueId}/>} />
+            <Route path="/add-venue" element={<VenueAdd />} />
+            <Route
+              path="gigs/add"
+              element={<CreateGigForm venueId={venueId} />}
+            />
+            <Route
+              path="/venue-dashboard"
+              element={<VenueUserDashboard venueId={venueId} />}
+            />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
+            <Route
+              path="gigs/search"
+              element={<GigListings /*isVenue={false}*/ />}
+            />
+            <Route
+              path="logout"
+              element={<Logout setAuthenticated={setAuthenticated} />}
+            />
             <Route path="gigs/search" element={<GigListings isVenue={false} />} />
             <Route path="/guest-view" element={<GuestView venueId={venueId}/>} />
           </Route>
