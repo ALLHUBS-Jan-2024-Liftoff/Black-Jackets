@@ -12,8 +12,13 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/gigs/search">
-              Search Gigs
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              Register
             </Link>
           </li>
           <li className="nav-item">
@@ -22,8 +27,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Register
+            <Link className="nav-link" to="/gigs/search">
+              Search Gigs
             </Link>
           </li>
           <li className="nav-item">
@@ -42,6 +47,11 @@ function Navbar() {
           <li className="nav-item">
             <Link className="nav-link" to="/venue-dashboard">
               Venue User Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/logout">
+              Logout
             </Link>
           </li>
           <li className="nav-item">
