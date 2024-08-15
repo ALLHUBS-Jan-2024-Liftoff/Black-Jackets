@@ -36,16 +36,19 @@ public class Venue {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-       @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
 
-    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<Review>();
 
-    public void addGig(Gig gig){
+    public void addGig(Gig gig) {
         gigs.add(gig);
     }
-    public void addReview(Review review) { reviews.add(review); }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
 
     @Override
     public String toString() {
@@ -55,14 +58,8 @@ public class Venue {
                 ", capacity=" + capacity +
                 ", location='" + location + '\'' +
                 ", email='" + email + '\'' +
-                ", venuePhone='" + venuePhone + '\'' +
+                ", venuePhone='" + phone + '\'' +
                 '}';
     }
-
-    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<Review>();
-
-    public void addReview(Review review){
-        reviews.add(review);
-    }
-    }
+}
+    
