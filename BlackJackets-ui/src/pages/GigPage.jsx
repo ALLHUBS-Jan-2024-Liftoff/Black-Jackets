@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { fetchGig } from "../services/GigService";
 import { useNavigate, useParams } from "react-router-dom";
+import { getVenueById } from "../services/venueService";
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
+  // const [venue, setVenue] = useState({});
   const [loading, setLoading] = useState(true);
 
   const navigator = useNavigate();
@@ -17,7 +19,12 @@ const GigPage = () => {
         console.error("Error fetching gig", error);
         alert("Error fetching gig");
       });
-    setLoading(false);
+      // console.log(JSON.stringify(gig.venue));
+      // setVenue(JSON.parse(gig).venue.id);
+      // getVenueById(gig.venue.id).then(setVenue);
+      // console.log(venue);
+      
+    setLoading(false);;
   }, []);
 
   return (
@@ -57,7 +64,7 @@ const GigPage = () => {
             </li>
 
             <li>{gig.ages}</li>
-            <li>VENUE NAME</li>
+            <li>VENUE NAME:</li>
             <li>VENUE EMAIL</li>
             <li>VENUE PHONE</li>
             <button

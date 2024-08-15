@@ -28,7 +28,7 @@ public class Gig {
     @NotEmpty(message = "Please specify age restrictions if applicable")
     private String ages;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "venue_id")
     private Venue venue;

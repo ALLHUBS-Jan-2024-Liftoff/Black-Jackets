@@ -31,7 +31,7 @@ function App() {
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
              <Route path="/add-venue" element={<VenueAdd />} />
             <Route path="gigs/add" element={<CreateGigForm venueId={venueId} />} />
-            <Route path="/venue-dashboard" element={<VenueUserDashboard />} />
+            <Route path="/venue-dashboard" element={<VenueUserDashboard venueId={venueId}/>} />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
             <Route path="gigs/search" element={<GigListings isVenue={false}/>} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
