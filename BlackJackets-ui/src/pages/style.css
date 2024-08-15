@@ -1,0 +1,10 @@
+.details{
+    float: right;
+    font-size: large;
+    font-weight: bold;
+}
+
+.header{
+   color:blue;
+   text-align: center;
+}

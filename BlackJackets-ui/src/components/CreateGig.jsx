@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { addGig } from "../services/GigService";
+import { genreList } from "../services/GigService";
 
-const CreateGigForm = ({venueId}) => {
+const CreateGigForm = ({ venueId }) => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
@@ -11,6 +12,8 @@ const CreateGigForm = ({venueId}) => {
   const [supportingAct, setSupportingAct] = useState("");
   const [bandSlots, setBandSlots] = useState(0);
   // image input state
+
+  const genres = genreList;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +38,7 @@ const CreateGigForm = ({venueId}) => {
         openingAct,
         venueId
       );
+      alert("Gig Created!")
       setName("");
       setDate("");
       setGenre("");
@@ -49,6 +53,7 @@ const CreateGigForm = ({venueId}) => {
   return (
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
+        
         <div className="mb-3">
           <label className="form-label">
             Name of the Gig
@@ -61,6 +66,7 @@ const CreateGigForm = ({venueId}) => {
             />
           </label>
         </div>
+
         <div className="mb-3">
           <label className="form-label">
             Date of the Gig
@@ -73,45 +79,60 @@ const CreateGigForm = ({venueId}) => {
             />
           </label>
         </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Music Genre
-            <input
-              type="text"
-              className="form-control"
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
-              required
-            />
-          </label>
-        </div>
+
+        <p>Select Music Genre</p>
+        {genres.map((g, i) => {
+          return (
+            <div className="form-check">
+              <input
+                type="radio"
+                className="form-check-input"
+                name="Genre"
+                id={`genre${i}`}
+                value={g}
+                onChange={(e) => setGenre(e.target.value)}
+                checked={genre == g}
+                required
+              />
+              <label className="form-check-label" htmlFor={`genre${i}`}>
+                {g}
+              </label>
+            </div>
+          );
+        })}
+
         <p>Select Age Range</p>
         <div className="form-check">
           <input
             type="radio"
             className="form-check-input"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
+            name="Age"
+            id="age1"
             value="Ages 21+"
             onChange={(e) => setAges(e.target.value)}
             checked={ages == "Ages 21+"}
             required
           />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">Ages 21+</label>
+          <label className="form-check-label" htmlFor="age1">
+            Ages 21+
+          </label>
         </div>
         <div className="form-check">
           <input
             type="radio"
             className="form-check-input"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
+            name="Age"
+            id="age2"
             value="All Ages"
             onChange={(e) => setAges(e.target.value)}
-            checked={(ages == "All Ages")}
+            checked={ages == "All Ages"}
             required
           />
-          <label className="form-check-label" htmlFor="flexRadioDefault2">All Ages</label>
+          <label className="form-check-label" htmlFor="age2">
+            All Ages
+          </label>
         </div>
+
         <div className="mb-3">
           <label className="form-label">
             Gig's Headliner
@@ -124,6 +145,7 @@ const CreateGigForm = ({venueId}) => {
             />
           </label>
         </div>
+
         <div className="mb-3">
           <label className="form-label">
             Number of Bands in Gig Line-Up (0–2)

@@ -1,6 +1,7 @@
 package BlackJackets.BlackJackets.Controllers;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
+import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -12,9 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("venue")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class VenueController {
-
     @Autowired
     private VenueService venueService;
 
@@ -52,5 +52,11 @@ public class VenueController {
     public ResponseEntity<String> deleteVenue(@PathVariable("Id") Integer venueId){
         this.venueService.deleteVenue(venueId);
         return new ResponseEntity<String>("Venue deleted",HttpStatusCode.valueOf(200));
+    }
+
+    //Get Mapping For gigs
+    @GetMapping("/allgigs/{venueId}")
+    public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
+        return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
 }
