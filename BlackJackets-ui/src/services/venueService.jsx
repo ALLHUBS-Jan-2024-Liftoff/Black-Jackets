@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASEAPIURL = "http://localhost:8090/venue";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export const fetchVenues = async () => {
     try {
