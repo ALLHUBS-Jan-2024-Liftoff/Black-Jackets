@@ -25,6 +25,19 @@ export const fetchGigs = async (isVenue, venueId) => {
   }
 };
 
+export const fetchGig = async (gigId) => {
+  const apiUrl = `${BASEAPIURL}/gigs/${gigId}`;
+  try {
+    const response = await axios.get(apiUrl);
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching data", error);
+    throw error;
+  }
+
+
+}
+
 export const addGig = async (
   name,
   date,
@@ -52,4 +65,13 @@ export const addGig = async (
     .then((response) => {
       console.log(response.status, response.data.token);
     });
+};
+
+export const deleteGig = async (gigId) => {
+  try {
+    await axios.delete(`${BASEAPIURL}/gigs/${gigId}`);
+  } catch (error) {
+    console.error("There was an error deleting the gig!", error);
+    throw error;
+  }
 };

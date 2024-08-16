@@ -1,5 +1,6 @@
 package BlackJackets.BlackJackets.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -36,7 +37,8 @@ public class Venue {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-       @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
 
     public void addGig(Gig gig){

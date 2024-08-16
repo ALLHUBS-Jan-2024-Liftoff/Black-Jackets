@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { addVenue } from '../services/venueService';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { addVenue } from "../services/venueService";
+import { useNavigate } from "react-router-dom";
 
 export default function VenuePage() {
   const [name, setName] = useState("");
@@ -12,6 +12,8 @@ export default function VenuePage() {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -99,7 +101,7 @@ export default function VenuePage() {
                   required
                 />
               </div>
-              <button className="btn btn-success">Submit</button>
+              <button className="btn btn-success">Create Venue</button>
             </form>
           </div>
         </div>
