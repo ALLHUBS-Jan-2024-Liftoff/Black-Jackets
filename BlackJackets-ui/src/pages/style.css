@@ -14,3 +14,12 @@
     grid-template-columns: repeat(n, 1fr);
     gap: 10px;
 }
+
+.list{
+    text-align: center;
+    color: blueviolet;
+}
+
+.table-head{
+   text-decoration: brown;
+}
