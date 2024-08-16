@@ -77,8 +77,8 @@ function VenueUserDashboard({ venueId }) {
               <th>Genre</th>
               <th>Ages</th>
               <th>HeadLiner</th>
-              <th>SupportingAct</th>
               <th>OpeningAct</th>
+              <th>SupportingAct</th>
               <th>Bandslots</th>
               <th>Action</th>
             </tr>
@@ -92,8 +92,8 @@ function VenueUserDashboard({ venueId }) {
                 <td>{gig.genre}</td>
                 <td>{gig.ages}</td>
                 <td>{gig.headliner}</td>
-                <td>{gig.supportingAct}</td>
                 <td>{gig.openingAct}</td>
+                <td>{gig.supportingAct}</td>
                 <td>{gig.bandSlots}</td>
                 <td>
                   <button

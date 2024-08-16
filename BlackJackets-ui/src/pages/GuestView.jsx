@@ -63,8 +63,8 @@ function GuestView({ venueId }) {
               <th>Genre</th>
               <th>Ages</th>
               <th>HeadLiner</th>
-              <th>SupportingAct</th>
               <th>OpeningAct</th>
+              <th>SupportingAct</th>
               <th>Bandslots</th>
             </tr>
           </thead>
@@ -77,8 +77,8 @@ function GuestView({ venueId }) {
                 <td>{gig.genre}</td>
                 <td>{gig.ages}</td>
                 <td>{gig.headliner}</td>
-                <td>{gig.supportingAct}</td>
                 <td>{gig.openingAct}</td>
+                <td>{gig.supportingAct}</td>
                 <td>{gig.bandSlots}</td>
               </tr>
             ))}

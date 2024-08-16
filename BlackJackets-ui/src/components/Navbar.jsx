@@ -59,6 +59,11 @@ function Navbar() {
               Guest View
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/message-list">
+              Notification
+            </Link>
+          </li>
         </ul>
       </nav>
       <Outlet />
