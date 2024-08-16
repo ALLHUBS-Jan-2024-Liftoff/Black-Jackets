@@ -40,6 +40,9 @@ function GuestView({ venueId }) {
         <br />
         <br />
         <div className="list">
+          <button className="btn btn-info" onClick={() => handleBandMessage()}>
+            Send A Message
+          </button>
           <h2>List of Upcoming Gigs</h2>
         </div>
         <table className="table table-striped table-bordered">

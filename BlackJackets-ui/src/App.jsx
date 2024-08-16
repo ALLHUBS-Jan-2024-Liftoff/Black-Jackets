@@ -16,6 +16,7 @@ import CreateGigForm from "./pages/CreateGig";
 import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
+import Message from "./pages/Message";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -60,6 +61,7 @@ function App() {
               element={<GuestView venueId={venueId} />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
+            <Route path="/band-message" element={<Message />} />
           </Route>
         </Routes>
       </Router>
