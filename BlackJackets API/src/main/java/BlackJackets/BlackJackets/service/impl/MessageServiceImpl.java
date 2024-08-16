@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -23,5 +26,17 @@ public class MessageServiceImpl implements MessageService {
         Message message = this.modelMapper.map(messageDTO, Message.class);
         this.messageRepo.save(message);
         return "Message added successfully";
+    }
+
+    // Get All Messages
+    @Override
+    public List<MessageDTO> getAllMessages() {
+        List<Message> all = this.messageRepo.findAll();
+        return all.stream().map(
+                dto -> new MessageDTO(dto.getId(),
+                        dto.getName(),
+                        dto.getEmail(),
+                        dto.getContent()
+                )).collect(Collectors.toList());
     }
 }
