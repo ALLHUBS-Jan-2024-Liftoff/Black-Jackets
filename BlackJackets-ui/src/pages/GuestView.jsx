@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
+import { useNavigate } from "react-router-dom";
 import "../pages/style.css";
 
 function GuestView({ venueId }) {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getVenueById(venueId).then((response) => {
@@ -12,6 +15,10 @@ function GuestView({ venueId }) {
       fetchGigsListByVenueId(venueId).then(setGigs);
     });
   }, []);
+
+  function handleBandMessage() {
+    navigate("/band-message");
+  }
 
   return (
     <div>
@@ -43,6 +50,8 @@ function GuestView({ venueId }) {
           <button className="btn btn-info" onClick={() => handleBandMessage()}>
             Send A Message
           </button>
+          <br />
+          <br />
           <h2>List of Upcoming Gigs</h2>
         </div>
         <table className="table table-striped table-bordered">
