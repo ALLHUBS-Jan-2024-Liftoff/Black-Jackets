@@ -5,7 +5,7 @@ import { getVenueById } from "../services/venueService";
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
-  // const [venue, setVenue] = useState({});
+  const [venue, setVenue] = useState({});
   const [loading, setLoading] = useState(true);
 
   const navigator = useNavigate();
@@ -65,7 +65,7 @@ const GigPage = () => {
             <button
               className="btn btn-info"
               onClick={() => {
-                navigator(`../guest-view/${gig.venue.id}`);
+                navigator(`../guest-view/`);
               }}
             >
               See Venue's Profile
