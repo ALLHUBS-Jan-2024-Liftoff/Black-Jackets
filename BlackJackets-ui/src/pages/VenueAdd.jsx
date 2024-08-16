@@ -14,8 +14,6 @@ export default function VenuePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
     if (
       name != "" &&
