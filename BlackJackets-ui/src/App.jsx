@@ -48,10 +48,6 @@ function App() {
             />
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
             <Route
-              path="gigs/search"
-              element={<GigListings /*isVenue={false}*/ />}
-            />
-            <Route
               path="logout"
               element={<Logout setAuthenticated={setAuthenticated} />}
             />
@@ -63,6 +59,7 @@ function App() {
               path="/guest-view"
               element={<GuestView venueId={venueId} />}
             />
+            <Route path="gigs/view/:gigId" element={<GigPage />} />
           </Route>
         </Routes>
       </Router>

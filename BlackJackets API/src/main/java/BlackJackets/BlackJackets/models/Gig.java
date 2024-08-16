@@ -28,7 +28,7 @@ public class Gig {
     @NotEmpty(message = "Please specify age restrictions if applicable")
     private String ages;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "venue_id")
     private Venue venue;
@@ -113,9 +113,9 @@ public class Gig {
     }
 
     public String getSupportingAct() {
-        if (supportingAct.isBlank()) {
-            return "This show has no supporting act slot";
-        }
+//        if (supportingAct.isBlank()) {
+//            return "This show has no supporting act slot";
+//        }
         return supportingAct;
     }
 
@@ -124,9 +124,9 @@ public class Gig {
     }
 
     public String getOpeningAct() {
-        if (openingAct.isBlank()) {
-            return "This show has no opening act slot";
-        }
+//        if (openingAct.isBlank()) {
+//            return "This show has no opening act slot";
+//        }
         return openingAct;
     }
 
