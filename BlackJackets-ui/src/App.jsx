@@ -18,6 +18,7 @@ import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
 import MessageAdd from "./pages/MessageAdd";
 import Notification from "./pages/Notification";
+import Contact from "./pages/Contact";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -57,13 +58,11 @@ function App() {
               path="gigs/search"
               element={<GigListings isVenue={false} />}
             />
-            <Route
-              path="/guest-view"
-              element={<GuestView venueId={venueId} />}
-            />
+            <Route path="/guest-view" element={<GuestView />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             <Route path="/band-message" element={<MessageAdd />} />
             <Route path="/message-list" element={<Notification />} />
+            <Route path="/contact-form" element={<Contact />} />
           </Route>
         </Routes>
       </Router>
