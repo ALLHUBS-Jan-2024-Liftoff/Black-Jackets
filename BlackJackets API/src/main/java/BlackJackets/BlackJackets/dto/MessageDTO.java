@@ -1,6 +1,5 @@
 package BlackJackets.BlackJackets.dto;
 
-import BlackJackets.BlackJackets.models.Venue;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

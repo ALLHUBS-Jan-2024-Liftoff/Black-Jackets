@@ -41,9 +41,6 @@ public class Venue {
     @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
 
-    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
-    private List<Message> messages = new ArrayList<Message>();
-
     public void addGig(Gig gig){
         gigs.add(gig);
     }
