@@ -30,7 +30,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="about" element={<About />} />
             <Route
               path="login"
@@ -40,7 +39,6 @@ function App() {
               path="register"
               element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
-            {/* <Route path="/venue-list" element={<VenueList />} /> */}
 
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
 
@@ -49,8 +47,8 @@ function App() {
               element={<GigListings isVenue={false} />}
             />
             <Route
-              path="/guest-view"
-              element={<GuestView venueId={venueId} />}
+              path="/guest-view/:id"
+              element={<GuestView />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
