@@ -88,7 +88,7 @@ const CreateGigForm = ({ venueId }) => {
               <p>Select Music Genre</p>
               {genres.map((g, i) => {
                 return (
-                  <div className="form-check">
+                  <div className="form-check" key={g}>
                     <input
                       type="radio"
                       className="form-check-input"
