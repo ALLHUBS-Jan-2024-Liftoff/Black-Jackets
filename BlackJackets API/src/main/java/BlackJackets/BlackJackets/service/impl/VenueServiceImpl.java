@@ -80,4 +80,5 @@ public class VenueServiceImpl implements VenueService {
         List<Gig> gigList = gigRepository.findByVenueId(venueId);
         return gigList;
     }
+
 }
