@@ -30,14 +30,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="about" element={<About />} />
             <Route
               path="login"
               element={<LoginForm setAuthenticated={setAuthenticated} />}
             />
             <Route path="register" element={<RegisterForm />} />
-            {/* <Route path="/venue-list" element={<VenueList />} /> */}
             <Route path="/add-venue" element={<VenueAdd />} />
             <Route
               path="gigs/add"
@@ -57,8 +55,8 @@ function App() {
               element={<GigListings isVenue={false} />}
             />
             <Route
-              path="/guest-view"
-              element={<GuestView venueId={venueId} />}
+              path="/guest-view/:id"
+              element={<GuestView />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
