@@ -7,6 +7,22 @@ const GigListings = ({ isVenuePage, venueId }) => {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [venue, setVenue] = useState(null);
+  const [filteredGigs, setFilteredGigs] = useState([]);
+
+  const filterGigs = (gigArray, field, value) => {
+    if (field == "all") {
+      // renders gigs in ternary by setting filteredGigs to empty
+      return [];
+    }
+    if (field == "genre") {
+      // renders filteredGigs which match the genre selected
+      return gigArray.filter((gig) => gig.genre == value);
+    }
+    if (field == "ages") {
+      // renders filteredGigs which match the ages selected
+      return gigArray.filter((gig) => gig.ages == value);
+    }
+  };
 
   if (isVenuePage) {
     setVenue(venueId);
@@ -24,6 +40,14 @@ const GigListings = ({ isVenuePage, venueId }) => {
   return (
     <section>
       <h2>{isVenuePage ? "Upcoming Gigs" : "Browse Gigs"}</h2>
+      {/* Test Button to test filter */}
+      <button
+        onClick={() => {
+          setFilteredGigs(filterGigs(gigs, "genre", "Metal"));
+        }}
+      >
+        CLICK TO FILTER
+      </button>
 
       {loading ? (
         <h1>LOADING...</h1>
@@ -36,11 +60,20 @@ const GigListings = ({ isVenuePage, venueId }) => {
               <th scope="col">Starring</th>
             </tr>
           </thead>
-          <tbody>
-            {gigs.map((gig) => (
-              <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
-            ))}
-          </tbody>
+          {/* renders based on filteredGigs being set or not */}
+          {filteredGigs.length > 0 ? (
+            <tbody>
+              {filteredGigs.map((gig) => (
+                <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {gigs.map((gig) => (
+                <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
+              ))}
+            </tbody>
+          )}
         </table>
       )}
     </section>
