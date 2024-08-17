@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import "../pages/style.css";
+import { useParams } from "react-router-dom";
 
-function GuestView({ venueId }) {
+function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
+  const {id} = useParams();
 
   useEffect(() => {
-    getVenueById(venueId).then((response) => {
+    getVenueById(id).then((response) => {
       setVenue(response.data);
-      fetchGigsListByVenueId(venueId).then(setGigs);
+      fetchGigsListByVenueId(id).then(setGigs);
     });
   }, []);
 
