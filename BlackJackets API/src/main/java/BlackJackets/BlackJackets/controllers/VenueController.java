@@ -2,6 +2,7 @@ package BlackJackets.BlackJackets.Controllers;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Message;
 import BlackJackets.BlackJackets.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -55,8 +56,13 @@ public class VenueController {
     }
 
     //Get Mapping For gigs
-    @GetMapping("/allgigs/{venueId}")
+    @GetMapping("/allGigs/{venueId}")
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
+    }
+     //Get All Messages with venueId
+    @GetMapping("/allMessages/{venueId}")
+    public ResponseEntity<List<Message>> getAllMessagesByVenueId(@PathVariable Integer venueId){
+        return new ResponseEntity<>(this.venueService.getAllMessagesByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
 }

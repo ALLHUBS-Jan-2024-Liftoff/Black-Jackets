@@ -1,5 +1,6 @@
 package BlackJackets.BlackJackets.dto;
 
+import BlackJackets.BlackJackets.models.Venue;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -28,4 +29,10 @@ public class MessageDTO {
 
     @NotBlank(message = "Content is required")
     private String content;
+
+    @NotBlank(message = "Venue Id is required")
+    //@JoinColumn(name = "venue_id")
+    private int venueId;
+
+
 }

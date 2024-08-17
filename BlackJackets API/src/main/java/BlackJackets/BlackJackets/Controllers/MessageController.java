@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("message")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class MessageController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class MessageController {
 
     //Get All Messages
     @GetMapping
-    public ResponseEntity<List<MessageDTO>> getAllMessageses(){
+    public ResponseEntity<List<MessageDTO>> getAllMessages(){
         List<MessageDTO> messages = messageService.getAllMessages();
         return new ResponseEntity<>(messages,HttpStatusCode.valueOf(200));
     }
