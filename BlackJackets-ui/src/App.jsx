@@ -36,22 +36,14 @@ function App() {
               path="login"
               element={<LoginForm setAuthenticated={setAuthenticated} />}
             />
-            <Route path="register" element={<RegisterForm />} />
+            <Route
+              path="register"
+              element={<RegisterForm setAuthenticated={setAuthenticated} />}
+            />
             {/* <Route path="/venue-list" element={<VenueList />} /> */}
-            <Route path="/add-venue" element={<VenueAdd />} />
-            <Route
-              path="gigs/add"
-              element={<CreateGigForm venueId={venueId} />}
-            />
-            <Route
-              path="/venue-dashboard"
-              element={<VenueUserDashboard venueId={venueId} />}
-            />
+
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
-            <Route
-              path="logout"
-              element={<Logout setAuthenticated={setAuthenticated} />}
-            />
+
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
@@ -72,7 +64,11 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
-
+                <Route path="/add-venue" element={<VenueAdd />} />
+                <Route
+                  path="gigs/add"
+                  element={<CreateGigForm venueId={venueId} />}
+                />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}

@@ -24,7 +24,6 @@ export default function VenuePage() {
     ) {
       const venue = { name, capacity, email, location, phone };
       addVenue(venue);
-      setAuthenticated(true);
       alert("Venue created");
       navigate("/venue-dashboard");
     }
