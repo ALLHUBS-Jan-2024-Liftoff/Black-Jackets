@@ -36,7 +36,7 @@ public class MessageServiceImpl implements MessageService {
                 dto -> new MessageDTO(dto.getId(),
                         dto.getName(),
                         dto.getEmail(),
-                        dto.getContent()
+                        dto.getContent(),dto.getVenue().getId()
                 )).collect(Collectors.toList());
     }
 }

@@ -2,6 +2,7 @@ package BlackJackets.BlackJackets.service.impl;
 import BlackJackets.BlackJackets.data.GigRepository;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Message;
 import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.service.VenueService;
@@ -79,5 +80,11 @@ public class VenueServiceImpl implements VenueService {
     public List<Gig> getAllGigsByVenueId(int venueId) {
         List<Gig> gigList = gigRepository.findByVenueId(venueId);
         return gigList;
+    }
+
+    @Override
+    public List<Message> getAllMessagesByVenueId(int venueId) {
+        List<Message> messageList = venueRepo.findMessageById(venueId);
+        return messageList;
     }
 }
