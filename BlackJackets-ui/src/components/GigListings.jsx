@@ -127,6 +127,7 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
                 <th scope="col">Starring</th>
               </tr>
             </thead>
+            {filteredGigs.length == 0 && (<h2>No Gigs to Show!</h2>)}
             <tbody>
               {filteredGigs.map((gig) => (
                 <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
