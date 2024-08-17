@@ -36,7 +36,7 @@ function GuestView() {
           <div>
             <label htmlFor="venue">Venue List: </label>
             <select value={selectedOption} onChange={handleVenueChange}>
-              {/* <option value="">Select a venue</option> */}
+              <option value="">Select a venue</option>
               {venueList.map((venue) => (
                 <option key={venue.id} value={venue.id}>
                   {venue.name}
