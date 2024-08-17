@@ -48,6 +48,9 @@ public class Venue {
     @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<Review>();
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "venue")
+    private User user;
+
     public void addReview(Review review){
         reviews.add(review);
     }
