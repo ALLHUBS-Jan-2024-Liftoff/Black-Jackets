@@ -10,6 +10,7 @@
 }
 
 .button{
+    /* align-items: center; */
     display:flex;
     grid-template-columns: repeat(n, 1fr);
     gap: 10px;
@@ -22,4 +23,9 @@
 
 .table-head{
    text-decoration: brown;
+}
+
+/* Venue form */
+.h3{
+    color: blueviolet;
 }
