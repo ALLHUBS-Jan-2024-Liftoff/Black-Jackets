@@ -54,10 +54,7 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
 
   return (
     <section>
-
-      <h2>
-        {isVenuePage ? "Upcoming Gigs" : "Browse Gigs"}
-      </h2>
+      <h2>{isVenuePage ? "Upcoming Gigs" : "Browse Gigs"}</h2>
 
       <div className="form-inline">
         <label>
@@ -127,12 +124,23 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
                 <th scope="col">Starring</th>
               </tr>
             </thead>
-            {filteredGigs.length == 0 && (<h2>No Gigs to Show!</h2>)}
-            <tbody>
-              {filteredGigs.map((gig) => (
-                <GigListing key={gig.id} gig={gig} isVenuePage={isVenuePage} />
-              ))}
-            </tbody>
+            {filteredGigs.length == 0 ? (
+              <tbody>
+                <tr>
+                  <td className="text-danger">No Gigs to Show!</td>
+                </tr>
+              </tbody>
+            ) : (
+              <tbody>
+                {filteredGigs.map((gig) => (
+                  <GigListing
+                    key={gig.id}
+                    gig={gig}
+                    isVenuePage={isVenuePage}
+                  />
+                ))}
+              </tbody>
+            )}
           </table>
         </>
       )}
