@@ -62,8 +62,14 @@ function App() {
               element={<GuestView venueId={venueId} />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
-            <Route path="/band-message" element={<MessageAdd />} />
-            <Route path="/message-list" element={<Notification />} />
+            <Route
+              path="/band-message"
+              element={<MessageAdd venueId={venueId} />}
+            />
+            <Route
+              path="/message-list"
+              element={<Notification venueId={venueId} />}
+            />
           </Route>
         </Routes>
       </Router>

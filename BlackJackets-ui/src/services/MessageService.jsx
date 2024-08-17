@@ -3,9 +3,11 @@ import axios from "axios";
 const BASEAPIURL = "http://localhost:8090/message";
 axios.defaults.withCredentials = true;
 
-export const addMessage = async (message) => {
+export const addMessage = async (message, venueId) => {
   try {
-    const response = await axios.post(`${BASEAPIURL}/add`, message);
+    const response = await axios.post(`${BASEAPIURL}/add`, message, {
+      params: { venueId: venueId },
+    });
     return response.data;
   } catch (error) {
     alert("Error occurs while creating message!", error);
