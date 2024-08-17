@@ -12,6 +12,8 @@ export const genreList = [
   "Metal",
 ];
 
+export const agesList = ["All Ages", "Ages 21+"];
+
 export const fetchGigs = async (isVenue, venueId) => {
   const apiUrl = isVenue
     ? `${BASEAPIURL}/gigs/list/${venueId}`
@@ -34,9 +36,7 @@ export const fetchGig = async (gigId) => {
     console.log("Error fetching data", error);
     throw error;
   }
-
-
-}
+};
 
 export const addGig = async (
   name,
