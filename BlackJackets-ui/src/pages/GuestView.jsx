@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchGigsListByVenueId, fetchVenues } from "../services/venueService";
-import { useNavigate } from "react-router-dom";
+import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import "../pages/style.css";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +7,7 @@ function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     getVenueById(id).then((response) => {
