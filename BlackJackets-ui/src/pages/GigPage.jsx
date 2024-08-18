@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchGig } from "../services/GigService";
 import { useNavigate, useParams } from "react-router-dom";
-import { getVenueById } from "../services/venueService";
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
-  // const [venue, setVenue] = useState({});
   const [loading, setLoading] = useState(true);
 
   const navigator = useNavigate();

@@ -59,4 +59,6 @@ public class VenueController {
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
+
+
 }

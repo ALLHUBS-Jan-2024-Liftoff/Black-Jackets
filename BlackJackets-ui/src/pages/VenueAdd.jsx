@@ -9,7 +9,8 @@ export default function VenuePage() {
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
 
-  const navigator = useNavigate();
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +25,7 @@ export default function VenuePage() {
       const venue = { name, capacity, email, location, phone };
       addVenue(venue);
       alert("Venue created");
+      navigate("/venue-dashboard");
     }
   };
 

@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
-  const { id } = useParams();
+
+  const {id} = useParams();
 
   useEffect(() => {
     getVenueById(id).then((response) => {
