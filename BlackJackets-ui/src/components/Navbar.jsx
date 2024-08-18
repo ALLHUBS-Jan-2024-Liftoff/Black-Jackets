@@ -57,11 +57,11 @@ function Navbar() {
               Create Venue
             </Link>
           </li> */}
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" to="/guest-view">
                   Guest View
                 </Link>
-              </li> */}
+              </li>
             </>
           ) : (
             <>

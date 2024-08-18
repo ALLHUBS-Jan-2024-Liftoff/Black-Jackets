@@ -17,7 +17,7 @@ const GigPage = () => {
         console.error("Error fetching gig", error);
         alert("Error fetching gig");
       });
-    setLoading(false);;
+    setLoading(false);
   }, []);
 
   return (
@@ -26,8 +26,7 @@ const GigPage = () => {
         className="btn btn-outline-primary btn-block"
         onClick={() => {
           navigator(`../gigs/search`);
-        }}
-      >
+        }}>
         Back to Gigs
       </button>
       {loading ? (
@@ -57,18 +56,22 @@ const GigPage = () => {
             </li>
 
             <li>{gig.ages}</li>
-            {gig.venue ? (<><li>Venue Name: {gig.venue.name}</li>
-            <li>Venue Email: {gig.venue.email}</li>
-            <li>Venue Phone: {gig.venue.phone}</li>
-            <button
-              className="btn btn-info"
-              onClick={() => {
-                navigator(`../guest-view/${gig.venue.id}`);
-              }}
-            >
-              See Venue's Profile
-            </button>
-            </>) : (<></>)}
+            {gig.venue ? (
+              <>
+                <li>Venue Name: {gig.venue.name}</li>
+                <li>Venue Email: {gig.venue.email}</li>
+                <li>Venue Phone: {gig.venue.phone}</li>
+                <button
+                  className="btn btn-info"
+                  onClick={() => {
+                    navigator(`../venue-view/${gig.venue.id}`);
+                  }}>
+                  See Venue's Profile
+                </button>
+              </>
+            ) : (
+              <></>
+            )}
           </ul>
         </>
       )}
