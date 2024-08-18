@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchGig, parseDate } from "../services/GigService";
 import { useNavigate, useParams } from "react-router-dom";
-import { getVenueById } from "../services/venueService";
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
-  const [venue, setVenue] = useState({});
   const [loading, setLoading] = useState(true);
   const [gigDate, setGigDate] = useState({});
 
@@ -71,7 +69,7 @@ const GigPage = () => {
             <button
               className="btn btn-info"
               onClick={() => {
-                navigator(`../guest-view/`);
+                navigator(`../guest-view/${gig.venue.id}`);
               }}
             >
               See Venue's Profile

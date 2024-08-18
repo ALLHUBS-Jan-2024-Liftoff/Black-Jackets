@@ -8,7 +8,9 @@ const GigListing = ({ gig, isVenuePage }) => {
   const handleViewDetailsButton = (id) => {
     navigator(`../gigs/view/${id}`);
   };
-  const handleSeeVenueButton = () => {}; /* Link to Venue's page */
+  const handleSeeVenueButton = (id) => {
+    navigator(`../guest-view/${id}`);
+  };
 
   return (
     <tr key={gig.id}>
@@ -18,7 +20,7 @@ const GigListing = ({ gig, isVenuePage }) => {
       <td>
         <button
           type="button"
-          className="btn button-info"
+          className="btn btn-primary"
           onClick={() => handleViewDetailsButton(gig.id)}
         >
           View Gig Details
@@ -31,11 +33,11 @@ const GigListing = ({ gig, isVenuePage }) => {
         <td>
           <button
             type="button"
-            className="btn button-primary"
-            onClick={handleSeeVenueButton()}
+            className="btn btn-info"
+            onClick={() => handleSeeVenueButton(gig.venue.id)}
           >
             See Venue
-          </button>{" "}
+          </button>
         </td>
       )}
     </tr>

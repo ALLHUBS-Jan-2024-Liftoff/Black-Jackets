@@ -30,35 +30,25 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="about" element={<About />} />
             <Route
               path="login"
               element={<LoginForm setAuthenticated={setAuthenticated} />}
             />
-            <Route path="register" element={<RegisterForm />} />
-            {/* <Route path="/venue-list" element={<VenueList />} /> */}
-            <Route path="/add-venue" element={<VenueAdd />} />
             <Route
-              path="gigs/add"
-              element={<CreateGigForm venueId={venueId} />}
+              path="register"
+              element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
-            <Route
-              path="/venue-dashboard"
-              element={<VenueUserDashboard venueId={venueId} />}
-            />
+
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
-            <Route
-              path="logout"
-              element={<Logout setAuthenticated={setAuthenticated} />}
-            />
+
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
             />
             <Route
-              path="/guest-view"
-              element={<GuestView venueId={venueId} />}
+              path="/guest-view/:id"
+              element={<GuestView />}
             />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
@@ -72,7 +62,11 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
-
+                <Route path="/add-venue" element={<VenueAdd />} />
+                <Route
+                  path="gigs/add"
+                  element={<CreateGigForm venueId={venueId} />}
+                />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}
