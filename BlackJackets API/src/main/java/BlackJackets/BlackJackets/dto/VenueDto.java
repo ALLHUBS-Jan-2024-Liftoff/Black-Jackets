@@ -2,6 +2,7 @@ package BlackJackets.BlackJackets.dto;
 
 import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.Review;
+import BlackJackets.BlackJackets.models.User;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,4 +41,6 @@ public class VenueDto {
         private List<Gig> gigs;
 
         private List<Review> reviews;
+
+        private User user;
 }

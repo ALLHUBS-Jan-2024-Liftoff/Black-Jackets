@@ -42,12 +42,8 @@ function App() {
               path="register"
               element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
-
-            <Route path="/edit-venue/:id" element={<VenueEdit />} />
-               <Route path="/band-message" element={<MessageAdd />} />
-           
-            <Route path="/contact-form" element={<Contact />} />
-
+              <Route path="/band-message" element={<MessageAdd />} />
+              <Route path="/contact-form" element={<Contact />} />
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
@@ -70,9 +66,6 @@ function App() {
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route
-                  path="gigs/add"
-                  element={<CreateGigForm venueId={venueId} />}
-                />
                  <Route path="/message-list" element={<Notification />} />
                 <Route
                   path="logout"
