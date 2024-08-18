@@ -14,6 +14,17 @@ export const genreList = [
 
 export const agesList = ["All Ages", "Ages 21+"];
 
+export const parseDate = (dateString) => {
+  const dateObject = new Date(dateString);
+  const formattedDate = dateObject.toLocaleDateString();
+  const formattedTime = dateObject.toLocaleTimeString("en",{timeStyle:"short"});
+
+  return {
+    date: formattedDate,
+    time: formattedTime,
+  };
+};
+
 export const fetchGigs = async (isVenue, venueId) => {
   const apiUrl = isVenue
     ? `${BASEAPIURL}/gigs/list/${venueId}`

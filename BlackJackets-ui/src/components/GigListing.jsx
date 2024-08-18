@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { parseDate } from "../services/GigService";
 
 const GigListing = ({ gig, isVenuePage }) => {
   const navigator = useNavigate();
-
+  const date = parseDate(gig.date);
   const handleViewDetailsButton = (id) => {
     navigator(`../gigs/view/${id}`);
   };
@@ -11,7 +12,7 @@ const GigListing = ({ gig, isVenuePage }) => {
 
   return (
     <tr key={gig.id}>
-      <td>{gig.date}</td>
+      <td>{date.date} at {date.time}</td>
       <td>{gig.name}</td>
       <td>{gig.headliner}</td>
       <td>
