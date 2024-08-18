@@ -18,4 +18,5 @@ public interface VenueService {
     void deleteVenue(int venueId);
 
     List<Gig> getAllGigsByVenueId(int venueId);
+
 }
