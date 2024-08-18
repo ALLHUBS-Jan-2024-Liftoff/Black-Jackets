@@ -40,8 +40,6 @@ function App() {
               element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
 
-            <Route path="/edit-venue/:id" element={<VenueEdit />} />
-
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
@@ -63,10 +61,6 @@ function App() {
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
-                <Route
-                  path="gigs/add"
-                  element={<CreateGigForm venueId={venueId} />}
-                />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}
