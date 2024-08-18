@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { fetchGig } from "../services/GigService";
+import { fetchGig, parseDate } from "../services/GigService";
 import { useNavigate, useParams } from "react-router-dom";
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
   const [loading, setLoading] = useState(true);
+  const [gigDate, setGigDate] = useState({});
 
   const navigator = useNavigate();
 
@@ -19,6 +20,10 @@ const GigPage = () => {
       });
     setLoading(false);;
   }, []);
+
+  useEffect(()=>{
+    setGigDate(parseDate(gig.date));
+  }, [gig]);
 
   return (
     <div className="container">
@@ -35,10 +40,11 @@ const GigPage = () => {
       ) : (
         <>
           <h1>
-            {gig.name}: {gig.date}
+            {gig.name}: {gigDate.date}
           </h1>
           <ul>
-            <li>{gig.genre}</li>
+            <li>Time: {gigDate.time}</li>
+            <li>Genre: {gig.genre}</li>
             <li>
               Band Line Up
               <ul>
@@ -56,7 +62,7 @@ const GigPage = () => {
               </ul>
             </li>
 
-            <li>{gig.ages}</li>
+            <li>Ages: {gig.ages}</li>
             {gig.venue ? (<><li>Venue Name: {gig.venue.name}</li>
             <li>Venue Email: {gig.venue.email}</li>
             <li>Venue Phone: {gig.venue.phone}</li>
