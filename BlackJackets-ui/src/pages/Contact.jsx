@@ -24,7 +24,6 @@ function Contact() {
     }).then((res) => res.json());
 
     if (res.success) {
-      //   console.log("Success", res);
       alert("Email has sent successfully!");
       navigate("/guest-view");
     }
@@ -38,7 +37,6 @@ function Contact() {
         <div className="card col-md-6 offset-md-3 offset-md-3">
           <h2 className="text-center">Contact Form</h2>
           <div className="card-body">
-            {/* <form onSubmit={handleSubmit}> */}
             <form onSubmit={onSubmit}>
               <div className="form-group mb-2">
                 <label className="form-label"> Name</label>
@@ -61,13 +59,22 @@ function Contact() {
                 />
               </div>
               <div className="form-group mb-2">
+                <label className="form-label">Phone</label>
+                <input
+                  type="text"
+                  placeholder="Enter Phone"
+                  name="phone"
+                  className="form-control"
+                  required
+                />
+              </div>
+              <div className="form-group mb-2">
                 <label className="form-label">Message</label>
                 <textarea
                   type="textarea"
                   placeholder="Enter Content"
                   name="message"
                   className="form-control"
-                  //onChange={(e) => setContent(e.target.value)}
                   required
                 />
               </div>
