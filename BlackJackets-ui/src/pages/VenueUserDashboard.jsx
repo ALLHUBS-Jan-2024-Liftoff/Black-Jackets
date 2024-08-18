@@ -37,13 +37,14 @@ function VenueUserDashboard({ venueId }) {
         <h1 className="header">{venue.name}</h1>
         <br />
         <div className="details">
-          {venue.capacity}
+          <h3 className="h3">Venue Details</h3>
+          Capacity : {venue.capacity}
           <br />
-          {venue.location}
+          Location : {venue.location}
           <br />
-          {venue.email}
+          Email : {venue.email}
           <br />
-          {venue.phone}
+          Phone : {venue.phone}
           <br />
           <div className="button">
             <button className="btn btn-info" onClick={handleCreateGig}>

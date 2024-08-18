@@ -10,7 +10,7 @@
 }
 
 .button{
-    /* align-items: center; */
+    justify-content: flex-end;
     display:flex;
     grid-template-columns: repeat(n, 1fr);
     gap: 10px;
