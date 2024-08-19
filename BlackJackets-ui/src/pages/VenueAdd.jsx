@@ -8,6 +8,7 @@ export default function VenuePage() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
+  const [video, setVideo] = useState("");
 
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -20,9 +21,10 @@ export default function VenuePage() {
       capacity != "" &&
       email != "" &&
       location != "" &&
-      phone != ""
+      phone != "" &&
+       video != ""
     ) {
-      const venue = { name, capacity, email, location, phone };
+      const venue = { name, capacity, email, location, phone, video };
       addVenue(venue);
       alert("Venue created");
       navigate("/venue-dashboard");
@@ -98,6 +100,16 @@ export default function VenuePage() {
                   required
                 />
               </div>
+               <div className='form-group mb-2'>
+                 <label className='form-label'>Video</label>
+                 <input
+                    type='text'
+                    placeholder='Enter Video'
+                    name='video'
+                    value={video}
+                    className='form-control'
+                    onChange={(e) => setVideo(e.target.value)} required />
+                                        </div>
               <button className="btn btn-success">Create Venue</button>
             </form>
           </div>

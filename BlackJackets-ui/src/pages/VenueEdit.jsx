@@ -9,6 +9,7 @@ function VenueEdit() {
     email: "",
     location: "",
     phone: "",
+    video: "",
   });
   const navigator = useNavigate();
 
@@ -99,6 +100,15 @@ function VenueEdit() {
                   required
                 />
               </div>
+               <div className='form-group mb-2'>
+                    <label className='form-label'>Video</label>
+                         <input
+                          type='text'
+                          name='video'
+                          value={venue.video}
+                          className='form-control'
+                          onChange={e => setVenue({...venue, video:e.target.value})} required />
+               </div>
               <button className="btn btn-success" type="submit">
                 Update
               </button>
