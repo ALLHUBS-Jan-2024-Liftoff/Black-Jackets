@@ -28,7 +28,10 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route
+            path="/"
+            element={<Navbar authenticated={authenticated} />}
+          >
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route
@@ -44,10 +47,7 @@ function App() {
               path="gigs/search"
               element={<GigListings isVenue={false} />}
             />
-            <Route
-              path="/guest-view/:id"
-              element={<GuestView />}
-            />
+            <Route path="/guest-view/:id" element={<GuestView />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
               <>

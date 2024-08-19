@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Logout from "../pages/Logout";
 
-function Navbar() {
+function Navbar({ authenticated } ) {
 
-const [authenticated, setAuthenticated] = useState(false);
+
   
   return (
     <>
@@ -37,20 +37,11 @@ const [authenticated, setAuthenticated] = useState(false);
                   Search Gigs
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  onClick={Logout(authenticated)}
-                  to="/login"
-                >
-                  Logout
-                </Link>
-              </li>
               {/* <li className="nav-item">
-            <Link className="nav-link" to="/gigs/add">
-              Add Gig Test
-            </Link>
-          </li> */}
+                <Link className="nav-link" to="/guest-view">
+                  Guest View
+                </Link>
+              </li> */}
               {/* <li className="nav-item">
                       <Link className="nav-link" to="/venue-list">Venue List</Link>
                   </li> */}
@@ -59,17 +50,41 @@ const [authenticated, setAuthenticated] = useState(false);
               Create Venue
             </Link>
           </li> */}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/guest-view">
-                  Guest View
-                </Link>
-              </li> */}
             </>
           ) : (
             <>
               <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/venue-dashboard">
                   Venue User Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/gigs/add">
+                  Add Gig Test
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/gigs/search">
+                  Search Gigs
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  onClick={Logout(authenticated)}
+                  to="/login"
+                >
+                  Logout
                 </Link>
               </li>
             </>
