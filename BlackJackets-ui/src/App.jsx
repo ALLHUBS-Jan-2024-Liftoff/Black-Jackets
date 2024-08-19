@@ -37,6 +37,8 @@ function App() {
           <Route path="/" element={<Navbar />} />
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="/band-message" element={<MessageAdd />} />
+          <Route path="/contact-form" element={<Contact />} />
           <Route
             path="login"
             element={<LoginForm setAuthenticated={setAuthenticated} />}
@@ -45,8 +47,6 @@ function App() {
             path="register"
             element={<RegisterForm setAuthenticated={setAuthenticated} />}
           />
-          <Route path="/band-message" element={<MessageAdd />} />
-          <Route path="/contact-form" element={<Contact />} />
           <Route path="gigs/search" element={<GigListings isVenue={false} />} />
           <Route path="/guest-view/:id" element={<GuestView />} />
           <Route path="gigs/view/:gigId" element={<GigPage />} />
