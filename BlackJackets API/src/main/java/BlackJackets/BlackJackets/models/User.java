@@ -1,8 +1,6 @@
 package BlackJackets.BlackJackets.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -16,6 +14,10 @@ public class User{
     private String pwHash;
 
     private String fullName;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -43,5 +45,13 @@ public class User{
     }
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }
