@@ -5,15 +5,7 @@ import { useParams } from "react-router-dom";
 
 const EditGigForm = () => {
   const {id} = useParams();
-  // const [name, setName] = useState("");
-  // const [date, setDate] = useState("");
-  // const [genre, setGenre] = useState("");
-  // const [ages, setAges] = useState("");
-  // const [headliner, setHeadliner] = useState("");
-  // const [openingAct, setOpeningAct] = useState("");
-  // const [supportingAct, setSupportingAct] = useState("");
-  // const [bandSlots, setBandSlots] = useState(0);
-  // image input state
+  
 const [gig, setGig] = useState({
     name: "",
     date: "",
@@ -59,7 +51,7 @@ const [gig, setGig] = useState({
       <br />
       <div className="row">
         <div className="card col-md-6 offset-md-3 offset-md-3">
-          <h2 className="text-center">Add Gig</h2>
+          <h2 className="text-center">Edit Gig</h2>
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="form-group mb-2">
@@ -91,7 +83,7 @@ const [gig, setGig] = useState({
               <p>Select Music Genre</p>
               {genres.map((g, i) => {
                 return (
-                  <div className="form-check" key={g}>
+                  <div className="form-check-inline" key={g}>
                     <input
                       type="radio"
                       className="form-check-input"
@@ -154,7 +146,7 @@ const [gig, setGig] = useState({
                 </label>
               </div>
 
-              {gig.bandSlots != null && (<div className="form-group mb-2">
+              {/* {gig.bandSlots != null && (<div className="form-group mb-2">
                 <label className="form-label">
                   Number of Bands in Gig Line-Up (0–2)
                   <input
@@ -188,9 +180,9 @@ const [gig, setGig] = useState({
                     required
                   />
                 </label>
-              </div>)}
+              </div>)} */}
 
-              {+gig.bandSlots >= 1 ? (
+              {+gig.bandSlots >= 1 && (
                 <div className="form-group mb-2">
                   <label className="form-label">
                     Name of Opening Act
@@ -203,11 +195,9 @@ const [gig, setGig] = useState({
                     />
                   </label>
                 </div>
-              ) : (
-                <></>
               )}
 
-              {+gig.bandSlots == 2 ? (
+              {+gig.bandSlots == 2 && (
                 <div className="form-group mb-2">
                   <label className="form-label">
                     Name of Supporting Act
@@ -220,8 +210,6 @@ const [gig, setGig] = useState({
                     />
                   </label>
                 </div>
-              ) : (
-                <></>
               )}
 
               <button type="submit" className="btn btn-success">
