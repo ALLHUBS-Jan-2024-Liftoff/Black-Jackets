@@ -34,44 +34,48 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar />} />
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="/band-message" element={<MessageAdd />} />
-          <Route path="/contact-form" element={<Contact />} />
-          <Route
-            path="login"
-            element={<LoginForm setAuthenticated={setAuthenticated} />}
-          />
-          <Route
-            path="register"
-            element={<RegisterForm setAuthenticated={setAuthenticated} />}
-          />
-          <Route path="gigs/search" element={<GigListings isVenue={false} />} />
-          <Route path="/guest-view/:id" element={<GuestView />} />
-          <Route path="gigs/view/:gigId" element={<GigPage />} />
-          {authenticated ? (
-            <>
-              <Route
-                path="gigs/add"
-                element={<CreateGigForm venueId={venueId} />}
-              />
-              <Route
-                path="/venue-dashboard"
-                element={<VenueUserDashboard venueId={venueId} />}
-              />
-              <Route path="/edit-venue/:id" element={<VenueEdit />} />
-              <Route path="/add-venue" element={<VenueAdd />} />
+          <Route path="/" element={<Navbar authenticated={authenticated} />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="/band-message" element={<MessageAdd />} />
+            <Route path="/contact-form" element={<Contact />} />
+            <Route
+              path="login"
+              element={<LoginForm setAuthenticated={setAuthenticated} />}
+            />
+            <Route
+              path="register"
+              element={<RegisterForm setAuthenticated={setAuthenticated} />}
+            />
 
-              <Route path="/message-list" element={<Notification />} />
-              <Route
-                path="logout"
-                element={<Logout setAuthenticated={setAuthenticated} />}
-              />
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          )}
+            <Route
+              path="gigs/search"
+              element={<GigListings isVenue={false} />}
+            />
+            <Route path="/guest-view/:id" element={<GuestView />} />
+            <Route path="gigs/view/:gigId" element={<GigPage />} />
+            {authenticated ? (
+              <>
+                <Route
+                  path="gigs/add"
+                  element={<CreateGigForm venueId={venueId} />}
+                />
+                <Route path="/message-list" element={<Notification />} />
+                <Route
+                  path="/venue-dashboard"
+                  element={<VenueUserDashboard venueId={venueId} />}
+                />
+                <Route path="/edit-venue/:id" element={<VenueEdit />} />
+                <Route path="/add-venue" element={<VenueAdd />} />
+                <Route
+                  path="logout"
+                  element={<Logout setAuthenticated={setAuthenticated} />}
+                />
+              </>
+            ) : (
+              <Route path="*" element={<Navigate to="/login" replace />} />
+            )}
+          </Route>
         </Routes>
       </Router>
     </>
