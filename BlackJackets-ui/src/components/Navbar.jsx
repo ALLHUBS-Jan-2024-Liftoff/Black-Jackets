@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Logout from "../pages/Logout";
 
-function Navbar() {
-  const [authenticated, setAuthenticated] = useState(false);
-
+function Navbar({ authenticated }) {
   return (
     <>
       <nav>

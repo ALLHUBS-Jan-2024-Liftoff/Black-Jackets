@@ -7,7 +7,12 @@ import About from "./pages/About";
 import RegisterForm from "./pages/Register";
 import LoginForm from "./pages/Login";
 import Logout from "./pages/Logout";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
@@ -24,10 +29,8 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
- 
 
   return (
-    
     <>
       <Router>
         <Routes>
@@ -44,18 +47,15 @@ function App() {
             />
 
             <Route path="/edit-venue/:id" element={<VenueEdit />} />
-               <Route path="/band-message" element={<MessageAdd />} />
-           
+            <Route path="/band-message" element={<MessageAdd />} />
+
             <Route path="/contact-form" element={<Contact />} />
 
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
             />
-            <Route
-              path="/guest-view/:id"
-              element={<GuestView />}
-            />
+            <Route path="/guest-view/:id" element={<GuestView />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
               <>
@@ -73,7 +73,7 @@ function App() {
                   path="gigs/add"
                   element={<CreateGigForm venueId={venueId} />}
                 />
-                 <Route path="/message-list" element={<Notification />} />
+                <Route path="/message-list" element={<Notification />} />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}
