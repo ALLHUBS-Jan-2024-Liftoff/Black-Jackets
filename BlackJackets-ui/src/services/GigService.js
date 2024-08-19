@@ -89,21 +89,7 @@ export const deleteGig = async (gigId) => {
   }
 };
 
-export const editGig = async (
-  id,
-  gig
-) => {
-  // const userData = {
-  //   name: name,
-  //   date: date,
-  //   genre: genre,
-  //   ages: ages,
-  //   headliner: headliner,
-  //   bandSlots: bandSlots,
-  //   supportingAct: supportingAct,
-  //   openingAct: openingAct
-  // };
-
+export const editGig = async (id, gig) => {
   axios.put(`${BASEAPIURL}/gigs/edit/${id}`, gig).then((response) => {
     console.log(response.status, response.data.token);
   });
