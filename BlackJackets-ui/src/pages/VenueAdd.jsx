@@ -8,8 +8,6 @@ export default function VenuePage() {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
-
-  const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {

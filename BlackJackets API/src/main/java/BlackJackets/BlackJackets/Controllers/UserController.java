@@ -103,8 +103,10 @@ public class UserController {
                     .body(responseBody);
         } else {
             setUserInSession(request.getSession(), theUser);
+
             responseBody.put("message", "User successfully logged in.");
             responseBody.put("username", theUser.getEmail());
+            responseBody.put("venue", String.valueOf(theUser.getId()));
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);

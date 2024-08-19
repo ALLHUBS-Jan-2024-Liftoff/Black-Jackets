@@ -33,7 +33,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route
               path="login"
-              element={<LoginForm setAuthenticated={setAuthenticated} />}
+              element={<LoginForm setAuthenticated={setAuthenticated} setVenueId={setVenueId} />}
             />
             <Route
               path="register"
