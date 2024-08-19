@@ -69,11 +69,6 @@ function Navbar({ authenticated } ) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/gigs/add">
-                  Add Gig Test
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/gigs/search">
                   Search Gigs
                 </Link>
