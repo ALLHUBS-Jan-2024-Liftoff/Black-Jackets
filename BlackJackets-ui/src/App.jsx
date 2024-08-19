@@ -16,6 +16,7 @@ import CreateGigForm from "./pages/CreateGig";
 import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
+import EditGigForm from "./pages/EditGig";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -49,6 +50,7 @@ function App() {
             />
             <Route path="/guest-view/:id" element={<GuestView />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
+            <Route path="gigs/edit/:id" element={<EditGigForm />} />
             {authenticated ? (
               <>
                 <Route

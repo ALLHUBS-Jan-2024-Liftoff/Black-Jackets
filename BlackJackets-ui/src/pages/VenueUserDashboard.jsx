@@ -29,6 +29,10 @@ function VenueUserDashboard({ venueId }) {
     setGigs((prevGigs) => prevGigs.filter((gig) => gig.id !== id));
   }
 
+  function handleEditGig(id) {
+    navigator(`/gigs/edit/${id}`);
+  }
+
   return (
     <div>
       <div className="container">
@@ -51,7 +55,8 @@ function VenueUserDashboard({ venueId }) {
             </button>
             <button
               className="btn btn-info"
-              onClick={() => updateVenue(venue.id)}>
+              onClick={() => updateVenue(venue.id)}
+            >
               Edit
             </button>
           </div>
@@ -80,7 +85,7 @@ function VenueUserDashboard({ venueId }) {
               <th>SupportingAct</th>
               <th>OpeningAct</th>
               <th>Bandslots</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -97,8 +102,16 @@ function VenueUserDashboard({ venueId }) {
                 <td>{gig.bandSlots}</td>
                 <td>
                   <button
-                    className="btn btn-info"
-                    onClick={() => handleDeleteGig(gig.id)}>
+                    className="btn btn-warning"
+                    onClick={() => handleEditGig(gig.id)}
+                  >
+                    Edit
+                  </button>
+                  
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteGig(gig.id)}
+                  >
                     Delete
                   </button>
                 </td>
