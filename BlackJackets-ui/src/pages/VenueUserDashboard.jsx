@@ -21,7 +21,7 @@ function VenueUserDashboard({ venueId }) {
   }
 
   function handleCreateGig() {
-    navigator(`/gigs/add`);
+    navigator(`/gigs/add/${venue.id}`);
   }
 
   function handleDeleteGig(id) {
