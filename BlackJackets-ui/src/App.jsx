@@ -54,8 +54,8 @@ function App() {
             {authenticated ? (
               <>
                 <Route
-                  path="gigs/add"
-                  element={<CreateGigForm venueId={venueId} />}
+                  path="gigs/add/:id"
+                  element={<CreateGigForm />}
                 />
                 <Route
                   path="/venue-dashboard"
