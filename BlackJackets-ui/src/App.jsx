@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
+import ReviewForm from "./components/ReviewForm";
+import ReviewList from "./components/ReviewList";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import RegisterForm from "./pages/Register";
@@ -21,6 +23,11 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
+
+  const [reviews, setReviews] = useState([]);
+
+    const addReview = (review) => {
+        setReviews([...reviews, review]);
  
 
   return (
@@ -72,6 +79,11 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      <div>
+                  <h1>Review Application</h1>
+                  <ReviewForm addReview={addReview} />
+                  <ReviewList reviews={reviews} />
+              </div>
     </>
   );
 }
