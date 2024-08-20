@@ -25,10 +25,12 @@ public class VenueServiceImpl implements VenueService {
 
     // Create Venue
     @Override
-    public String createNewVenue(VenueDto venueDto) {
+    public Venue createNewVenue(VenueDto venueDto) {
         Venue venue = this.modelMapper.map(venueDto, Venue.class);
         this.venueRepo.save(venue);
-        return "Venue added successfully";
+//        String venueId;
+//        venueId = String.valueOf(venue.getId());
+        return venue;
     }
 
     // Get Venue By Id

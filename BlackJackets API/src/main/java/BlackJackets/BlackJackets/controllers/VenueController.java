@@ -2,6 +2,7 @@ package BlackJackets.BlackJackets.Controllers;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -20,9 +21,16 @@ public class VenueController {
 
     //Create Venue
     @PostMapping("add")
-    public ResponseEntity<String> createVenue(@RequestBody VenueDto venueDto) throws IOException{
-        String message = this.venueService.createNewVenue(venueDto);
-        return new ResponseEntity<String>(message, HttpStatusCode.valueOf(200));
+    public Venue createVenue(@RequestBody VenueDto venueDto) throws IOException{
+
+        Venue venue;
+        venue = this.venueService.createNewVenue(venueDto);
+//        responseBody.put("message", "Venue created successfully");
+//        responseBody.put("venueId", venueId);
+//        response = ResponseEntity
+//                .status(HttpStatusCode.valueOf(200))
+//                .body(responseBody);
+        return venue;
     }
 
     //Get Venue by Id
@@ -59,6 +67,5 @@ public class VenueController {
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
-
 
 }

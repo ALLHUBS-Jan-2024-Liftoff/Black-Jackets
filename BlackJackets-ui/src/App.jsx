@@ -46,7 +46,7 @@ function App() {
               element={
                 <RegisterForm
                   setAuthenticated={setAuthenticated}
-                  setVenueId={setVenueId}
+                  // setVenueId={setVenueId}
                   setUser={setUser}
                 />
               }
@@ -69,7 +69,12 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
-                <Route path="/add-venue" element={<VenueAdd user={user} />} />
+                <Route
+                  path="/add-venue"
+                  element={
+                    <VenueAdd setVenueId={setVenueId} />
+                  }
+                />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}

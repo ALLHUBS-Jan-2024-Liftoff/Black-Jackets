@@ -4,6 +4,7 @@ import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.dto.RegisterFormDTO;
 import BlackJackets.BlackJackets.models.User;
+import BlackJackets.BlackJackets.models.Venue;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,6 @@ public class UserController {
                 userRepository.save(newUser);
                 responseBody.put("message", "Given user details are successfully registered");
                 responseBody.put("username", newUser.getEmail());
-                responseBody.put("venue", String.valueOf(newUser.getId()));
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body(responseBody);
@@ -92,6 +92,8 @@ public class UserController {
         ResponseEntity response = null;
         Map<String, String> responseBody = new HashMap<>();
         User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
+        Venue venue = theUser.getVenue();
+        Integer venueId = venue.getId();
         String password = loginFormDTO.getPassword();
         if (theUser == null) {
             responseBody.put("message", "Username does not exist");
@@ -108,7 +110,7 @@ public class UserController {
 
             responseBody.put("message", "User successfully logged in.");
             responseBody.put("username", theUser.getEmail());
-            responseBody.put("venue", String.valueOf(theUser.getId()));
+            responseBody.put("venue", String.valueOf(venueId));
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);

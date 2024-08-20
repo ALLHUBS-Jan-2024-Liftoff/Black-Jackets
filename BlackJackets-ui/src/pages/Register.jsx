@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function RegisterForm({ setAuthenticated, setVenueId, setUser}) {
+function RegisterForm({ setAuthenticated, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -24,10 +24,8 @@ function RegisterForm({ setAuthenticated, setVenueId, setUser}) {
           withCredentials: true,
         }
       );
-
       setAuthenticated(true);
-      setVenueId(Number(response.data.venue));
-      setUser(response.data.username);
+      setUser((response.data.username));
       alert(response.data.message);
       navigate("/add-venue");
     } catch (error) {
