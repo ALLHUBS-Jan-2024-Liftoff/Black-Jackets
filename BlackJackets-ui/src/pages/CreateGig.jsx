@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { addGig } from "../services/GigService";
 import { genreList } from "../services/GigService";
+import { useParams } from "react-router-dom";
 
-const CreateGigForm = ({ venueId }) => {
+const CreateGigForm = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [genre, setGenre] = useState("");
@@ -11,6 +12,7 @@ const CreateGigForm = ({ venueId }) => {
   const [openingAct, setOpeningAct] = useState("");
   const [supportingAct, setSupportingAct] = useState("");
   const [bandSlots, setBandSlots] = useState(0);
+  const {id} = useParams();
   // image input state
 
   const genres = genreList;
@@ -36,7 +38,7 @@ const CreateGigForm = ({ venueId }) => {
         bandSlots,
         supportingAct,
         openingAct,
-        venueId
+        id
       );
       alert("Gig Created!");
       setName("");
