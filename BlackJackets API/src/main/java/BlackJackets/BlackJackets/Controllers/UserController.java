@@ -52,13 +52,15 @@ public class UserController {
         try{
             User existingUser = userRepository.findByEmail(registerFormDTO.getEmail());
             if (existingUser == null && !registerFormDTO.getEmail().isEmpty() && !registerFormDTO.getPassword().isEmpty()){
-                responseBody.put("message", "Given user details are successfully registered");
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(responseBody);
                 User newUser = new User(registerFormDTO.getEmail(), registerFormDTO.getPassword(), registerFormDTO.getFullName());
                 setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
+                responseBody.put("message", "Given user details are successfully registered");
+                responseBody.put("username", newUser.getEmail());
+                responseBody.put("venue", String.valueOf(newUser.getId()));
+                response = ResponseEntity
+                        .status(HttpStatus.CREATED)
+                        .body(responseBody);
             } else if(existingUser != null) {
                 responseBody.put("message", "User Already Exists.");
                 response = ResponseEntity

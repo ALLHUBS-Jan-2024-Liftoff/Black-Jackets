@@ -21,26 +21,35 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
- 
+  const [user, setUser] = useState("");
 
   return (
     // <Home />
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<Navbar authenticated={authenticated} />}
-          >
+          <Route path="/" element={<Navbar authenticated={authenticated} />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route
               path="login"
-              element={<LoginForm setAuthenticated={setAuthenticated} setVenueId={setVenueId} />}
+              element={
+                <LoginForm
+                  setAuthenticated={setAuthenticated}
+                  setVenueId={setVenueId}
+                  setUser={setUser}
+                />
+              }
             />
             <Route
               path="register"
-              element={<RegisterForm setAuthenticated={setAuthenticated} />}
+              element={
+                <RegisterForm
+                  setAuthenticated={setAuthenticated}
+                  setVenueId={setVenueId}
+                  setUser={setUser}
+                />
+              }
             />
 
             <Route
@@ -60,7 +69,7 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
-                <Route path="/add-venue" element={<VenueAdd />} />
+                <Route path="/add-venue" element={<VenueAdd user={user} />} />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}

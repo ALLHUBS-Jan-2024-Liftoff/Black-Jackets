@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 
 export const fetchVenues = async () => {
   try {
-    const response = await axios.get(`${BASEAPIURL}`);
+    const response = await axios.get(`${BASEAPIURL}`)
     return response.data;
   } catch (error) {
     alert("Error occurs while fetching venues!", error);

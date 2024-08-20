@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "venue")
 @Data
 @Getter
 @Setter
@@ -23,8 +24,10 @@ public class Venue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @NotEmpty(message = "Name is required")
     private String name;
+
 
     private int capacity;
 

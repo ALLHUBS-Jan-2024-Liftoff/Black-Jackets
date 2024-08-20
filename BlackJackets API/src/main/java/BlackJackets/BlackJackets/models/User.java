@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
+@Table(name = "user")
 public class User{
 
     @Id
     @GeneratedValue
     private int id;
+
     private String email;
 
     private String pwHash;

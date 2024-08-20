@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addVenue } from "../services/venueService";
 import { useNavigate } from "react-router-dom";
 
-export default function VenuePage() {
+export default function VenuePage( user ) {
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ export default function VenuePage() {
       location != "" &&
       phone != ""
     ) {
-      const venue = { name, capacity, email, location, phone };
+      const venue = { name, capacity, email, location, phone, user };
       addVenue(venue);
       alert("Venue created");
       navigate("/venue-dashboard");

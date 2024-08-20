@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm({ setAuthenticated, setVenueId }) {
+function LoginForm({ setAuthenticated, setVenueId, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,7 +23,8 @@ function LoginForm({ setAuthenticated, setVenueId }) {
         }
       );
       setAuthenticated(true);
-      setVenueId(response.data.venue.id)
+      setVenueId(Number(response.data.venue));
+      setUser(response.data.username);
       alert(response.data.message);
       navigate("/venue-dashboard");
     } catch (error) {
