@@ -32,8 +32,7 @@ public class MessageServiceImpl implements MessageService {
     public String createNewMessage(MessageDTO messageDTO, int venueId) {
         Message message = this.modelMapper.map(messageDTO, Message.class);
         Optional<Venue> venue = venueRepo.findById(venueId);
-        Venue currentVenue= venue.get();
-        message.setVenue(currentVenue);
+        message.setVenue(venue.get());
         this.messageRepo.save(message);
         return "Message added successfully";
     }
