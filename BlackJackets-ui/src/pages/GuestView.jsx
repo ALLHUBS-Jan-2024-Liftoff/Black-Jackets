@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../pages/style.css";
 
-function GuestView({ venueId }) {
+function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getVenueById(venueId).then((response) => {
+    //console.log("id", id);
+    getVenueById(id).then((response) => {
       setVenue(response.data);
-      fetchGigsListByVenueId(venueId).then(setGigs);
+      fetchGigsListByVenueId(id).then(setGigs);
     });
-  }, []);
+  }, [id]);
 
-  function handleBandMessage() {
-    navigate("/add-message");
+  function handleMessage() {
+    const venueId = venue.id;
+    console.log("venueId", venueId);
+    navigate(`/add-message/${venueId}`);
   }
 
   return (
@@ -47,7 +51,7 @@ function GuestView({ venueId }) {
         <br />
         <br />
         <div className="list">
-          <button className="btn btn-info" onClick={() => handleBandMessage()}>
+          <button className="btn btn-info" onClick={() => handleMessage()}>
             Send A Message
           </button>
           <br />

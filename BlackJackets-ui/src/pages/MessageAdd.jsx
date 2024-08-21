@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { addMessage } from "../services/MessageService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Message({ venueId }) {
+function Message() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -13,11 +14,10 @@ function Message({ venueId }) {
     e.preventDefault();
 
     if (name != "" && email != "" && content != "") {
-      const message = { name, email, content, venueId };
-      addMessage(message);
+      const message = { name, email, content };
+      addMessage(message, id);
       alert("Band Message Created");
-      console.log(message);
-      navigate("/guest-view/" + venueId);
+      navigate(`/guest-view/${id}`);
     }
   };
 
