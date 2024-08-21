@@ -3,9 +3,7 @@ package BlackJackets.BlackJackets.Controllers;
 import BlackJackets.BlackJackets.data.MessageRepo;
 import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.dto.MessageDTO;
-import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.Message;
-import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -30,9 +28,10 @@ public class MessageController {
     private MessageRepo messageRepo;
 
     // Create Message
-    @PostMapping("/add")
-        public ResponseEntity<String> createMessage(@RequestBody MessageDTO messageDTO) throws IOException{
-        String message = this.messageService.createNewMessage(messageDTO);
+        @PostMapping("add")
+        public ResponseEntity<String> createMessage(@RequestBody MessageDTO messageDTO, @RequestParam int venueId) throws IOException{
+        System.out.println("hello");
+        String message = this.messageService.createNewMessage(messageDTO, venueId);
         return new ResponseEntity<>(message, HttpStatusCode.valueOf(200));
     }
 

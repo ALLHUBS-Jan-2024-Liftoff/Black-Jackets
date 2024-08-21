@@ -46,7 +46,7 @@ public class Venue {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL)
     private List<Message> messages = new ArrayList<Message>();
 
     public void addMessage(Message message){

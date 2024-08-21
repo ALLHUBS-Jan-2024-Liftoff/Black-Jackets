@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MessageService {
 
-    String createNewMessage(MessageDTO messageDTO);
+    String createNewMessage(MessageDTO messageDTO, int venueId);
 
     List<MessageDTO> getAllMessages();
 

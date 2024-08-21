@@ -31,10 +31,4 @@ public class MessageDTO {
     @NotBlank(message = "Content is required")
     private String content;
 
-    @NotBlank(message = "Venue Id is required")
-    //@JoinColumn(name = "venue_id")
-    private int venueId;
-
-    //private List<Message> messages;
-
-    }
+        }

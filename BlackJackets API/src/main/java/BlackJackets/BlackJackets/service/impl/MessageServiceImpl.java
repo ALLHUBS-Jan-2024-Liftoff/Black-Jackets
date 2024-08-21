@@ -1,14 +1,18 @@
 package BlackJackets.BlackJackets.service.impl;
 
 import BlackJackets.BlackJackets.data.MessageRepo;
+import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.dto.MessageDTO;
 import BlackJackets.BlackJackets.models.Message;
+import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.service.MessageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,10 +24,16 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private MessageRepo messageRepo;
 
+    @Autowired
+    private VenueRepo venueRepo;
+
     // Create Message
     @Override
-    public String createNewMessage(MessageDTO messageDTO) {
+    public String createNewMessage(MessageDTO messageDTO, int venueId) {
         Message message = this.modelMapper.map(messageDTO, Message.class);
+        Optional<Venue> venue = venueRepo.findById(venueId);
+        Venue currentVenue= venue.get();
+        message.setVenue(currentVenue);
         this.messageRepo.save(message);
         return "Message added successfully";
     }
@@ -36,8 +46,7 @@ public class MessageServiceImpl implements MessageService {
                 dto -> new MessageDTO(dto.getId(),
                         dto.getName(),
                         dto.getEmail(),
-                        dto.getContent(),
-                        dto.getVenue().getId()
+                        dto.getContent()
                 )).collect(Collectors.toList());
     }
 
