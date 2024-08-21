@@ -30,6 +30,7 @@ public class MessageController {
     private MessageRepo messageRepo;
 
     // Create Message
+    @PostMapping("/add")
         public ResponseEntity<String> createMessage(@RequestBody MessageDTO messageDTO) throws IOException{
         String message = this.messageService.createNewMessage(messageDTO);
         return new ResponseEntity<>(message, HttpStatusCode.valueOf(200));
