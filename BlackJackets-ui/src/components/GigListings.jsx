@@ -31,9 +31,18 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
         return gigArray.filter((gig) => gig.ages == filterValue); // renders filteredGigs which match the ages selected
       }
     }
-
     return filteredGigs; // no option was selected so it returns what is currently displayed
   };
+
+  function sendEmail(filteredGigs) {
+    var venues = filteredGigs.map(({ venue }) => venue);
+    var emails = venues.map(( { email }) => email);
+    let email = emails.join();
+    var subject = "Interested in your gig!";
+    
+    window.location =
+      "mailto:" + email + "?subject=" + subject;
+  }
 
   if (isVenuePage) {
     setVenue(venueId);
@@ -107,6 +116,14 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
             onClick={() => setFilteredGigs(filterGigs(gigs))}
           >
             Apply Filter
+          </button>
+        }
+        {
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => sendEmail(filteredGigs)}
+          >
+            Contact Venues
           </button>
         }
       </div>
