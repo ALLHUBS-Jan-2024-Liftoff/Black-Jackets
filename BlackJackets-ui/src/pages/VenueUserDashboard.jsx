@@ -30,7 +30,7 @@ function VenueUserDashboard({ venueId }) {
   }
 
   function handleNotification() {
-    navigator("/message-list");
+    navigator(`/message-list/${venue.id}`);
   }
 
   return (

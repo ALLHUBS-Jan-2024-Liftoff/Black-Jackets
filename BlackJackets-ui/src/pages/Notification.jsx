@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  fetchMessagesListByVenueId,
-  fetchMessages,
-} from "../services/MessageService";
+import { fetchMessagesListByVenueId } from "../services/MessageService";
+import { useParams } from "react-router-dom";
 
-function Notification({ venueId }) {
+function Notification() {
   const [messages, setMessages] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    //fetchMessages(venueId).then(setMessages);
-    fetchMessagesListByVenueId(venueId).then(setMessages);
+    fetchMessagesListByVenueId(id).then(setMessages);
   }, []);
 
   return (

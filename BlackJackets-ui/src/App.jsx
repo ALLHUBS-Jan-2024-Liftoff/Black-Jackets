@@ -62,10 +62,7 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
-                <Route
-                  path="/message-list"
-                  element={<Notification venueId={venueId} />}
-                />
+                <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route
                   path="logout"

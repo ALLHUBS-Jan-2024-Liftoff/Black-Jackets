@@ -11,7 +11,6 @@ function GuestView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //console.log("id", id);
     getVenueById(id).then((response) => {
       setVenue(response.data);
       fetchGigsListByVenueId(id).then(setGigs);
@@ -20,7 +19,6 @@ function GuestView() {
 
   function handleMessage() {
     const venueId = venue.id;
-    console.log("venueId", venueId);
     navigate(`/add-message/${venueId}`);
   }
 
