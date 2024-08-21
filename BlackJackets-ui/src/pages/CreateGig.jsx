@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { addGig } from "../services/GigService";
 import { genreList } from "../services/GigService";
 import { useParams } from "react-router-dom";
+import { ImageContext } from './ImageContext';
 
 const CreateGigForm = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,44 @@ const CreateGigForm = () => {
   const [supportingAct, setSupportingAct] = useState("");
   const [bandSlots, setBandSlots] = useState(0);
   const {id} = useParams();
+
+  const CreateGig = () => {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadStatus, setUploadStatus] = useState('');
+    const { setImageUrl } = useContext(ImageContext);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleUpload = async () => {
+      if (!selectedFile) {
+          setUploadStatus('Please select a file first.');
+          return;
+      }
+
+      const formData = new FormData();
+      formData.append('source', selectedFile);
+      formData.append('key', '6d207e02198a847aa98d0a2a901485a5');
+
+      try {
+        const response = await axios.post('https://freeimage.host/api/1/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        if (response.data.status_code === 200) {
+            setImageUrl(response.data.image.display_url); // Save the image URL in context
+            setUploadStatus('Image uploaded successfully!');
+        } else {
+            setUploadStatus('Image upload failed.');
+        }
+    } catch (error) {
+        setUploadStatus('An error occurred during upload.');
+    }
+  }
+};
   // image input state
 
   const genres = genreList;
@@ -53,6 +92,7 @@ const CreateGigForm = () => {
   };
 
   return (
+    
     <div className="container">
       <br />
       <br />
@@ -73,7 +113,7 @@ const CreateGigForm = () => {
                   />
                 </label>
               </div>
-
+  
               <div className="form-group mb-2">
                 <label className="form-label">
                   Date of the Gig
@@ -207,7 +247,7 @@ const CreateGigForm = () => {
               )}
 
               {+bandSlots == 2 ? (
-                <div className="form-group mb-2">
+                <><div className="form-group mb-2">
                   <label className="form-label">
                     Name of Supporting Act
                     <input
@@ -215,10 +255,14 @@ const CreateGigForm = () => {
                       className="form-control"
                       defaultValue={supportingAct}
                       onChange={(e) => setSupportingAct(e.target.value)}
-                      required
-                    />
+                      required />
                   </label>
-                </div>
+                </div><div>
+                    <h2>Create Gig</h2>
+                    <input type="file" onChange={handleFileChange} />
+                    <button onClick={handleUpload}>Upload Image</button>
+                    <p>{uploadStatus}</p>
+                  </div></>
               ) : (
                 <></>
               )}

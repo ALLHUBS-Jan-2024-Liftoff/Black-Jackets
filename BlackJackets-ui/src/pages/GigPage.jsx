@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchGig, parseDate } from "../services/GigService";
 import { useNavigate, useParams } from "react-router-dom";
+import ImageUploader from './ImageUploader';
 
 const GigPage = () => {
   const [gig, setGig] = useState({});
@@ -10,6 +11,8 @@ const GigPage = () => {
   const navigator = useNavigate();
 
   const { gigId } = useParams();
+
+  const GigPage = () =>
 
   useEffect(() => {
     fetchGig(gigId)
@@ -26,6 +29,14 @@ const GigPage = () => {
   }, [gig]);
 
   return (
+
+    <div>
+            <h1>Gig Page</h1>
+          
+            <ImageUploader />
+
+        </div>
+    
     <div className="container">
       <button
         className="btn btn-outline-primary btn-block"

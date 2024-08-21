@@ -16,6 +16,7 @@ import CreateGigForm from "./pages/CreateGig";
 import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
+import ImageUploader from './ImageUploader';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
