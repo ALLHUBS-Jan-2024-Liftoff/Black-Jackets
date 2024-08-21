@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { fetchMessagesListByVenueId } from "../services/MessageService";
+import {
+  fetchMessagesListByVenueId,
+  fetchMessages,
+} from "../services/MessageService";
 
-function Notification() {
+function Notification({ venueId }) {
   const [messages, setMessages] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
-    fetchMessagesListByVenueId(id).then(setMessages);
+    fetchMessages().then(setMessages);
+    //fetchMessagesListByVenueId(id).then(setMessages);
   }, []);
 
   return (

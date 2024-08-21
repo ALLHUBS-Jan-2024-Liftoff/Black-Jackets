@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import "../pages/style.css";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getVenueById(id).then((response) => {
@@ -14,6 +16,10 @@ function GuestView() {
       fetchGigsListByVenueId(id).then(setGigs);
     });
   }, []);
+
+  function handleBandMessage() {
+    navigate("/add-message");
+  }
 
   return (
     <div>
@@ -42,6 +48,11 @@ function GuestView() {
         <br />
         <br />
         <div className="list">
+          <button className="btn btn-info" onClick={() => handleBandMessage()}>
+            Send A Message
+          </button>
+          <br />
+          <br />
           <h2>List of Upcoming Gigs</h2>
         </div>
         <table className="table table-striped table-bordered">

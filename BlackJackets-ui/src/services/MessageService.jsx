@@ -24,3 +24,13 @@ export const fetchMessagesListByVenueId = async (venueId) => {
     throw error;
   }
 };
+
+export const fetchMessages = async () => {
+  try {
+    const response = await axios.get(`${BASEAPIURL}`);
+    return response.data;
+  } catch (error) {
+    alert("Error occurs while fetching messages!", error);
+    throw error;
+  }
+};
