@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
-@Entity
 @Data
 @Getter
 @Setter
@@ -28,4 +27,8 @@ public class MessageDTO {
 
     @NotBlank(message = "Content is required")
     private String content;
+
+    @NotBlank(message = "Venue Id is required")
+    private int venueId;
+
 }

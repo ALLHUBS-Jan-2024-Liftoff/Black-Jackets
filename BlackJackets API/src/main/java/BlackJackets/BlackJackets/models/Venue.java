@@ -51,4 +51,12 @@ public class Venue {
     public void addReview(Review review){
         reviews.add(review);
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Message> messages = new ArrayList<Message>();
+
+    public void addMessage(Message message){
+        messages.add(message);
+    }
     }

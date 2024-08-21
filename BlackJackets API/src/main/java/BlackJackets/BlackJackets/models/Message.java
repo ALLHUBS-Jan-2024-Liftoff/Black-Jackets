@@ -31,4 +31,7 @@ public class Message {
     @NotBlank(message = "Content is required")
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
 }
