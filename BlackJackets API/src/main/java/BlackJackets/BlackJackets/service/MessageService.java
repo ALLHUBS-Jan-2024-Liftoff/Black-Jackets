@@ -9,5 +9,7 @@ public interface MessageService {
 
     String createNewMessage(MessageDTO messageDTO);
 
+    List<MessageDTO> getAllMessages();
+
     List<Message> getAllMessagesByVenueId(int venueId);
 }

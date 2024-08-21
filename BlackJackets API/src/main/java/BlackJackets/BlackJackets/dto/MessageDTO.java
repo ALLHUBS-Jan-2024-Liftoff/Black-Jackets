@@ -9,7 +9,6 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity
 @Data
 @Getter
 @Setter
@@ -32,6 +31,10 @@ public class MessageDTO {
     @NotBlank(message = "Content is required")
     private String content;
 
-    private List<Message> messages;
+    @NotBlank(message = "Venue Id is required")
+    //@JoinColumn(name = "venue_id")
+    private int venueId;
+
+    //private List<Message> messages;
 
     }
