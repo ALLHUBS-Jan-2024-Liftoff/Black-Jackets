@@ -29,11 +29,20 @@ function VenueUserDashboard({ venueId }) {
     setGigs((prevGigs) => prevGigs.filter((gig) => gig.id !== id));
   }
 
+  function handleNotification() {
+    navigator("/message-list");
+  }
+
   return (
     <div>
       <div className="container">
         <br />
         <br />
+        <div className="message">
+          <button className="btn btn-info" onClick={handleNotification}>
+            Notification
+          </button>
+        </div>
         <h1 className="header">{venue.name}</h1>
         <br />
         <div className="details">

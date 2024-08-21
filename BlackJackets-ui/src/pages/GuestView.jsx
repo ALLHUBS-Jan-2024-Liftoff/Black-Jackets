@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
-import "../pages/style.css";
-import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../pages/style.css";
 
-function GuestView() {
+function GuestView({ venueId }) {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
-  const { id } = useParams();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    getVenueById(id).then((response) => {
+    getVenueById(venueId).then((response) => {
       setVenue(response.data);
-      fetchGigsListByVenueId(id).then(setGigs);
+      fetchGigsListByVenueId(venueId).then(setGigs);
     });
   }, []);
 
@@ -64,8 +63,8 @@ function GuestView() {
               <th>Genre</th>
               <th>Ages</th>
               <th>HeadLiner</th>
-              <th>SupportingAct</th>
               <th>OpeningAct</th>
+              <th>SupportingAct</th>
               <th>Bandslots</th>
             </tr>
           </thead>
@@ -78,8 +77,8 @@ function GuestView() {
                 <td>{gig.genre}</td>
                 <td>{gig.ages}</td>
                 <td>{gig.headliner}</td>
-                <td>{gig.supportingAct}</td>
                 <td>{gig.openingAct}</td>
+                <td>{gig.supportingAct}</td>
                 <td>{gig.bandSlots}</td>
               </tr>
             ))}

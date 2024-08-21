@@ -8,8 +8,8 @@ function Notification({ venueId }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetchMessages().then(setMessages);
-    //fetchMessagesListByVenueId(id).then(setMessages);
+    //fetchMessages(venueId).then(setMessages);
+    fetchMessagesListByVenueId(venueId).then(setMessages);
   }, []);
 
   return (

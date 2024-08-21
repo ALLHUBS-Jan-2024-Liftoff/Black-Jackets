@@ -17,7 +17,7 @@ function Message({ venueId }) {
       addMessage(message);
       alert("Band Message Created");
       console.log(message);
-      navigate("/guest-view");
+      navigate("/guest-view/" + venueId);
     }
   };
 

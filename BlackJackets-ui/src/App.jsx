@@ -50,7 +50,11 @@ function App() {
               path="gigs/search"
               element={<GigListings isVenue={false} />}
             />
-            <Route path="/guest-view/:id" element={<GuestView />} />
+            <Route
+              path="/guest-view/:id"
+              element={<GuestView venueId={venueId} />}
+            />
+
             <Route
               path="/add-message"
               element={<MessageAdd venueId={venueId} />}
