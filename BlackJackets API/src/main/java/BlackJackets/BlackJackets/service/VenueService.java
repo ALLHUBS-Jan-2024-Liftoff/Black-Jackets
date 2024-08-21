@@ -3,6 +3,7 @@ package BlackJackets.BlackJackets.service;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.Venue;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 

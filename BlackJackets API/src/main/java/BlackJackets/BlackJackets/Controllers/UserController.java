@@ -3,12 +3,17 @@ package BlackJackets.BlackJackets.Controllers;
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.dto.RegisterFormDTO;
+import BlackJackets.BlackJackets.dto.VenueDto;
+import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.Venue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,8 +61,10 @@ public class UserController {
                 User newUser = new User(registerFormDTO.getEmail(), registerFormDTO.getPassword(), registerFormDTO.getFullName());
                 setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
+                ObjectMapper objectMapper = new ObjectMapper();
+                String userString = objectMapper.writeValueAsString(newUser);
                 responseBody.put("message", "Given user details are successfully registered");
-                responseBody.put("username", newUser.getEmail());
+                responseBody.put("User", userString);
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body(responseBody);
@@ -87,13 +94,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) {
+    public ResponseEntity<User> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws JsonProcessingException {
 
         ResponseEntity response = null;
         Map<String, String> responseBody = new HashMap<>();
         User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
-        Venue venue = theUser.getVenue();
-        Integer venueId = venue.getId();
+//        Venue venue = theUser.getVenue();
         String password = loginFormDTO.getPassword();
         if (theUser == null) {
             responseBody.put("message", "Username does not exist");
@@ -107,10 +113,13 @@ public class UserController {
                     .body(responseBody);
         } else {
             setUserInSession(request.getSession(), theUser);
-
+            ObjectMapper objectMapper = new ObjectMapper();
+            String userString = objectMapper.writeValueAsString(theUser);
+//            ObjectMapper objectMapper2 = new ObjectMapper();
+//            String venueString = objectMapper2.writeValueAsString(venue);
             responseBody.put("message", "User successfully logged in.");
-            responseBody.put("username", theUser.getEmail());
-            responseBody.put("venue", String.valueOf(venueId));
+            responseBody.put("User", userString);
+//            responseBody.put("Venue", venueString);
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);
@@ -122,5 +131,11 @@ public class UserController {
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
         return "/login";
+    }
+
+    @GetMapping("{Id}")
+    public ResponseEntity<User> getUserById(@PathVariable("Id") int userId) {
+        User user = userRepository.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatusCode.valueOf(200));
     }
 }

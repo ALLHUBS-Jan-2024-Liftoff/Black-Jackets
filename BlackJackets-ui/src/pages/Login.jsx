@@ -23,8 +23,12 @@ function LoginForm({ setAuthenticated, setVenueId, setUser}) {
         }
       );
       setAuthenticated(true);
-      setVenueId(response.data.venue);
-      setUser(response.data);
+      const userObject = JSON.parse(response.data.User);
+      setUser(userObject.id);
+      // const venueObject = JSON.parse(response.data.Venue);
+      // console.log(`venue: ${JSON.stringify(venueObject)}`);
+      setVenueId(userObject.id);
+      
       alert(response.data.message);
       navigate("/venue-dashboard");
     } catch (error) {

@@ -1,4 +1,5 @@
 package BlackJackets.BlackJackets.service.impl;
+import BlackJackets.BlackJackets.Controllers.UserController;
 import BlackJackets.BlackJackets.data.GigRepository;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
@@ -7,6 +8,7 @@ import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.service.VenueService;
+import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +30,17 @@ public class VenueServiceImpl implements VenueService {
     @Autowired
     private GigRepository gigRepository;
 
+    @Autowired
+    private UserController userController;
+
     // Create Venue
     @Override
     public Venue createNewVenue(VenueDto venueDto) {
+
         Venue venue = this.modelMapper.map(venueDto, Venue.class);
-//        User user = venue.getUser();
+        System.out.println(venue);
         this.venueRepo.save(venue);
-//        venue.setUser(user);
-//        String venueId;
-//        venueId = String.valueOf(venue.getId());
+
         return venue;
     }
 
@@ -58,9 +62,10 @@ public class VenueServiceImpl implements VenueService {
                         dto.getLocation(),
                         dto.getEmail(),
                         dto.getPhone(),
+                        dto.getUser(),
                         dto.getGigs(),
-                        dto.getReviews(),
-                        dto.getUser()
+                        dto.getReviews()
+
                         )).collect(Collectors.toList());
 
     }

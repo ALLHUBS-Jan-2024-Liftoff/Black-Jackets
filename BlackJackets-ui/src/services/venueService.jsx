@@ -14,9 +14,12 @@ export const fetchVenues = async () => {
 };
 
 export const addVenue = async (venue) => {
+  console.log(`venue: ${JSON.stringify(venue)}`)
   try {
-    const response = await axios.post(`${BASEAPIURL}/add`, venue);
+    const response = await axios.post(
+      `${BASEAPIURL}/add`, venue);
     return response.data;
+    
   } catch (error) {
     alert("Error occurs while creating venue!", error);
     throw error;

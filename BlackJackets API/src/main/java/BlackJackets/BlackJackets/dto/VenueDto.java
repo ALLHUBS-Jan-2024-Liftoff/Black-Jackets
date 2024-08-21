@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class VenueDto {
 
-        @Id
+
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
@@ -38,9 +38,13 @@ public class VenueDto {
         @NotBlank(message = "Phone number is required")
         private String phone;
 
+        private User user;
+
         private List<Gig> gigs;
 
         private List<Review> reviews;
 
-        private User user;
+
+
+
 }

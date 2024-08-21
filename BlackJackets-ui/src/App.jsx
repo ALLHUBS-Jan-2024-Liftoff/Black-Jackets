@@ -60,10 +60,7 @@ function App() {
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
               <>
-                <Route
-                  path="gigs/add/:id"
-                  element={<CreateGigForm />}
-                />
+                <Route path="gigs/add/:id" element={<CreateGigForm />} />
                 <Route
                   path="/venue-dashboard"
                   element={<VenueUserDashboard venueId={venueId} />}
@@ -71,9 +68,7 @@ function App() {
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
                 <Route
                   path="/add-venue"
-                  element={
-                    <VenueAdd setVenueId={setVenueId} user={user} />
-                  }
+                  element={<VenueAdd user={user} setVenueId={setVenueId} />}
                 />
                 <Route
                   path="logout"

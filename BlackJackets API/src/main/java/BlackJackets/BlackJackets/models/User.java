@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String email;
@@ -16,9 +16,9 @@ public class User{
 
     private String fullName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "venue_id", referencedColumnName = "id")
-    private Venue venue;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "venue_id")
+//    private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -48,11 +48,11 @@ public class User{
         this.fullName = fullName;
     }
 
-    public Venue getVenue() {
-        return venue;
-    }
-
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
+//    public Venue getVenue() {
+//        return venue;
+//    }
+//
+//    public void setVenue(Venue venue) {
+//        this.venue = venue;
+//    }
 }
