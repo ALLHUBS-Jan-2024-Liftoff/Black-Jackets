@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { addMessage } from "../services/MessageService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+// import Venue from "./Venue";
 
 function Message() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
-
+  const { venueId } = useParams();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ function Message() {
 
     if (name != "" && email != "" && content != "") {
       const message = { name, email, content };
-      addMessage(message);
+      addMessage(message, venueId);
       alert("Band Message Created");
       navigate("/guest-view");
     }

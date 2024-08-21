@@ -10,7 +10,6 @@
 }
 
 .button{
-    justify-content: flex-end;
     display:flex;
     grid-template-columns: repeat(n, 1fr);
     gap: 10px;
@@ -28,4 +27,8 @@
 /* Venue form */
 .h3{
     color: blueviolet;
+}
+
+.message{
+    float: right;
 }

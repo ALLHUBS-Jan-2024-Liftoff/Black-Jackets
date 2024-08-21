@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { fetchMessages } from "../services/MessageService";
+import {
+  fetchMessagesListByVenueId,
+  fetchMessages,
+} from "../services/MessageService";
 
-function Notification() {
+function Notification({ venueId }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetchMessages().then(setMessages);
+    //fetchMessages().then(setMessages);
+    fetchMessagesListByVenueId(venueId).then(setMessages);
   }, []);
 
   return (
     <>
       <div className="container">
-        <h2 className="text-container">Contact of Bands</h2>
+        <h2 className="text-container">Notification of Guests</h2>
         {messages.map((message) => (
           <div key={message.id}>
             <h4>{message.name}</h4>

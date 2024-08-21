@@ -35,7 +35,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route path="/" element={<Navbar authenticated={authenticated} />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route
@@ -46,8 +46,15 @@ function App() {
               path="register"
               element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
-
-            <Route path="/edit-venue/:id" element={<VenueEdit />} />
+            <Route
+              path="gigs/search"
+              element={<GigListings isVenue={false} />}
+            />
+            <Route path="/guest-view" element={<GuestView />} />
+            <Route path="/venue-view/:id" element={<Venue />} />
+            <Route path="gigs/view/:gigId" element={<GigPage />} />
+            <Route path="/band-message/:id" element={<MessageAdd />} />
+            {/* <Route path="/edit-venue/:id" element={<VenueEdit />} />
             <Route path="/band-message" element={<MessageAdd />} />
 
             <Route path="/contact-form" element={<Contact />} />
@@ -58,13 +65,10 @@ function App() {
             />
             <Route path="/guest-view" element={<GuestView />} />
             <Route path="/venue-view/:id" element={<Venue />} />
-            <Route path="gigs/view/:gigId" element={<GigPage />} />
+            <Route path="gigs/view/:gigId" element={<GigPage />} /> */}
             {authenticated ? (
               <>
-                <Route
-                  path="gigs/add"
-                  element={<CreateGigForm venueId={venueId} />}
-                />
+                <Route path="gigs/add/:id" element={<CreateGigForm />} />
                 <Route
                   path="/venue-dashboard"
                   element={<VenueUserDashboard venueId={venueId} />}
@@ -72,10 +76,9 @@ function App() {
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route
-                  path="gigs/add"
-                  element={<CreateGigForm venueId={venueId} />}
+                  path="/message-list"
+                  element={<Notification venueId={venueId} />}
                 />
-                <Route path="/message-list" element={<Notification />} />
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Logout from "../pages/Logout";
 
-function Navbar() {
-  const [authenticated, setAuthenticated] = useState(false);
+function Navbar({ authenticated }) {
+  //const [authenticated, setAuthenticated] = useState(false);
 
   return (
     <>
@@ -36,14 +36,7 @@ function Navbar() {
                   Search Gigs
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  onClick={Logout(authenticated)}
-                  to="/login">
-                  Logout
-                </Link>
-              </li>
+
               {/* <li className="nav-item">
             <Link className="nav-link" to="/gigs/add">
               Add Gig Test
@@ -66,8 +59,26 @@ function Navbar() {
           ) : (
             <>
               <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/venue-dashboard">
                   Venue User Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  onClick={Logout(authenticated)}
+                  to="/login">
+                  Logout
                 </Link>
               </li>
             </>

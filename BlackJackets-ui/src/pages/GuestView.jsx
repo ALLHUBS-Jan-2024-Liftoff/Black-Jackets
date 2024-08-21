@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, fetchVenues } from "../services/venueService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../pages/style.css";
 
 function GuestView() {
   const [venueList, setVenueList] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [items, setItems] = useState([]);
+  //const { venueId } = useParams();
 
   const navigate = useNavigate();
 
@@ -20,7 +21,9 @@ function GuestView() {
   };
 
   function handleBandMessage() {
-    navigate("/band-message");
+    const venueId = selectedOption;
+    console.log(venueId);
+    navigate(`/band-message/${venueId}`);
   }
 
   function handleContactForm() {
