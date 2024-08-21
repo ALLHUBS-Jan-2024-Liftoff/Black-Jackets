@@ -24,7 +24,7 @@ function LoginForm({ setAuthenticated, setVenueId, setUser}) {
       );
       setAuthenticated(true);
       setVenueId(response.data.venue);
-      setUser(response.data.username);
+      setUser(response.data);
       alert(response.data.message);
       navigate("/venue-dashboard");
     } catch (error) {

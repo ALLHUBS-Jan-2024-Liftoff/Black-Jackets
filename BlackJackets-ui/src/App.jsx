@@ -21,7 +21,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
 
   return (
     // <Home />
@@ -72,7 +72,7 @@ function App() {
                 <Route
                   path="/add-venue"
                   element={
-                    <VenueAdd setVenueId={setVenueId} />
+                    <VenueAdd setVenueId={setVenueId} user={user} />
                   }
                 />
                 <Route

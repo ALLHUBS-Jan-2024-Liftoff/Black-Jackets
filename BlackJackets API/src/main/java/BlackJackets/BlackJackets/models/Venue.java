@@ -19,6 +19,7 @@ import java.util.List;
 public class Venue {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -48,7 +49,7 @@ public class Venue {
     private List<Review> reviews = new ArrayList<Review>();
 
 
-    @OneToOne(mappedBy = "venue", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "venue")
     private User user;
 
     public void addReview(Review review){

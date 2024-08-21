@@ -25,6 +25,7 @@ public class VenueController {
 
         Venue venue;
         venue = this.venueService.createNewVenue(venueDto);
+
 //        responseBody.put("message", "Venue created successfully");
 //        responseBody.put("venueId", venueId);
 //        response = ResponseEntity

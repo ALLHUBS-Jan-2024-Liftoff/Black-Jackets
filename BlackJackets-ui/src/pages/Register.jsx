@@ -25,7 +25,7 @@ function RegisterForm({ setAuthenticated, setUser }) {
         }
       );
       setAuthenticated(true);
-      setUser((response.data.username));
+      setUser((response.data));
       alert(response.data.message);
       navigate("/add-venue");
     } catch (error) {
@@ -75,7 +75,6 @@ function RegisterForm({ setAuthenticated, setUser }) {
         <button
           type="submit"
           className="btn btn-primary mt-3"
-          // disabled={!getIsFormValid()}
         >
           Register
         </button>

@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
 
     private String email;
@@ -16,8 +16,8 @@ public class User{
 
     private String fullName;
 
-    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "venue_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "venue_id", referencedColumnName = "id")
     private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

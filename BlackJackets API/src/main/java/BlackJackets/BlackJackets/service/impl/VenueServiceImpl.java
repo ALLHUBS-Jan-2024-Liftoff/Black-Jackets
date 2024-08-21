@@ -2,8 +2,10 @@ package BlackJackets.BlackJackets.service.impl;
 import BlackJackets.BlackJackets.data.GigRepository;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.data.VenueRepo;
+import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.service.VenueService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,18 @@ public class VenueServiceImpl implements VenueService {
     private VenueRepo venueRepo;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private GigRepository gigRepository;
 
     // Create Venue
     @Override
     public Venue createNewVenue(VenueDto venueDto) {
         Venue venue = this.modelMapper.map(venueDto, Venue.class);
+//        User user = venue.getUser();
         this.venueRepo.save(venue);
+//        venue.setUser(user);
 //        String venueId;
 //        venueId = String.valueOf(venue.getId());
         return venue;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addVenue } from "../services/venueService";
 import { useNavigate } from "react-router-dom";
 
-export default function VenuePage( {setVenueId} ) {
+export default function VenuePage( {setVenueId}, user ) {
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function VenuePage( {setVenueId} ) {
       location != "" &&
       phone != ""
     ) {
-      const venue = { name, capacity, email, location, phone };
+      const venue = { name, capacity, email, location, phone, user };
       addVenue(venue);
       setVenueId(venue.Id);
       alert("Venue created");
