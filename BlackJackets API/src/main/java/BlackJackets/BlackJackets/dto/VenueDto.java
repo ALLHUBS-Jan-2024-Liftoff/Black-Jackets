@@ -38,6 +38,8 @@ public class VenueDto {
         @NotBlank(message = "Phone number is required")
         private String phone;
 
+        private String video;
+
         private List<Gig> gigs;
 
         private List<Review> reviews;
