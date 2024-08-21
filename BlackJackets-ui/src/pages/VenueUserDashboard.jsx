@@ -38,9 +38,6 @@ function VenueUserDashboard({ venueId }) {
 
   return (
 
-  <div>
-              <div className="container">
-                  <h1 className='header'>{venue.name}</h1><br />
               <iframe
               width="560"
               height="315"

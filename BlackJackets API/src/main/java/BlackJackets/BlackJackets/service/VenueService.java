@@ -2,6 +2,7 @@ package BlackJackets.BlackJackets.service;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Review;
 
 import java.util.List;
 
@@ -18,5 +19,7 @@ public interface VenueService {
     void deleteVenue(int venueId);
 
     List<Gig> getAllGigsByVenueId(int venueId);
+
+    List<Review> getAllReviewsByVenueId(int venueId);
 
 }

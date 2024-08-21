@@ -8,6 +8,8 @@ function GuestView() {
   const [gigs, setGigs] = useState([]);
   const {id} = useParams();
 
+  const videoSrc = https://www.youtube.com/embed/${venue.video}`; and <iframe width="560" height="315" src={videoSrc} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+
   useEffect(() => {
     getVenueById(id).then((response) => {
       setVenue(response.data);

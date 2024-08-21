@@ -1,7 +1,9 @@
 package BlackJackets.BlackJackets.service.impl;
 import BlackJackets.BlackJackets.data.GigRepository;
+import BlackJackets.BlackJackets.data.ReviewRepo;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Review;
 import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.data.VenueRepo;
 import BlackJackets.BlackJackets.service.VenueService;
@@ -22,6 +24,9 @@ public class VenueServiceImpl implements VenueService {
 
     @Autowired
     private GigRepository gigRepository;
+
+    @Autowired
+    private ReviewRepo reviewRepository;
 
     // Create Venue
     @Override
@@ -49,6 +54,8 @@ public class VenueServiceImpl implements VenueService {
                         dto.getLocation(),
                         dto.getEmail(),
                         dto.getPhone(),
+                        dto.getVideo(),
+                        dto.getImage(),
                         dto.getGigs(),
                         dto.getReviews(),
                         dto.getUser()
@@ -65,6 +72,8 @@ public class VenueServiceImpl implements VenueService {
         venue.setLocation(venueDto.getLocation());
         venue.setEmail(venueDto.getEmail());
         venue.setPhone(venueDto.getPhone());
+        venue.setVideo(venueDto.getVideo());
+        venue.setImage(venueDto.getImage());
 
         venueRepo.save(venue);
         return this.modelMapper.map(venue, VenueDto.class);
@@ -81,5 +90,12 @@ public class VenueServiceImpl implements VenueService {
         List<Gig> gigList = gigRepository.findByVenueId(venueId);
         return gigList;
     }
+
+    @Override
+    public List<Review> getAllReviewsByVenueId(int venueId) {
+        List<Review> reviews = reviewRepository.findByVenueId(venueId);
+        return reviews;
+    }
+
 
 }

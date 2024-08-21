@@ -22,7 +22,7 @@ export default function VenuePage() {
       email != "" &&
       location != "" &&
       phone != "" &&
-       video != ""
+      video != "",
     ) {
       const venue = { name, capacity, email, location, phone, video };
       addVenue(venue);
@@ -108,7 +108,7 @@ export default function VenuePage() {
                     name='video'
                     value={video}
                     className='form-control'
-                    onChange={(e) => setVideo(e.target.value)} required />
+                    onChange={(e) => setVideo(e.target.value)} />
                                         </div>
               <button className="btn btn-success">Create Venue</button>
             </form>

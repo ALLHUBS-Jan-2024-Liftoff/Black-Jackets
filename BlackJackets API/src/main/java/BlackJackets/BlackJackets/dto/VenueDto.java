@@ -6,6 +6,7 @@ import BlackJackets.BlackJackets.models.User;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -40,12 +41,15 @@ public class VenueDto {
 
         private String video;
 
+        private String image;
+
+
+
         private List<Gig> gigs;
 
         private List<Review> reviews;
 
         private User user;
 
-        public VenueDto(int id, String name, int capacity, String location, String email, String phone, List<Gig> gigs, List<Review> reviews, User user) {
-        }
+
 }

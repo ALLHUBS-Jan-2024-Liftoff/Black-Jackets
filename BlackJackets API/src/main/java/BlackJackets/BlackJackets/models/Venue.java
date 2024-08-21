@@ -39,6 +39,8 @@ public class Venue {
 
     private String video;
 
+    private String image;
+
     @JsonIgnore
     @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
     private List<Gig> gigs = new ArrayList<Gig>();
