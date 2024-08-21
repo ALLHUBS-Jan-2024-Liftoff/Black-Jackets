@@ -55,7 +55,7 @@ public class VenueController {
     }
 
     //Get Mapping For gigs
-    @GetMapping("/allgigs/{venueId}")
+    @GetMapping("/allGigs/{venueId}")
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
