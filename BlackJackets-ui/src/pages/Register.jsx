@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../pages/form.css";
 
 function RegisterForm({ setAuthenticated, setUser }) {
   const [email, setEmail] = useState("");
@@ -33,53 +34,58 @@ function RegisterForm({ setAuthenticated, setUser }) {
   };
 
   return (
-    <div className="mt-5">
-      <form onSubmit={handleRegister}>
-        <div className="mb-3">
-          <label className="form-label">
-            Email
-            <input
-              type="text"
-              className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Password
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Name
-            <input
-              type="text"
-              className="form-control"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary mt-3"
-        >
-          Register
-        </button>
-      </form>
-      {message /* && <p>{message}</p> */}
+    <div className="container">
+      <br />
+      <br />
+      <div className="row">
+        <div className="card bg-dark text-white col-md-3 offset-md-4 offset-md-3 center">
+        <h2 className="text-center">Register</h2>
+        <div className="card-body"></div>
+        <form onSubmit={handleRegister}>
+          <div className="form-group mb-2 center">
+            <label className="form-label text-center">
+              Email
+              <input
+                type="text"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group mb-2 center">
+            <label className="form-label text-center">
+              Password
+              <input
+                type="password"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group mb-2 center">
+            <label className="form-label text-center">
+              Name
+              <input
+                type="text"
+                className="form-control"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <button type="submit" className="btn btn-primary center">
+            Register
+          </button>
+        </form>
+        {message /* && <p>{message}</p> */}
+      </div>
     </div>
+   </div>
   );
 }
 

@@ -1,0 +1,17 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:25;  
+}
+
+.d-flex {
+  display: flex!important;
+  height: 25vh;
+}
+
+.center {
+  margin: 0 auto;
+  align-self: center;
+}
+
