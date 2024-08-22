@@ -23,3 +23,7 @@
 .table-head{
    text-decoration: brown;
 }
+
+.message{
+    float: right;
+}
