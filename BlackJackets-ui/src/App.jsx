@@ -7,7 +7,12 @@ import About from "./pages/About";
 import RegisterForm from "./pages/Register";
 import LoginForm from "./pages/Login";
 import Logout from "./pages/Logout";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import VenueEdit from "./pages/VenueEdit";
 // import VenueList from "./pages/VenueList";
 import VenueUserDashboard from "./pages/VenueUserDashboard";
@@ -21,17 +26,13 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
   const [venueId, setVenueId] = useState(1);
- 
 
   return (
     // <Home />
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<Navbar authenticated={authenticated} />}
-          >
+          <Route path="/" element={<Navbar authenticated={authenticated} />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route
@@ -51,10 +52,7 @@ function App() {
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
               <>
-                <Route
-                  path="gigs/add/:id"
-                  element={<CreateGigForm />}
-                />
+                <Route path="gigs/add/:id" element={<CreateGigForm />} />
                 <Route
                   path="/venue-dashboard"
                   element={<VenueUserDashboard venueId={venueId} />}
@@ -72,6 +70,10 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      <footer>
+        <p>Venue image by Drazen Zigic on Freepik</p>
+        <p>Band image by Kireyonok_Yuliya on Freepik</p>
+      </footer>
     </>
   );
 }
