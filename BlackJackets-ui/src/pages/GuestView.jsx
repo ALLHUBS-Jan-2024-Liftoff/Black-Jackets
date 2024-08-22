@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
+import { useNavigate, useParams } from "react-router-dom";
 import "../pages/style.css";
-import { useParams } from "react-router-dom";
 
 function GuestView() {
   const [venue, setVenue] = useState([]);
   const [gigs, setGigs] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getVenueById(id).then((response) => {
       setVenue(response.data);
       fetchGigsListByVenueId(id).then(setGigs);
     });
-  }, []);
+  }, [id]);
+
+  function handleMessage() {
+    const venueId = venue.id;
+    navigate(`/add-message/${venueId}`);
+  }
 
   return (
     <div>
@@ -42,6 +49,11 @@ function GuestView() {
         <br />
         <br />
         <div className="list">
+          <button className="btn btn-info" onClick={() => handleMessage()}>
+            Send A Message
+          </button>
+          <br />
+          <br />
           <h2>List of Upcoming Gigs</h2>
         </div>
         <table className="table table-striped table-bordered">
@@ -53,8 +65,8 @@ function GuestView() {
               <th>Genre</th>
               <th>Ages</th>
               <th>HeadLiner</th>
-              <th>SupportingAct</th>
               <th>OpeningAct</th>
+              <th>SupportingAct</th>
               <th>Bandslots</th>
             </tr>
           </thead>
@@ -67,8 +79,8 @@ function GuestView() {
                 <td>{gig.genre}</td>
                 <td>{gig.ages}</td>
                 <td>{gig.headliner}</td>
-                <td>{gig.supportingAct}</td>
                 <td>{gig.openingAct}</td>
+                <td>{gig.supportingAct}</td>
                 <td>{gig.bandSlots}</td>
               </tr>
             ))}

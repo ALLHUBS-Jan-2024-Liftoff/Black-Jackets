@@ -29,6 +29,10 @@ function VenueUserDashboard({ venueId }) {
     setGigs((prevGigs) => prevGigs.filter((gig) => gig.id !== id));
   }
 
+  function handleNotification() {
+    navigator(`/message-list/${venue.id}`);
+  }
+
   function handleEditGig(id) {
     navigator(`/gigs/edit/${id}`);
   }
@@ -38,6 +42,11 @@ function VenueUserDashboard({ venueId }) {
       <div className="container">
         <br />
         <br />
+        <div className="message">
+          <button className="btn btn-info" onClick={handleNotification}>
+            Notification
+          </button>
+        </div>
         <h1 className="header">{venue.name}</h1>
         <br />
         <div className="details">
