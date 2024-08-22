@@ -21,6 +21,8 @@ import CreateGigForm from "./pages/CreateGig";
 import VenueAdd from "./pages/VenueAdd";
 import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
+import MessageAdd from "./pages/MessageAdd";
+import Notification from "./pages/Notification";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -49,6 +51,8 @@ function App() {
               element={<GigListings isVenue={false} />}
             />
             <Route path="/guest-view/:id" element={<GuestView />} />
+
+            <Route path="/add-message/:id" element={<MessageAdd />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             {authenticated ? (
               <>
@@ -58,6 +62,7 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
+                <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route
                   path="logout"
