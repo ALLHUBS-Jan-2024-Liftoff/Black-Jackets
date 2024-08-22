@@ -77,7 +77,6 @@ function App() {
                   path="/add-venue"
                   element={<VenueAdd setVenueId={setVenueId} />}
                 />
-=======
                 <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route
