@@ -3,14 +3,13 @@ import { addVenue } from "../services/venueService";
 // import { fetchUser } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 
-export default function VenuePage( {user, setVenueId} ) {
+export default function VenuePage( { setVenueId } ) {
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
-  // const venueParam = user;
        
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -22,11 +21,9 @@ export default function VenuePage( {user, setVenueId} ) {
         phone != ""
       ) {
         const venue = { name, capacity, email, location, phone };
-        console.log(`userObject: ${JSON.stringify(user)}`);
         addVenue(venue).then((data) => {
         console.log(`data: ${JSON.stringify(data)}`);
         setVenueId(data.venue.id);
-        
         })
         alert("Venue created");
         navigate("/venue-dashboard");

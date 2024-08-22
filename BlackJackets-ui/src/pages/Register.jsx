@@ -25,9 +25,6 @@ function RegisterForm({ setAuthenticated, setUser }) {
         }
       );
       setAuthenticated(true);
-      const userObject = JSON.parse(response.data.User);
-      console.log(`userObject: ${JSON.stringify(userObject)}`);
-      setUser(userObject);
       alert(response.data.message);
       navigate("/add-venue");
     } catch (error) {

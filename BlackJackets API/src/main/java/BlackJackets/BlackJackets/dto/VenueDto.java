@@ -20,8 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class VenueDto {
 
-
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Id
+        @GeneratedValue
         private int id;
 
         @NotEmpty(message = "Name is required")

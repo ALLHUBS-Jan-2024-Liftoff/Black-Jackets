@@ -16,9 +16,9 @@ public class User{
 
     private String fullName;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "venue_id")
-//    private Venue venue;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venue_id", referencedColumnName = "venue_id")
+    private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -48,11 +48,11 @@ public class User{
         this.fullName = fullName;
     }
 
-//    public Venue getVenue() {
-//        return venue;
-//    }
-//
-//    public void setVenue(Venue venue) {
-//        this.venue = venue;
-//    }
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
 }

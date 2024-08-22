@@ -19,8 +19,8 @@ import java.util.List;
 public class Venue {
 
     @Id
-//    @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "venue_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Name is required")
@@ -37,9 +37,7 @@ public class Venue {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-//    @OneToOne(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 
     @JsonIgnore

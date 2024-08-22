@@ -99,7 +99,6 @@ public class UserController {
         ResponseEntity response = null;
         Map<String, String> responseBody = new HashMap<>();
         User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
-//        Venue venue = theUser.getVenue();
         String password = loginFormDTO.getPassword();
         if (theUser == null) {
             responseBody.put("message", "Username does not exist");
@@ -115,11 +114,8 @@ public class UserController {
             setUserInSession(request.getSession(), theUser);
             ObjectMapper objectMapper = new ObjectMapper();
             String userString = objectMapper.writeValueAsString(theUser);
-//            ObjectMapper objectMapper2 = new ObjectMapper();
-//            String venueString = objectMapper2.writeValueAsString(venue);
             responseBody.put("message", "User successfully logged in.");
             responseBody.put("User", userString);
-//            responseBody.put("Venue", venueString);
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);

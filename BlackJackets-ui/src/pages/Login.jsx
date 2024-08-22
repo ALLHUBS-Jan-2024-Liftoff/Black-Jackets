@@ -24,11 +24,8 @@ function LoginForm({ setAuthenticated, setVenueId, setUser}) {
       );
       setAuthenticated(true);
       const userObject = JSON.parse(response.data.User);
-      setUser(userObject.id);
-      // const venueObject = JSON.parse(response.data.Venue);
-      // console.log(`venue: ${JSON.stringify(venueObject)}`);
+      console.log(`venue: ${JSON.stringify(userObject)}`);
       setVenueId(userObject.id);
-      
       alert(response.data.message);
       navigate("/venue-dashboard");
     } catch (error) {

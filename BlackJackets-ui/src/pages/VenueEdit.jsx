@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getVenueById, editVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
 
-function VenueEdit() {
+function VenueEdit(){
   const [venue, setVenue] = useState({
     name: "",
     capacity: "",
