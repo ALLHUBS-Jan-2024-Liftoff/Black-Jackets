@@ -9,17 +9,18 @@ function Home() {
   return (
     <>
       <div className="container-fluid">
-        <h1 className="text-center">Welcome To Find A Gig!</h1>
+        <h1 className="text-center fw-bold" style={{padding: "15px"}}>Welcome To Find A Gig!</h1>
 
         <div className="row">
           {/* <div className="card" style={{ width: "18rem" }}> */}
           <div className="col-sm">
-          <div className="card">
+          <div className="card bg-dark text-white">
             <img
               className="card-img-top"
               src={venueLogo}
               alt="image of stage"
             ></img>
+            <p className="text-end fw-light fst-italic">Image by Drazen Zigic on Freepik</p>
             <div className="card-body d-flex flex-column">
               <h5 className="card-title">Venues</h5>
               <p className="card-text">
@@ -36,12 +37,13 @@ function Home() {
 
           {/* <div className="card" style={{ width: "18rem" }}> */}
           <div className="col-sm">
-          <div className="card">
+          <div className="card bg-dark text-white">
             <img
               className="card-img-top"
               src={bandLogo}
               alt="image of band"
             ></img>
+            <p className="text-end fw-light fst-italic">Image by Kireyonok_Yuliya on Freepik</p>
             <div className="card-body d-flex flex-column">
               <h5 className="card-title">Bands</h5>
               <p className="card-text">

@@ -70,10 +70,12 @@ function App() {
           </Route>
         </Routes>
       </Router>
-      <footer>
-        <p>Venue image by Drazen Zigic on Freepik</p>
-        <p>Band image by Kireyonok_Yuliya on Freepik</p>
-      </footer>
+      
+      {/* <footer className="container-fluid">
+        <div className="row text-primary" style={{background: "#282c34"}}>
+        <p>Venue image by Drazen Zigic on Freepik, Band image by Kireyonok_Yuliya on Freepik</p>
+        </div>
+        </footer> */}
     </>
   );
 }
