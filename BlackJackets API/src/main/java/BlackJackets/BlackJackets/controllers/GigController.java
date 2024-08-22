@@ -51,6 +51,22 @@ public class GigController {
         return gigRepository.findByVenueIdOrderByDateAsc(venueId);
     }
 
+    @PutMapping("edit/{id}")
+    public Gig editGigById(@PathVariable("id") long id, @RequestBody Gig editedGig){
+        Gig gigToEdit = gigRepository.getReferenceById(id);
+
+        gigToEdit.setName(editedGig.getName());
+        gigToEdit.setDate(editedGig.getDate());
+        gigToEdit.setGenre(editedGig.getGenre());
+        gigToEdit.setAges(editedGig.getAges());
+        gigToEdit.setHeadliner(editedGig.getHeadliner());
+        gigToEdit.setOpeningAct(editedGig.getOpeningAct());
+        gigToEdit.setSupportingAct(editedGig.getSupportingAct());
+        gigToEdit.setBandSlots(editedGig.getBandSlots());
+
+        return gigRepository.save(gigToEdit);
+    }
+
     //Delete Gig
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteGigById(@PathVariable("id") Long gigId){

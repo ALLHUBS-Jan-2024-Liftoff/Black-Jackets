@@ -90,6 +90,7 @@ public class VenueServiceImpl implements VenueService {
         this.venueRepo.deleteById(venueId);
     }
 
+    //Get All Gigs By VenueId
     @Override
     public List<Gig> getAllGigsByVenueId(int venueId) {
         List<Gig> gigList = gigRepository.findByVenueId(venueId);

@@ -18,7 +18,9 @@ export const agesList = ["All Ages", "Ages 21+"];
 export const parseDate = (dateString) => {
   const dateObject = new Date(dateString);
   const formattedDate = dateObject.toLocaleDateString();
-  const formattedTime = dateObject.toLocaleTimeString("en",{timeStyle:"short"});
+  const formattedTime = dateObject.toLocaleTimeString("en", {
+    timeStyle: "short",
+  });
 
   return {
     date: formattedDate,
@@ -86,4 +88,10 @@ export const deleteGig = async (gigId) => {
     console.error("There was an error deleting the gig!", error);
     throw error;
   }
+};
+
+export const editGig = async (id, gig) => {
+  axios.put(`${BASEAPIURL}/gigs/edit/${id}`, gig).then((response) => {
+    console.log(response.status, response.data.token);
+  });
 };

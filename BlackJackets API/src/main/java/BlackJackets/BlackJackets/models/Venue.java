@@ -48,6 +48,14 @@ public class Venue {
         gigs.add(gig);
     }
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL)
+    private List<Message> messages = new ArrayList<Message>();
+
+    public void addMessage(Message message){
+        messages.add(message);
+    }
+
     @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<Review>();
 

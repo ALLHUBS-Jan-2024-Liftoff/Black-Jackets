@@ -39,7 +39,7 @@ export const editVenueById = async (venueId, venue) => {
 
 export const fetchGigsListByVenueId = async (venueId) => {
   try {
-    const response = await axios.get(`${BASEAPIURL}/allgigs/${venueId}`);
+    const response = await axios.get(`${BASEAPIURL}/allGigs/${venueId}`);
     return response.data;
   } catch (error) {
     alert("Error occurs while fetching a venue!", error);
