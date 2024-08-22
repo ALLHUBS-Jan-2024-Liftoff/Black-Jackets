@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
 import "../pages/style.css";
+import YouTubeSearch from "./Youtube/YouTubeSearch ";
 
 function GuestView() {
   const [venue, setVenue] = useState([]);
@@ -27,6 +28,7 @@ function GuestView() {
       <div className="container">
         <br />
         <br />
+        <YouTubeSearch />
         <h1 className="header">{venue.name}</h1>
         <br />
         <div className="details">
