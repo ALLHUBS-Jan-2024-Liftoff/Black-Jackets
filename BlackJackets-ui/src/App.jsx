@@ -28,7 +28,7 @@ import EditGigForm from "./pages/EditGig";
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   // venueId will be set to the venueId related to the logged in user
-  const [venueId, setVenueId] = useState(1);
+  const [venueId, setVenueId] = useState();
 
   return (
     // <Home />
@@ -40,11 +40,20 @@ function App() {
             <Route path="about" element={<About />} />
             <Route
               path="login"
-              element={<LoginForm setAuthenticated={setAuthenticated} />}
+              element={
+                <LoginForm
+                  setAuthenticated={setAuthenticated}
+                  setVenueId={setVenueId}
+                />
+              }
             />
             <Route
               path="register"
-              element={<RegisterForm setAuthenticated={setAuthenticated} />}
+              element={
+                <RegisterForm
+                  setAuthenticated={setAuthenticated}
+                />
+              }
             />
 
             <Route
@@ -64,6 +73,10 @@ function App() {
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
+                <Route
+                  path="/add-venue"
+                  element={<VenueAdd setVenueId={setVenueId} />}
+                />
                 <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
                 <Route

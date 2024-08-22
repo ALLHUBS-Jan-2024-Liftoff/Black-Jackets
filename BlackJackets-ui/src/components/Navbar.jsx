@@ -13,7 +13,7 @@ function Navbar({ authenticated } ) {
           {!authenticated ? (
             <>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link className="nav-link" aria-current="page" to="/">
                   Home
                 </Link>
               </li>

@@ -1,10 +1,14 @@
 package BlackJackets.BlackJackets.service.impl;
+import BlackJackets.BlackJackets.Controllers.UserController;
 import BlackJackets.BlackJackets.data.GigRepository;
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.data.VenueRepo;
+import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.service.VenueService;
+import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +25,23 @@ public class VenueServiceImpl implements VenueService {
     private VenueRepo venueRepo;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private GigRepository gigRepository;
+
+    @Autowired
+    private UserController userController;
 
     // Create Venue
     @Override
-    public String createNewVenue(VenueDto venueDto) {
+    public Venue createNewVenue(VenueDto venueDto) {
+
         Venue venue = this.modelMapper.map(venueDto, Venue.class);
+        System.out.println(venue);
         this.venueRepo.save(venue);
-        return "Venue added successfully";
+
+        return venue;
     }
 
     // Get Venue By Id
@@ -49,9 +62,10 @@ public class VenueServiceImpl implements VenueService {
                         dto.getLocation(),
                         dto.getEmail(),
                         dto.getPhone(),
+                        dto.getUser(),
                         dto.getGigs(),
-                        dto.getReviews(),
-                        dto.getUser()
+                        dto.getReviews()
+
                         )).collect(Collectors.toList());
 
     }

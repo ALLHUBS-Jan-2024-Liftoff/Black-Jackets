@@ -2,12 +2,14 @@ package BlackJackets.BlackJackets.service;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.Venue;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
 public interface VenueService {
 
-    String createNewVenue(VenueDto venueDto);
+    Venue createNewVenue(VenueDto venueDto);
 
     VenueDto getVenueById(int venueId);
 
@@ -18,5 +20,4 @@ public interface VenueService {
     void deleteVenue(int venueId);
 
     List<Gig> getAllGigsByVenueId(int venueId);
-
 }

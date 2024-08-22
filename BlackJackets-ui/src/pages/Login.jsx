@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../pages/form.css";
 
-function LoginForm({ setAuthenticated }) {
+function LoginForm({ setAuthenticated, setVenueId, setUser}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,6 +24,9 @@ function LoginForm({ setAuthenticated }) {
         }
       );
       setAuthenticated(true);
+      const userObject = JSON.parse(response.data.User);
+      console.log(`venue: ${JSON.stringify(userObject)}`);
+      setVenueId(userObject.id);
       alert(response.data.message);
       navigate("/venue-dashboard");
     } catch (error) {
@@ -31,39 +35,47 @@ function LoginForm({ setAuthenticated }) {
   };
 
   return (
-    <div className="mt-5">
-      <form onSubmit={handleLogin}>
-        <div className="mb-3">
-          <label className="form-label">
-            Email
-            <input
-              type="text"
-              className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </label>
+    <div className="container">
+      <br />
+      <br />
+      <div className="row">
+        <div className="card bg-dark text-white col-md-3 offset-md-4 offset-md-3 center">
+          <h2 className="text-center">Login</h2>
+          <div className="card-body"></div>
+          <form onSubmit={handleLogin}>
+            <div className="form-group mb-2 center">
+              <label className="form-label text-center">
+                Email
+                <input
+                  type="text"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-group mb-2 center">
+              <label className="form-label text-center">
+                Password
+                <input
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+              </label>
+            </div>
+            <button type="submit" className="btn btn-primary center">
+              Login
+            </button>
+          </form>
+          {message /* && <p>{message}</p> */}
         </div>
-        <div className="mb-3">
-          <label className="form-label">
-            Password
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
-          </label>
-        </div>
-        <button type="submit" className="btn btn-primary mt-3">
-          Login
-        </button>
-      </form>
-      {message /* && <p>{message}</p> */}
+      </div>
     </div>
   );
 }

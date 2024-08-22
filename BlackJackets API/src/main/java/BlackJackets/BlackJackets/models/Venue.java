@@ -19,7 +19,7 @@ import java.util.List;
 public class Venue {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "venue_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -36,6 +36,9 @@ public class Venue {
 
     @NotBlank(message = "Phone number is required")
     private String phone;
+
+    @OneToOne(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL, /*fetch = FetchType.LAZY,*/ orphanRemoval = true)
@@ -56,10 +59,9 @@ public class Venue {
     @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<Review>();
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "venue")
-    private User user;
 
     public void addReview(Review review){
         reviews.add(review);
     }
-    }
+
+}

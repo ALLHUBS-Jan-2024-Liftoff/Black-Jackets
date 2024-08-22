@@ -3,11 +3,17 @@ package BlackJackets.BlackJackets.Controllers;
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.dto.RegisterFormDTO;
+import BlackJackets.BlackJackets.dto.VenueDto;
+import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.User;
+import BlackJackets.BlackJackets.models.Venue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,13 +58,16 @@ public class UserController {
         try{
             User existingUser = userRepository.findByEmail(registerFormDTO.getEmail());
             if (existingUser == null && !registerFormDTO.getEmail().isEmpty() && !registerFormDTO.getPassword().isEmpty()){
-                responseBody.put("message", "Given user details are successfully registered");
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(responseBody);
                 User newUser = new User(registerFormDTO.getEmail(), registerFormDTO.getPassword(), registerFormDTO.getFullName());
                 setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
+                ObjectMapper objectMapper = new ObjectMapper();
+                String userString = objectMapper.writeValueAsString(newUser);
+                responseBody.put("message", "Given user details are successfully registered");
+                responseBody.put("User", userString);
+                response = ResponseEntity
+                        .status(HttpStatus.CREATED)
+                        .body(responseBody);
             } else if(existingUser != null) {
                 responseBody.put("message", "User Already Exists.");
                 response = ResponseEntity
@@ -85,7 +94,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) {
+    public ResponseEntity<User> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws JsonProcessingException {
 
         ResponseEntity response = null;
         Map<String, String> responseBody = new HashMap<>();
@@ -103,8 +112,10 @@ public class UserController {
                     .body(responseBody);
         } else {
             setUserInSession(request.getSession(), theUser);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String userString = objectMapper.writeValueAsString(theUser);
             responseBody.put("message", "User successfully logged in.");
-            responseBody.put("username", theUser.getEmail());
+            responseBody.put("User", userString);
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);
@@ -116,5 +127,11 @@ public class UserController {
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
         return "/login";
+    }
+
+    @GetMapping("{Id}")
+    public ResponseEntity<User> getUserById(@PathVariable("Id") int userId) {
+        User user = userRepository.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatusCode.valueOf(200));
     }
 }

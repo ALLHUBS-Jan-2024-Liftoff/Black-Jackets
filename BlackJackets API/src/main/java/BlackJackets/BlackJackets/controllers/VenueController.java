@@ -2,14 +2,20 @@ package BlackJackets.BlackJackets.Controllers;
 
 import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
+import BlackJackets.BlackJackets.models.User;
+import BlackJackets.BlackJackets.models.Venue;
 import BlackJackets.BlackJackets.service.VenueService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("venue")
@@ -17,12 +23,23 @@ import java.util.List;
 public class VenueController {
     @Autowired
     private VenueService venueService;
+    @Autowired
+    private UserController userController;
 
     //Create Venue
     @PostMapping("add")
-    public ResponseEntity<String> createVenue(@RequestBody VenueDto venueDto) throws IOException{
-        String message = this.venueService.createNewVenue(venueDto);
-        return new ResponseEntity<String>(message, HttpStatusCode.valueOf(200));
+    public ResponseEntity<Map> createVenue(@RequestBody VenueDto venueDto) throws IOException{
+        ResponseEntity response = null;
+        Map<String, String> responseBody = new HashMap<>();
+        Venue venue = this.venueService.createNewVenue(venueDto);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String venueString = objectMapper.writeValueAsString(venue);
+        responseBody.put("message", "Venue created successfully");
+        responseBody.put("venue", venueString);
+        response = ResponseEntity
+                .status(HttpStatusCode.valueOf(200))
+                .body(responseBody);
+        return response;
     }
 
     //Get Venue by Id
@@ -59,6 +76,5 @@ public class VenueController {
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
     }
-
 
 }

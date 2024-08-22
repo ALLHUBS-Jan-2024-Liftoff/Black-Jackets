@@ -21,7 +21,7 @@ import java.util.List;
 public class VenueDto {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue
         private int id;
 
         @NotEmpty(message = "Name is required")
@@ -38,9 +38,13 @@ public class VenueDto {
         @NotBlank(message = "Phone number is required")
         private String phone;
 
+        private User user;
+
         private List<Gig> gigs;
 
         private List<Review> reviews;
 
-        private User user;
+
+
+
 }

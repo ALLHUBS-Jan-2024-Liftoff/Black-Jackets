@@ -1,34 +1,37 @@
 import React, { useState } from "react";
 import { addVenue } from "../services/venueService";
+// import { fetchUser } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 
-export default function VenuePage() {
+export default function VenuePage( { setVenueId } ) {
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
-
-  const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
-
+       
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (
-      name != "" &&
-      capacity != "" &&
-      email != "" &&
-      location != "" &&
-      phone != ""
-    ) {
-      const venue = { name, capacity, email, location, phone };
-      addVenue(venue);
-      alert("Venue created");
-      navigate("/venue-dashboard");
-    }
-  };
-
+      e.preventDefault();
+      if (
+        name != "" &&
+        capacity != "" &&  
+        email != "" &&
+        location != "" &&
+        phone != ""
+      ) {
+        const venue = { name, capacity, email, location, phone };
+        addVenue(venue).then((data) => {
+        console.log(`data: ${JSON.stringify(data)}`);
+        const venuedata = JSON.parse(data.venue);
+        setVenueId(venuedata.id);
+        alert("Venue created");
+        navigate("/venue-dashboard");
+        })
+        
+      }
+  }
+  
   return (
     <div className="container">
       <br />
