@@ -23,6 +23,7 @@ import GigListings from "./components/GigListings";
 import GuestView from "./pages/GuestView";
 import MessageAdd from "./pages/MessageAdd";
 import Notification from "./pages/Notification";
+import EditGigForm from "./pages/EditGig";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -54,6 +55,7 @@ function App() {
 
             <Route path="/add-message/:id" element={<MessageAdd />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
+            <Route path="gigs/edit/:id" element={<EditGigForm />} />
             {authenticated ? (
               <>
                 <Route path="gigs/add/:id" element={<CreateGigForm />} />
