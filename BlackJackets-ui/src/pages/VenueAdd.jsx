@@ -25,9 +25,10 @@ export default function VenuePage( { setVenueId } ) {
         console.log(`data: ${JSON.stringify(data)}`);
         const venuedata = JSON.parse(data.venue);
         setVenueId(venuedata.id);
-        })
         alert("Venue created");
         navigate("/venue-dashboard");
+        })
+        
       }
   }
   
