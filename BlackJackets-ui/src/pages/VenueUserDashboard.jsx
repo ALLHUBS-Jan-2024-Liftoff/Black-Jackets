@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import { deleteGig } from "../services/GigService";
 import { useNavigate } from "react-router-dom";
+import YoutubeAPI from "./ytvidoes";
 import "../pages/style.css";
 
 function VenueUserDashboard({ venueId }) {
@@ -42,6 +43,10 @@ function VenueUserDashboard({ venueId }) {
       <div className="container">
         <br />
         <br />
+        <div>
+          {/* <YouTubeSearch /> */}
+          <youtubeAPI />
+        </div>
         <div className="message">
           <button className="btn btn-info" onClick={handleNotification}>
             Notification
@@ -64,8 +69,7 @@ function VenueUserDashboard({ venueId }) {
             </button>
             <button
               className="btn btn-info"
-              onClick={() => updateVenue(venue.id)}
-            >
+              onClick={() => updateVenue(venue.id)}>
               Edit
             </button>
           </div>
@@ -112,15 +116,13 @@ function VenueUserDashboard({ venueId }) {
                 <td>
                   <button
                     className="btn btn-warning"
-                    onClick={() => handleEditGig(gig.id)}
-                  >
+                    onClick={() => handleEditGig(gig.id)}>
                     Edit
                   </button>
-                  
+
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDeleteGig(gig.id)}
-                  >
+                    onClick={() => handleDeleteGig(gig.id)}>
                     Delete
                   </button>
                 </td>

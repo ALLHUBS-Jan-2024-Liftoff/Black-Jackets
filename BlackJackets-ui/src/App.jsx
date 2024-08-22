@@ -24,6 +24,7 @@ import GuestView from "./pages/GuestView";
 import MessageAdd from "./pages/MessageAdd";
 import Notification from "./pages/Notification";
 import EditGigForm from "./pages/EditGig";
+// import YoutubeAPI from "./ytvidoes";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -63,6 +64,7 @@ function App() {
                   path="/venue-dashboard"
                   element={<VenueUserDashboard venueId={venueId} />}
                 />
+                {/* <Route path="/youtube-search" element={<YoutubeAPI />} /> */}
                 <Route path="/edit-venue/:id" element={<VenueEdit />} />
                 <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
