@@ -9,6 +9,13 @@ function VenueUserDashboard({ venueId }) {
   const [gigs, setGigs] = useState([]);
   const navigator = useNavigate();
 
+  const videoSrc = `https://www.youtube.com/embed/${venue.video}`;
+
+       // Log the src to the console when the component renders
+       useEffect(() => {
+           console.log("Video src:", videoSrc);
+       }, [videoSrc]);
+
   useEffect(() => {
     getVenueById(venueId).then((response) => {
       setVenue(response.data);
@@ -39,6 +46,17 @@ function VenueUserDashboard({ venueId }) {
 
   return (
     <div>
+     <div>
+      <div className="container">
+        <h1 className='header'>{venue.name}</h1><br />
+          <iframe
+             width="560"
+             height="315"
+             src={videoSrc}
+             frameBorder="0"
+             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+             allowFullScreen
+              />
       <div className="container">
         <br />
         <br />
@@ -59,6 +77,8 @@ function VenueUserDashboard({ venueId }) {
           {venue.phone}
           <br />
           <div className="button">
+           {venue.video}
+            <br />
             <button className="btn btn-info" onClick={handleCreateGig}>
               Add Gig{" "}
             </button>
