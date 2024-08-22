@@ -80,7 +80,6 @@ function App() {
 =======
                 <Route path="/message-list/:id" element={<Notification />} />
                 <Route path="/add-venue" element={<VenueAdd />} />
->>>>>>> origin/main
                 <Route
                   path="logout"
                   element={<Logout setAuthenticated={setAuthenticated} />}
