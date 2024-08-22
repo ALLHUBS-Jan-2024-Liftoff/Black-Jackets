@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addGig } from "../services/GigService";
 import { genreList } from "../services/GigService";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const CreateGigForm = () => {
   const [name, setName] = useState("");
@@ -16,6 +16,8 @@ const CreateGigForm = () => {
   // image input state
 
   const genres = genreList;
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +51,7 @@ const CreateGigForm = () => {
       setBandSlots(0);
       setSupportingAct("");
       setOpeningAct("");
+      navigate("/venue-dashboard");
     }
   };
 

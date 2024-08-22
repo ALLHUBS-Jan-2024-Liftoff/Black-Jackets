@@ -1,6 +1,8 @@
 package BlackJackets.BlackJackets.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -18,6 +20,7 @@ public class User{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "venue_id", referencedColumnName = "venue_id")
+    @Cascade(CascadeType.MERGE)
     private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

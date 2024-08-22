@@ -23,7 +23,8 @@ export default function VenuePage( { setVenueId } ) {
         const venue = { name, capacity, email, location, phone };
         addVenue(venue).then((data) => {
         console.log(`data: ${JSON.stringify(data)}`);
-        setVenueId(data.venue.id);
+        const venuedata = JSON.parse(data.venue);
+        setVenueId(venuedata.id);
         })
         alert("Venue created");
         navigate("/venue-dashboard");
