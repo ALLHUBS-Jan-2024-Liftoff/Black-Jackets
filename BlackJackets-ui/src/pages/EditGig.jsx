@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { editGig, fetchGig } from "../services/GigService";
 import { genreList } from "../services/GigService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditGigForm = () => {
-  const {id} = useParams();
-  
-const [gig, setGig] = useState({
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [gig, setGig] = useState({
     name: "",
     date: "",
     genre: "",
@@ -14,14 +15,14 @@ const [gig, setGig] = useState({
     headliner: "",
     bandSlots: null,
     supportingAct: "",
-    openingAct: ""
-})
+    openingAct: "",
+  });
 
-  useEffect(()=>{
-    fetchGig(id).then((response)=>{
+  useEffect(() => {
+    fetchGig(id).then((response) => {
       setGig(response);
-    })
-  }, [])
+    });
+  }, []);
 
   const genres = genreList;
 
@@ -37,11 +38,10 @@ const [gig, setGig] = useState({
       gig.bandSlots >= 0
       // && validation for img
     ) {
-      editGig(
-        id,
-        gig
-      );
-      alert("Gig Edited!");
+      editGig(id, gig).then(() => {
+        alert("Gig Edited!");
+        navigate("/venue-dashboard");
+      });
     }
   };
 
@@ -61,7 +61,7 @@ const [gig, setGig] = useState({
                     type="text"
                     className="form-control"
                     value={gig.name}
-                    onChange={(e) => setGig({ ...gig, name: e.target.value})}
+                    onChange={(e) => setGig({ ...gig, name: e.target.value })}
                     required
                   />
                 </label>
@@ -74,7 +74,7 @@ const [gig, setGig] = useState({
                     type="datetime-local"
                     className="form-control"
                     value={gig.date}
-                    onChange={(e) => setGig({...gig, date: e.target.value})}
+                    onChange={(e) => setGig({ ...gig, date: e.target.value })}
                     required
                   />
                 </label>
@@ -90,7 +90,9 @@ const [gig, setGig] = useState({
                       name="Genre"
                       id={`genre${i}`}
                       value={g}
-                      onChange={(e) => setGig({...gig, genre: e.target.value})}
+                      onChange={(e) =>
+                        setGig({ ...gig, genre: e.target.value })
+                      }
                       checked={gig.genre == g}
                       required
                     />
@@ -109,7 +111,7 @@ const [gig, setGig] = useState({
                   name="Age"
                   id="age1"
                   value="Ages 21+"
-                  onChange={(e) => setGig({...gig, ages: e.target.value})}
+                  onChange={(e) => setGig({ ...gig, ages: e.target.value })}
                   checked={gig.ages == "Ages 21+"}
                   required
                 />
@@ -124,7 +126,7 @@ const [gig, setGig] = useState({
                   name="Age"
                   id="age2"
                   value="All Ages"
-                  onChange={(e) => setGig({...gig, ages: e.target.value})}
+                  onChange={(e) => setGig({ ...gig, ages: e.target.value })}
                   checked={gig.ages == "All Ages"}
                   required
                 />
@@ -140,7 +142,9 @@ const [gig, setGig] = useState({
                     type="text"
                     className="form-control"
                     value={gig.headliner}
-                    onChange={(e) => setGig({...gig, headliner: e.target.value})}
+                    onChange={(e) =>
+                      setGig({ ...gig, headliner: e.target.value })
+                    }
                     required
                   />
                 </label>
@@ -190,7 +194,9 @@ const [gig, setGig] = useState({
                       type="text"
                       className="form-control"
                       defaultValue={gig.openingAct}
-                      onChange={(e) => setGig({...gig, openingAct: e.target.value})}
+                      onChange={(e) =>
+                        setGig({ ...gig, openingAct: e.target.value })
+                      }
                       required
                     />
                   </label>
@@ -205,7 +211,9 @@ const [gig, setGig] = useState({
                       type="text"
                       className="form-control"
                       defaultValue={gig.supportingAct}
-                      onChange={(e) => setGig({...gig, supportingAct: e.target.value})}
+                      onChange={(e) =>
+                        setGig({ ...gig, supportingAct: e.target.value })
+                      }
                       required
                     />
                   </label>
