@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
 import "../pages/style.css";
-import YouTubeSearch from "./Youtube/YouTubeSearch ";
+//import YouTubeSearch from "./Youtube/YouTubeSearch ";
 
 function GuestView() {
   const [venue, setVenue] = useState([]);

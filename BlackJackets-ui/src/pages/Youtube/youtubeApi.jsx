@@ -1,4 +1,4 @@
-import express from "express";
+/* import express from "express";
 import axios from "axios";
 import cors from "cors";
 const app = express();
@@ -27,7 +27,7 @@ app.get("/api/search", async (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Server running on port", `${PORT}`);
-});
+});   */
 
 // const API_KEY = "AIzaSyBo-IqMlKnLRSVtRgoApx8pPLjqqV4gPu4";
 // const BASE_URL = "https://www.googleapis.com/youtube/v3";
