@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getVenueById, editVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
+import { validatePhone } from "../services/PhoneValidation";
 
 function VenueEdit(){
   const [venue, setVenue] = useState({
@@ -22,6 +23,9 @@ function VenueEdit(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // validatePhone(venue.phone).then((response) =>{
+    //   console.log(response);
+    // })
     editVenueById(id, venue).then((response) => {
       navigator("/venue-dashboard");
     });
