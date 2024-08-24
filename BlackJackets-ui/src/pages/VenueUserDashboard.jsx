@@ -3,6 +3,7 @@ import { fetchGigsListByVenueId, getVenueById } from "../services/venueService";
 import { deleteGig } from "../services/GigService";
 import { useNavigate } from "react-router-dom";
 import "../pages/style.css";
+import Youtube from "./Youtube";
 
 function VenueUserDashboard({ venueId }) {
   const [venue, setVenue] = useState([]);
@@ -49,6 +50,9 @@ function VenueUserDashboard({ venueId }) {
         </div>
         <h1 className="header">{venue.name}</h1>
         <br />
+        <div>
+          <Youtube />
+        </div>
         <div className="details">
           {venue.capacity}
           <br />
@@ -64,8 +68,7 @@ function VenueUserDashboard({ venueId }) {
             </button>
             <button
               className="btn btn-info"
-              onClick={() => updateVenue(venue.id)}
-            >
+              onClick={() => updateVenue(venue.id)}>
               Edit
             </button>
           </div>
@@ -112,15 +115,13 @@ function VenueUserDashboard({ venueId }) {
                 <td>
                   <button
                     className="btn btn-warning"
-                    onClick={() => handleEditGig(gig.id)}
-                  >
+                    onClick={() => handleEditGig(gig.id)}>
                     Edit
                   </button>
-                  
+
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDeleteGig(gig.id)}
-                  >
+                    onClick={() => handleDeleteGig(gig.id)}>
                     Delete
                   </button>
                 </td>
