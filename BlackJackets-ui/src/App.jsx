@@ -36,6 +36,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Navbar authenticated={authenticated} />}>
+            {/* DELETE */}
+            {/* <Route path="/edit-venue/:id" element={<VenueEdit />} /> */}
+            {/* DELETE */}
+            
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route

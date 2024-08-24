@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getVenueById, editVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
+import LocationAutoComplete from "../components/LocationAutoComplete";
 
 function VenueEdit(){
   const [venue, setVenue] = useState({
@@ -73,7 +74,8 @@ function VenueEdit(){
                   required
                 />
               </div>
-              <div className="form-group mb-2">
+              <LocationAutoComplete value={venue.location} handleInput={(input)=>setVenue({...venue, location: input})}/>
+              {/* <div className="form-group mb-2">
                 <label className="form-label">Location</label>
                 <input
                   type="text"
@@ -85,7 +87,7 @@ function VenueEdit(){
                   }
                   required
                 />
-              </div>
+              </div> */}
               <div className="form-group mb-2">
                 <label className="form-label">Phone</label>
                 <input
