@@ -23,6 +23,7 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
             }
         };
     }
+
     // Register the filter with the Spring container
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
