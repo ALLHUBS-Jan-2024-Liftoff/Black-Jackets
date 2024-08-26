@@ -22,7 +22,7 @@ public class User{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "venue_id", referencedColumnName = "venue_id")
-    @Cascade(CascadeType.MERGE)
+    @Cascade(CascadeType.ALL)
     private Venue venue;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -34,7 +34,7 @@ public class User{
         this.pwHash = encoder.encode(password);
         this.fullName = fullName;
         this.isEnabled = isEnabled();
-        this.venue = new Venue();
+//        this.venue = new Venue();
 
     }
     public int getId() {

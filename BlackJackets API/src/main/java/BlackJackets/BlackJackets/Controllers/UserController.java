@@ -63,7 +63,7 @@ public class UserController {
 
     @PostMapping(value= "/register" )
     public ResponseEntity<Map> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO,
-                                                       HttpServletRequest request)  {
+                                                       HttpServletRequest request )  {
         ResponseEntity response = null;
         Map<String, String> responseBody = new HashMap<>();
         try{
@@ -73,19 +73,20 @@ public class UserController {
                 setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
 
-                ConfirmationToken confirmationToken = new ConfirmationToken();
+                ConfirmationToken confirmationToken = new ConfirmationToken(newUser);
 
                 confirmationTokenRepository.save(confirmationToken);
-
+                System.out.println("Confirmation Token: " + confirmationToken.getConfirmationToken());
                 SimpleMailMessage mailMessage = new SimpleMailMessage();
                 mailMessage.setTo(newUser.getEmail());
                 mailMessage.setSubject("Complete Registration!");
                 mailMessage.setText("To confirm your account, please click here : "
-                        +"http://localhost:8090//user/confirm-account?token="+confirmationToken.getConfirmationToken());
+                        +"http://localhost:8090/user/confirm-account?token="+confirmationToken.getConfirmationToken());
                 emailService.sendEmail(mailMessage);
+
                 ObjectMapper objectMapper = new ObjectMapper();
                 String userString = objectMapper.writeValueAsString(newUser);
-                responseBody.put("message", "Verify email by the link sent on your email address");
+                responseBody.put("message", "Registration successful. Please verify email by the link sent on your email address");
 //                responseBody.put("User", userString);
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
@@ -150,12 +151,9 @@ public class UserController {
         request.getSession().invalidate();
         return "/login";
     }
-    
-    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-    public ResponseEntity<Map> confirmEmail(String confirmationToken) throws JsonProcessingException {
-        ResponseEntity response = null;
-        Map<String, String> responseBody = new HashMap<>();
 
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity<?> confirmEmail(@RequestParam("token")String confirmationToken) throws JsonProcessingException {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
         if(token != null)
@@ -163,18 +161,9 @@ public class UserController {
             User user = userRepository.findByEmail(token.getUserEntity().getEmail());
             user.setEnabled(true);
             userRepository.save(user);
-            ObjectMapper objectMapper = new ObjectMapper();
-            String userString = objectMapper.writeValueAsString(user);
-            responseBody.put("message", "Email verified successfully!");
-                responseBody.put("User", userString);
-            response = ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(responseBody);
-        } else {
-            responseBody.put("message", "Error: Couldn't verify email");
-            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+            return ResponseEntity.ok("Email verified successfully!");
         }
-        return response;
+        return ResponseEntity.badRequest().body("Error: Couldn't verify email");
 }
     @GetMapping("{Id}")
     public ResponseEntity<User> getUserById(@PathVariable("Id") int userId) {
