@@ -18,6 +18,8 @@ public class User{
 
     private String fullName;
 
+    private boolean isEnabled;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "venue_id", referencedColumnName = "venue_id")
     @Cascade(CascadeType.MERGE)
@@ -31,6 +33,9 @@ public class User{
         this.email = email;
         this.pwHash = encoder.encode(password);
         this.fullName = fullName;
+        this.isEnabled = isEnabled();
+        this.venue = new Venue();
+
     }
     public int getId() {
         return id;
@@ -58,4 +63,14 @@ public class User{
     public void setVenue(Venue venue) {
         this.venue = venue;
     }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+
 }

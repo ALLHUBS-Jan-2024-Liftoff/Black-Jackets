@@ -1,12 +1,15 @@
 package BlackJackets.BlackJackets.Controllers;
 
+import BlackJackets.BlackJackets.data.ConfirmationTokenRepository;
 import BlackJackets.BlackJackets.data.UserRepository;
 import BlackJackets.BlackJackets.dto.LoginFormDTO;
 import BlackJackets.BlackJackets.dto.RegisterFormDTO;
 import BlackJackets.BlackJackets.dto.VenueDto;
+import BlackJackets.BlackJackets.models.ConfirmationToken;
 import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.Venue;
+import BlackJackets.BlackJackets.service.EmailService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +33,12 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    EmailService emailService;
 
     private static final String userSessionKey = "user";
 
@@ -61,10 +72,21 @@ public class UserController {
                 User newUser = new User(registerFormDTO.getEmail(), registerFormDTO.getPassword(), registerFormDTO.getFullName());
                 setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
+
+                ConfirmationToken confirmationToken = new ConfirmationToken();
+
+                confirmationTokenRepository.save(confirmationToken);
+
+                SimpleMailMessage mailMessage = new SimpleMailMessage();
+                mailMessage.setTo(newUser.getEmail());
+                mailMessage.setSubject("Complete Registration!");
+                mailMessage.setText("To confirm your account, please click here : "
+                        +"http://localhost:8090//user/confirm-account?token="+confirmationToken.getConfirmationToken());
+                emailService.sendEmail(mailMessage);
                 ObjectMapper objectMapper = new ObjectMapper();
                 String userString = objectMapper.writeValueAsString(newUser);
-                responseBody.put("message", "Given user details are successfully registered");
-                responseBody.put("User", userString);
+                responseBody.put("message", "Verify email by the link sent on your email address");
+//                responseBody.put("User", userString);
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body(responseBody);
@@ -128,7 +150,32 @@ public class UserController {
         request.getSession().invalidate();
         return "/login";
     }
+    
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity<Map> confirmEmail(String confirmationToken) throws JsonProcessingException {
+        ResponseEntity response = null;
+        Map<String, String> responseBody = new HashMap<>();
 
+        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        if(token != null)
+        {
+            User user = userRepository.findByEmail(token.getUserEntity().getEmail());
+            user.setEnabled(true);
+            userRepository.save(user);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String userString = objectMapper.writeValueAsString(user);
+            responseBody.put("message", "Email verified successfully!");
+                responseBody.put("User", userString);
+            response = ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(responseBody);
+        } else {
+            responseBody.put("message", "Error: Couldn't verify email");
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+        }
+        return response;
+}
     @GetMapping("{Id}")
     public ResponseEntity<User> getUserById(@PathVariable("Id") int userId) {
         User user = userRepository.getUserById(userId);
