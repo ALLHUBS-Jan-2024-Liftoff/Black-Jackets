@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Logout from "../pages/Logout";
 
-function Navbar({ authenticated } ) {
-
-
-  
+function Navbar({ authenticated }) {
   return (
     <>
       <nav>
@@ -77,8 +74,7 @@ function Navbar({ authenticated } ) {
                 <Link
                   className="nav-link"
                   onClick={Logout(authenticated)}
-                  to="/login"
-                >
+                  to="/login">
                   Logout
                 </Link>
               </li>

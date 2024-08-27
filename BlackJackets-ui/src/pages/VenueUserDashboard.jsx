@@ -4,6 +4,7 @@ import { deleteGig } from "../services/GigService";
 import { useNavigate } from "react-router-dom";
 import "../pages/style.css";
 import Youtube from "./Youtube";
+import YouTubeSearch from "./YouTubeSearch";
 
 function VenueUserDashboard({ venueId }) {
   const [venue, setVenue] = useState([]);
@@ -51,6 +52,7 @@ function VenueUserDashboard({ venueId }) {
         <h1 className="header">{venue.name}</h1>
         <br />
         <div>
+          <YouTubeSearch />
           <Youtube />
         </div>
         <div className="details">
