@@ -4,6 +4,7 @@ import { fetchGigs } from "../services/GigService";
 import GigListing from "./GigListing";
 import { genreList, agesList } from "../services/GigService";
 
+
 const GigListings = ({ isVenuePage = false, venueId = null }) => {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,7 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
       "mailto:" + email + "?subject=" + subject;
   }
 
+  
   if (isVenuePage) {
     setVenue(venueId);
   }
@@ -124,6 +126,15 @@ const GigListings = ({ isVenuePage = false, venueId = null }) => {
             onClick={() => sendEmail(filteredGigs)}
           >
             Contact Venues
+          </button>
+        }
+        {
+          <button
+            className="btn btn-outline-primary"
+            role="link"
+            onClick={() => window.open("/youtubesearch", "_blank", "noreferrer")}
+          >
+            Search For Bands On Youtube
           </button>
         }
       </div>
