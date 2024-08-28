@@ -1,6 +1,6 @@
 import React from "react";
 
-class Searchbar extends React.Component {
+class SearchBar extends React.Component {
   handleChange = (event) => {
     this.setState({
       term: event.target.value,
@@ -42,4 +42,4 @@ class Searchbar extends React.Component {
     );
   }
 }
-export default Searchbar;
+export default SearchBar;

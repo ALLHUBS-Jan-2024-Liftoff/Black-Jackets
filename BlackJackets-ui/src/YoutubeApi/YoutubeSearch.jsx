@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import SearchBar from "./Searchbar";
+import SearchBar from "./SearchBar";
 import youtube from "../YoutubeApi/youtube";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
@@ -11,21 +11,21 @@ axios.defaults.withCredentials = true;
 
 
 class YoutubeSearch extends React.Component {
-    
   state = {
     videos: [],
-    selectedVideo: null,
-  };
+    selectedVideo: null
+  }
   handleSubmit = async (termFromSearchBar) => {
-    const response = await youtube.get("search", {
+    const response = await youtube.get('/search', {
       params: {
         q: termFromSearchBar,
-      },
-    }); 
-
+        // withCredentials: true,
+      }
+    })
+    // videos = JSON.parse(response.data.items);
     this.setState({
-      videos: response.data.items,
-    });
+      videos: response.data.items
+    })
     console.log("this is resp", response);
   };
   handleVideoSelect = (video) => {
