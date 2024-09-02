@@ -24,6 +24,7 @@ import GuestView from "./pages/GuestView";
 import MessageAdd from "./pages/MessageAdd";
 import Notification from "./pages/Notification";
 import EditGigForm from "./pages/EditGig";
+import YoutubeSearch from "./YoutubeApi/YoutubeSearch";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -49,13 +50,9 @@ function App() {
             />
             <Route
               path="register"
-              element={
-                <RegisterForm
-                  setAuthenticated={setAuthenticated}
-                />
-              }
+              element={<RegisterForm setAuthenticated={setAuthenticated} />}
             />
-
+            <Route path="youtubesearch" element={<YoutubeSearch />} />
             <Route
               path="gigs/search"
               element={<GigListings isVenue={false} />}
@@ -65,6 +62,7 @@ function App() {
             <Route path="/add-message/:id" element={<MessageAdd />} />
             <Route path="gigs/view/:gigId" element={<GigPage />} />
             <Route path="gigs/edit/:id" element={<EditGigForm />} />
+
             {authenticated ? (
               <>
                 <Route path="gigs/add/:id" element={<CreateGigForm />} />
