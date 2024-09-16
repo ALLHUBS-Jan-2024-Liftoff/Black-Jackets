@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'com.mashape.unirest:unirest-java:1.4.9'
 	implementation("org.springframework.security:spring-security-crypto:5.5.1")
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.3'
@@ -28,6 +29,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'mysql:mysql-connector-java:8.0.32'
 	implementation 'org.modelmapper:modelmapper:2.3.8'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'

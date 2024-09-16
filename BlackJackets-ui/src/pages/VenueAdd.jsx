@@ -2,36 +2,47 @@ import React, { useState } from "react";
 import { addVenue } from "../services/venueService";
 // import { fetchUser } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
+import { validatePhone } from "../services/PhoneValidation";
 
-export default function VenuePage( { setVenueId } ) {
+export default function VenuePage({ setVenueId }) {
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
-       
+
   const handleSubmit = (e) => {
-      e.preventDefault();
-      if (
-        name != "" &&
-        capacity != "" &&  
-        email != "" &&
-        location != "" &&
-        phone != ""
-      ) {
-        const venue = { name, capacity, email, location, phone };
-        addVenue(venue).then((data) => {
-        console.log(`data: ${JSON.stringify(data)}`);
-        const venuedata = JSON.parse(data.venue);
-        setVenueId(venuedata.id);
-        alert("Venue created");
-        navigate("/venue-dashboard");
-        })
-        
-      }
-  }
-  
+    e.preventDefault();
+    if (
+      name != "" &&
+      capacity != "" &&
+      email != "" &&
+      location != "" &&
+      phone != ""
+    ) {
+      // validate phone
+      validatePhone(phone).then((response) => {
+        if (response.valid == false) {
+          alert("Please provide a valid phone number");
+        } else {
+          const formattedPhone = response.format.local;
+
+          const venue = { name, capacity, email, location, phone: formattedPhone };
+          addVenue(venue).then((data) => {
+            console.log(`data: ${JSON.stringify(data)}`);
+            const venuedata = JSON.parse(data.venue);
+            setVenueId(venuedata.id);
+            alert("Venue created");
+            navigate("/venue-dashboard");
+          });
+        }
+      });
+    } else {
+      alert("Please fill out all form fields properly")
+    }
+  };
+
   return (
     <div className="container">
       <br />
