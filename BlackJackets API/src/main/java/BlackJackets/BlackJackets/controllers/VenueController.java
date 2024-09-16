@@ -4,6 +4,7 @@ import BlackJackets.BlackJackets.dto.VenueDto;
 import BlackJackets.BlackJackets.models.Gig;
 import BlackJackets.BlackJackets.models.User;
 import BlackJackets.BlackJackets.models.Venue;
+import BlackJackets.BlackJackets.service.PhoneValidationService;
 import BlackJackets.BlackJackets.service.VenueService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +26,8 @@ public class VenueController {
     private VenueService venueService;
     @Autowired
     private UserController userController;
+    @Autowired
+    private PhoneValidationService phoneValidationService;
 
     //Create Venue
     @PostMapping("add")
@@ -58,7 +61,9 @@ public class VenueController {
 
     //Update Venue
     @PutMapping("{Id}")
-    public ResponseEntity<VenueDto> updateVenue(@RequestBody VenueDto venueDto, @PathVariable("Id") Integer venueId) throws IOException {
+    public ResponseEntity<VenueDto> /*String*/ updateVenue(@RequestBody VenueDto venueDto, @PathVariable("Id") Integer venueId) throws IOException {
+//        return phoneValidationService.validatePhoneNumber(venueDto.getPhone());
+//        phoneValidationService.validatePhoneNumber(venueDto.getPhone());
         VenueDto updateVenueObj = venueService.updateVenue(venueId,venueDto);
         return new ResponseEntity<VenueDto>(updateVenueObj,HttpStatusCode.valueOf(200));
     }
@@ -75,6 +80,11 @@ public class VenueController {
     @GetMapping("/allGigs/{venueId}")
     public ResponseEntity<List<Gig>> getAllGigsByVenueId(@PathVariable Integer venueId){
         return new ResponseEntity<>(this.venueService.getAllGigsByVenueId(venueId),HttpStatusCode.valueOf(200));
+    }
+
+    @PostMapping("/phoneValidation")
+    public String validatePhoneNumber(@RequestParam String phoneNumber){
+        return phoneValidationService.validatePhoneNumber(phoneNumber);
     }
 
 }

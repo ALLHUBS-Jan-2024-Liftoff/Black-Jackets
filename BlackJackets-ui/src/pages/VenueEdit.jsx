@@ -3,7 +3,7 @@ import { getVenueById, editVenueById } from "../services/venueService";
 import { useNavigate, useParams } from "react-router-dom";
 import { validatePhone } from "../services/PhoneValidation";
 
-function VenueEdit(){
+function VenueEdit() {
   const [venue, setVenue] = useState({
     name: "",
     capacity: "",
@@ -23,11 +23,17 @@ function VenueEdit(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // validatePhone(venue.phone).then((response) =>{
-    //   console.log(response);
-    // })
-    editVenueById(id, venue).then((response) => {
-      navigator("/venue-dashboard");
+    validatePhone(venue.phone).then((response) => {
+      if (response.valid == false) {
+        alert("Please provide a valid phone number");
+      } else {
+        const formattedPhone = response.format.local;
+        console.log(formattedPhone);
+        // setVenue({...venue, phone: formattedPhone})
+        editVenueById(id, {...venue, phone: formattedPhone}).then((response) => {
+          navigator("/venue-dashboard");
+        });
+      }
     });
   };
 
